@@ -1,0 +1,46 @@
+package layouts
+
+import "github.com/templui/goilerplate/internal/ctxkeys"
+
+// Analytics renders all enabled analytics providers
+// Multiple providers can be used simultaneously
+templ Analytics() {
+	{{ cfg := ctxkeys.Config(ctx) }}
+	// Google Analytics 4
+	if cfg.GoogleAnalyticsID != "" {
+		@GoogleAnalytics()
+	}
+	// Plausible Analytics
+	if cfg.PlausibleDomain != "" {
+		@Plausible()
+	}
+}
+
+// GoogleAnalytics renders Google Analytics 4 (direct integration)
+// Requires: GOOGLE_ANALYTICS_ID
+templ GoogleAnalytics() {
+	{{ cfg := ctxkeys.Config(ctx) }}
+	<!-- Google Analytics -->
+	<script nonce={ templ.GetNonce(ctx) } async src={ "https://www.googletagmanager.com/gtag/js?id=" + cfg.GoogleAnalyticsID }></script>
+	<script nonce={ templ.GetNonce(ctx) }>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', {{ cfg.GoogleAnalyticsID }});
+	</script>
+	<!-- End Google Analytics -->
+}
+
+// Plausible renders Plausible Analytics script
+// Requires: PLAUSIBLE_DOMAIN
+// Optional: PLAUSIBLE_HOST (defaults to plausible.io, set for self-hosted)
+templ Plausible() {
+	{{ cfg := ctxkeys.Config(ctx) }}
+	{{ host := cfg.PlausibleHost }}
+	if host == "" {
+		{{ host = "plausible.io" }}
+	}
+	<!-- Plausible Analytics -->
+	<script nonce={ templ.GetNonce(ctx) } defer data-domain={ cfg.PlausibleDomain } src={ "https://" + host + "/js/script.js" }></script>
+	<!-- End Plausible Analytics -->
+}

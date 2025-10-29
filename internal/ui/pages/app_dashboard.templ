@@ -1,0 +1,138 @@
+package pages
+
+import (
+	"fmt"
+	"github.com/templui/goilerplate/internal/model"
+	"github.com/templui/goilerplate/internal/ui/components/badge"
+	"github.com/templui/goilerplate/internal/ui/components/button"
+	"github.com/templui/goilerplate/internal/ui/components/card"
+	"github.com/templui/goilerplate/internal/ui/layouts"
+)
+
+templ Dashboard(goals []*model.Goal) {
+	{{ totalGoals := len(goals) }}
+	{{ activeCount := 0 }}
+	{{ completedCount := 0 }}
+	for _, g := range goals {
+		if g.Status == model.GoalStatusActive {
+			{{ activeCount++ }}
+		} else {
+			{{ completedCount++ }}
+		}
+	}
+	{{ recentGoals := goals }}
+	if len(goals) > 3 {
+		{{ recentGoals = goals[:3] }}
+	}
+	@layouts.App("Dashboard") {
+		<div class="container max-w-7xl px-6 py-8">
+			<div class="mb-8">
+				<h1 class="text-3xl font-bold">Dashboard</h1>
+				<p class="text-muted-foreground mt-2">Welcome to your dashboard</p>
+			</div>
+			<!-- Stats Grid -->
+			<div class="grid gap-4 md:grid-cols-3 mb-8">
+				<!-- Total Goals -->
+				@card.Card() {
+					@card.Header() {
+						@card.Title(card.TitleProps{Class: "text-sm font-medium"}) {
+							Total Goals
+						}
+					}
+					@card.Content() {
+						<div class="text-2xl font-bold">{ fmt.Sprintf("%d", totalGoals) }</div>
+						<p class="text-xs text-muted-foreground mt-1">All goals</p>
+					}
+				}
+				<!-- Active Goals -->
+				@card.Card() {
+					@card.Header() {
+						@card.Title(card.TitleProps{Class: "text-sm font-medium"}) {
+							Active
+						}
+					}
+					@card.Content() {
+						<div class="text-2xl font-bold text-green-600">{ fmt.Sprintf("%d", activeCount) }</div>
+						<p class="text-xs text-muted-foreground mt-1">In progress</p>
+					}
+				}
+				<!-- Completed Goals -->
+				@card.Card() {
+					@card.Header() {
+						@card.Title(card.TitleProps{Class: "text-sm font-medium"}) {
+							Completed
+						}
+					}
+					@card.Content() {
+						<div class="text-2xl font-bold text-blue-600">{ fmt.Sprintf("%d", completedCount) }</div>
+						<p class="text-xs text-muted-foreground mt-1">100/100 done</p>
+					}
+				}
+			</div>
+			<!-- Recent Goals -->
+			<div>
+				<div class="flex items-center justify-between mb-4">
+					<h2 class="text-xl font-semibold">Recent Goals</h2>
+					<a href="/app/goals">
+						@button.Button(button.Props{Variant: button.VariantOutline, Size: button.SizeSm}) {
+							View All
+						}
+					</a>
+				</div>
+				if len(recentGoals) == 0 {
+					@card.Card() {
+						@card.Content(card.ContentProps{Class: "text-center py-8"}) {
+							<p class="text-muted-foreground mb-4">No goals yet</p>
+							<a href="/app/goals">
+								@button.Button() {
+									Start Your First Goal
+								}
+							</a>
+						}
+					}
+				} else {
+					<div class="flex flex-col gap-3">
+						for _, goal := range recentGoals {
+							<a href={ templ.URL(fmt.Sprintf("/app/goals/%s", goal.ID)) }>
+								@card.Card() {
+									@card.Header() {
+										<div class="flex items-center justify-between">
+											<div class="flex-1">
+												@card.Title(card.TitleProps{Class: "text-base"}) {
+													{ goal.Title }
+												}
+											</div>
+											if goal.Status == model.GoalStatusActive {
+												@badge.Badge(badge.Props{Class: "ml-2"}) {
+													Active
+												}
+											} else {
+												@badge.Badge(badge.Props{Variant: badge.VariantSecondary, Class: "ml-2"}) {
+													Completed
+												}
+											}
+										</div>
+									}
+									@card.Content() {
+										<div class="space-y-2">
+											if goal.Description != "" {
+												<p class="text-sm text-muted-foreground line-clamp-2">{ goal.Description }</p>
+											}
+											<div class="flex items-center gap-2">
+												<div class="flex-1 bg-muted rounded-full h-2">
+													{{ progress := float64(goal.CurrentStep) / 100.0 * 100 }}
+													<div class="bg-primary h-2 rounded-full transition-all" style={ fmt.Sprintf("width: %.0f%%", progress) }></div>
+												</div>
+												<span class="text-xs font-medium">{ fmt.Sprintf("%d/100", goal.CurrentStep) }</span>
+											</div>
+										</div>
+									}
+								}
+							</a>
+						}
+					</div>
+				}
+			</div>
+		</div>
+	}
+}
