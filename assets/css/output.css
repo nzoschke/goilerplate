@@ -1893,9 +1893,6 @@
   .text-left {
     text-align: left;
   }
-  .text-right {
-    text-align: right;
-  }
   .align-middle {
     vertical-align: middle;
   }
@@ -2997,13 +2994,6 @@
     &:hover {
       @media (hover: hover) {
         color: var(--foreground);
-      }
-    }
-  }
-  .hover\:text-primary {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--primary);
       }
     }
   }
