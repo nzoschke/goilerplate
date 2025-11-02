@@ -82,7 +82,6 @@ templ SettingsNameSection(profile *model.Profile) {
 						Name:        "name",
 						Value:       profile.Name,
 						Placeholder: "Your name",
-						Required:    true,
 					})
 				</div>
 				<div class="flex justify-end">
@@ -233,7 +232,6 @@ templ SettingsEmailSection(user *model.User) {
 						Name:        "email",
 						Value:       user.Email,
 						Placeholder: "your@email.com",
-						Required:    true,
 					})
 				</div>
 				<div class="flex justify-end">
@@ -285,7 +283,6 @@ templ SettingsPasswordSection() {
 									ID:          "current_password",
 									Name:        "current_password",
 									Placeholder: "Enter current password",
-									Required:    true,
 								})
 							</div>
 							<div class="space-y-2">
@@ -297,10 +294,6 @@ templ SettingsPasswordSection() {
 									ID:          "new_password",
 									Name:        "new_password",
 									Placeholder: "Enter new password",
-									Required:    true,
-									Attributes: templ.Attributes{
-										"minlength": "12",
-									},
 								})
 								<p class="text-sm text-muted-foreground">
 									Must be at least 12 characters long
@@ -315,7 +308,6 @@ templ SettingsPasswordSection() {
 									ID:          "confirm_password",
 									Name:        "confirm_password",
 									Placeholder: "Confirm new password",
-									Required:    true,
 								})
 							</div>
 							<div class="flex justify-between items-center">
@@ -388,10 +380,6 @@ templ SettingsPasswordSection() {
 										ID:          "new_password",
 										Name:        "new_password",
 										Placeholder: "Enter new password",
-										Required:    true,
-										Attributes: templ.Attributes{
-											"minlength": "12",
-										},
 									})
 									<p class="text-sm text-muted-foreground">
 										Must be at least 12 characters long
@@ -406,7 +394,6 @@ templ SettingsPasswordSection() {
 										ID:          "confirm_password",
 										Name:        "confirm_password",
 										Placeholder: "Confirm new password",
-										Required:    true,
 									})
 								</div>
 								<div class="flex justify-end">

@@ -118,10 +118,11 @@ func (h *AccountHandler) ChangePassword(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	if len(newPassword) < 8 {
+	err := validation.ValidatePassword(newPassword)
+	if err != nil {
 		ui.RenderOOB(w, r, toast.Toast(toast.Props{
 			Title:       "Error",
-			Description: "Password must be at least 8 characters",
+			Description: err.Error(),
 			Variant:     toast.VariantError,
 			Icon:        true,
 			Dismissible: true,
@@ -129,7 +130,7 @@ func (h *AccountHandler) ChangePassword(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	err := h.userService.UpdatePassword(user.ID, currentPassword, newPassword)
+	err = h.userService.UpdatePassword(user.ID, currentPassword, newPassword)
 	if err != nil {
 		slog.Warn("password update failed", "error", err, "user_id", user.ID)
 
@@ -187,7 +188,19 @@ func (h *AccountHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := h.authService.SetPassword(user.ID, newPassword)
+	err := validation.ValidatePassword(newPassword)
+	if err != nil {
+		ui.RenderOOB(w, r, toast.Toast(toast.Props{
+			Title:       "Error",
+			Description: err.Error(),
+			Variant:     toast.VariantError,
+			Icon:        true,
+			Dismissible: true,
+		}), "beforeend:#toast-container")
+		return
+	}
+
+	err = h.authService.SetPassword(user.ID, newPassword)
 	if err != nil {
 		slog.Warn("set password failed", "error", err, "user_id", user.ID)
 
@@ -279,6 +292,19 @@ func (h *AccountHandler) RemovePassword(w http.ResponseWriter, r *http.Request) 
 
 func (h *AccountHandler) DeleteAccount(w http.ResponseWriter, r *http.Request) {
 	user := ctxkeys.User(r.Context())
+
+	confirmation := strings.TrimSpace(r.FormValue("delete_confirmation"))
+
+	if confirmation != "DELETE" {
+		ui.RenderOOB(w, r, toast.Toast(toast.Props{
+			Title:       "Error",
+			Description: "Please type DELETE to confirm account deletion",
+			Variant:     toast.VariantError,
+			Icon:        true,
+			Dismissible: true,
+		}), "beforeend:#toast-container")
+		return
+	}
 
 	err := h.userService.DeleteAccount(user.ID)
 	if err != nil {

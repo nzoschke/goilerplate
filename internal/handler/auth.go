@@ -16,6 +16,7 @@ import (
 	"github.com/templui/goilerplate/internal/ui"
 	"github.com/templui/goilerplate/internal/ui/components/toast"
 	"github.com/templui/goilerplate/internal/ui/pages"
+	"github.com/templui/goilerplate/internal/validation"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/github"
 	"golang.org/x/oauth2/google"
@@ -61,9 +62,20 @@ func (h *authHandler) ForgotPasswordPage(w http.ResponseWriter, r *http.Request)
 }
 
 func (h *authHandler) ForgotPassword(w http.ResponseWriter, r *http.Request) {
-	email := r.FormValue("email")
+	email := strings.TrimSpace(r.FormValue("email"))
 
-	err := h.authService.SendForgotPasswordLink(email)
+	if email == "" {
+		ui.Render(w, r, pages.ForgotPassword("Email is required"))
+		return
+	}
+
+	err := validation.ValidateEmail(email)
+	if err != nil {
+		ui.Render(w, r, pages.ForgotPassword("Please provide a valid email address"))
+		return
+	}
+
+	err = h.authService.SendForgotPasswordLink(email)
 	if err != nil {
 		// Don't reveal specific errors to user
 		slog.Warn("forgot password link send failed", "error", err, "email", email)
@@ -132,9 +144,20 @@ func (h *authHandler) VerifyEmailChange(w http.ResponseWriter, r *http.Request) 
 }
 
 func (h *authHandler) SendMagicLink(w http.ResponseWriter, r *http.Request) {
-	email := r.FormValue("email")
+	email := strings.TrimSpace(r.FormValue("email"))
 
-	err := h.authService.SendMagicLink(email)
+	if email == "" {
+		ui.Render(w, r, pages.Auth("Email is required"))
+		return
+	}
+
+	err := validation.ValidateEmail(email)
+	if err != nil {
+		ui.Render(w, r, pages.Auth("Please provide a valid email address"))
+		return
+	}
+
+	err = h.authService.SendMagicLink(email)
 	if err != nil {
 		// Don't reveal specific errors to prevent email enumeration
 		slog.Warn("magic link send failed", "error", err, "email", email)
@@ -222,8 +245,19 @@ func (h *authHandler) CompleteOnboarding(w http.ResponseWriter, r *http.Request)
 }
 
 func (h *authHandler) PasswordAuth(w http.ResponseWriter, r *http.Request) {
-	email := r.FormValue("email")
+	email := strings.TrimSpace(r.FormValue("email"))
 	password := r.FormValue("password")
+
+	if email == "" || password == "" {
+		ui.Render(w, r, pages.AuthPassword("Email and password are required"))
+		return
+	}
+
+	err := validation.ValidateEmail(email)
+	if err != nil {
+		ui.Render(w, r, pages.AuthPassword("Please provide a valid email address"))
+		return
+	}
 
 	user, err := h.authService.Login(email, password)
 	if err != nil {
