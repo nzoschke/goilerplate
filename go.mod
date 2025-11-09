@@ -21,6 +21,7 @@ require (
 	github.com/samber/slog-multi v1.5.0
 	github.com/samber/slog-sentry/v2 v2.9.3
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20250711233419-a173a6c0125c
+	github.com/stripe/stripe-go/v81 v81.4.0
 	github.com/yuin/goldmark v1.7.13
 	go.abhg.dev/goldmark/frontmatter v0.2.0
 	golang.org/x/crypto v0.42.0

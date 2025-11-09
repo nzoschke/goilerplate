@@ -43,6 +43,8 @@ type Config struct {
 	ResendAudienceID string
 
 	// Payment
+	PaymentProvider string // "polar" or "stripe"
+	// Payment - Polar
 	PolarAPIKey                     string
 	PolarWebhookSecret              string
 	PolarSandboxMode                bool
@@ -50,6 +52,13 @@ type Config struct {
 	PolarProductIDProYearly         string
 	PolarProductIDEnterpriseMonthly string
 	PolarProductIDEnterpriseYearly  string
+	// Payment - Stripe
+	StripeSecretKey                string
+	StripeWebhookSecret            string
+	StripePriceIDProMonthly        string
+	StripePriceIDProYearly         string
+	StripePriceIDEnterpriseMonthly string
+	StripePriceIDEnterpriseYearly  string
 
 	// Analytics (all optional, can be used simultaneously)
 	GoogleAnalyticsID string
@@ -109,14 +118,21 @@ func Load() *Config {
 		ResendAPIKey:     envString("RESEND_API_KEY", ""),
 		ResendAudienceID: envString("RESEND_AUDIENCE_ID", ""),
 
-		// Payment (required for subscription features)
-		PolarAPIKey:                     envRequired("POLAR_API_KEY"),
+		// Payment (provider selection and configuration)
+		PaymentProvider:                 envString("PAYMENT_PROVIDER", "polar"), // Default: polar
+		PolarAPIKey:                     envString("POLAR_API_KEY", ""),
 		PolarWebhookSecret:              envString("POLAR_WEBHOOK_SECRET", ""),
 		PolarSandboxMode:                envBool("POLAR_SANDBOX_MODE", envString("APP_ENV", "development") == "development"),
 		PolarProductIDProMonthly:        envString("POLAR_PRODUCT_ID_PRO_MONTHLY", ""),
 		PolarProductIDProYearly:         envString("POLAR_PRODUCT_ID_PRO_YEARLY", ""),
 		PolarProductIDEnterpriseMonthly: envString("POLAR_PRODUCT_ID_ENTERPRISE_MONTHLY", ""),
 		PolarProductIDEnterpriseYearly:  envString("POLAR_PRODUCT_ID_ENTERPRISE_YEARLY", ""),
+		StripeSecretKey:                 envString("STRIPE_SECRET_KEY", ""),
+		StripeWebhookSecret:             envString("STRIPE_WEBHOOK_SECRET", ""),
+		StripePriceIDProMonthly:         envString("STRIPE_PRICE_ID_PRO_MONTHLY", ""),
+		StripePriceIDProYearly:          envString("STRIPE_PRICE_ID_PRO_YEARLY", ""),
+		StripePriceIDEnterpriseMonthly:  envString("STRIPE_PRICE_ID_ENTERPRISE_MONTHLY", ""),
+		StripePriceIDEnterpriseYearly:   envString("STRIPE_PRICE_ID_ENTERPRISE_YEARLY", ""),
 
 		// Analytics
 		GoogleAnalyticsID: envString("GOOGLE_ANALYTICS_ID", ""),
