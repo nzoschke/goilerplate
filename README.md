@@ -4,25 +4,24 @@ Production-ready Go boilerplate with templ, HTMX, and TailwindCSS.
 
 ## Prerequisites
 
-- [Go 1.24+](https://go.dev/dl/)
+- [Go 1.25+](https://go.dev/dl/)
 - [Make](https://www.gnu.org/software/make/)
-- [templ](https://templ.guide/quick-start/installation)
 - [TailwindCSS CLI](https://tailwindcss.com/blog/standalone-cli)
-- [air](https://github.com/air-verse/air)
 - [Docker](https://docs.docker.com/get-docker/)
+
+> **Note:** Development tools like `templ` and `air` are automatically managed via Go 1.25's `tool` directive and don't need manual installation.
 
 ## Quick Start
 
 ```bash
-# Clone and install
+# Clone
 git clone https://github.com/templui/goilerplate.git
 cd goilerplate
-go mod download
 
 # Setup environment
 cp .env.example .env
 
-# Start development server
+# Start (installs dependencies, generates code, starts server)
 make dev
 ```
 

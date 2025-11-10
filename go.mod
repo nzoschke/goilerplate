@@ -1,6 +1,6 @@
 module github.com/templui/goilerplate
 
-go 1.24.0
+go 1.25
 
 require (
 	github.com/Oudwins/tailwind-merge-go v0.2.1
