@@ -50,23 +50,15 @@ templ MagicLinkSent(email string) {
 						{{ cfg := ctxkeys.Config(ctx) }}
 						<p class="text-xs text-center text-muted-foreground">
 							Didn't receive it? Check your spam folder or
-							@button.Button(button.Props{
-								Variant: button.VariantLink,
-								Href:    "mailto:" + cfg.SupportEmail,
-								Class:   "text-xs h-auto p-0",
-							}) {
+							<a href={ templ.SafeURL("mailto:" + cfg.SupportEmail) } class="text-primary hover:underline">
 								contact support
-							}
+							</a>
 						</p>
-						<div class="text-center">
-							@button.Button(button.Props{
-								Variant: button.VariantLink,
-								Href:    "/auth",
-								Class:   "text-sm",
-							}) {
+						<p class="text-center text-sm">
+							<a href="/auth" class="text-primary hover:underline">
 								Back to login
-							}
-						</div>
+							</a>
+						</p>
 					</div>
 				</div>
 			</div>

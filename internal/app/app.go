@@ -8,6 +8,7 @@ import (
 	"github.com/templui/goilerplate/internal/db"
 	"github.com/templui/goilerplate/internal/repository"
 	"github.com/templui/goilerplate/internal/service"
+	"github.com/templui/goilerplate/internal/service/payment"
 	"github.com/templui/goilerplate/internal/storage"
 )
 
@@ -20,7 +21,7 @@ type App struct {
 	EmailService        *service.EmailService
 	FileService         *service.FileService
 	SubscriptionService *service.SubscriptionService
-	PolarService        *service.PolarService
+	PaymentService      payment.Provider
 	GoalService         *service.GoalService
 	BlogService         *service.BlogService
 	DocsService         *service.DocsService
@@ -66,7 +67,13 @@ func New(cfg *config.Config) (*App, error) {
 	)
 	fileService := service.NewFileService(fileRepository, fileStorage)
 	subscriptionService := service.NewSubscriptionService(subscriptionRepository)
-	polarService := service.NewPolarService(cfg, subscriptionService)
+
+	// Initialize payment provider based on config
+	paymentProvider, err := payment.NewProvider(cfg, subscriptionService)
+	if err != nil {
+		return nil, fmt.Errorf("failed to initialize payment provider: %v", err)
+	}
+
 	goalService := service.NewGoalService(goalRepository, goalEntryRepository, fileRepository, subscriptionService)
 	authService := service.NewAuthService(
 		userRepository,
@@ -97,7 +104,7 @@ func New(cfg *config.Config) (*App, error) {
 		EmailService:        emailService,
 		FileService:         fileService,
 		SubscriptionService: subscriptionService,
-		PolarService:        polarService,
+		PaymentService:      paymentProvider,
 		GoalService:         goalService,
 		BlogService:         blogService,
 		DocsService:         docsService,

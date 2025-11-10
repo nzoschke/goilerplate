@@ -24,7 +24,7 @@ func SetupRoutes(app *app.App) http.Handler {
 	dashboard := handler.NewDashboardHandler(app.GoalService)
 	settings := handler.NewSettingsHandler()
 	goal := handler.NewGoalHandler(app.GoalService)
-	billing := handler.NewBillingHandler(app.SubscriptionService, app.PolarService)
+	billing := handler.NewBillingHandler(app.SubscriptionService, app.PaymentService)
 
 	mux := http.NewServeMux()
 
@@ -124,7 +124,8 @@ func SetupRoutes(app *app.App) http.Handler {
 	// WEBHOOKS
 	// ============================================================================
 
-	mux.HandleFunc("POST /webhooks/polar", billing.PolarWebhook)
+	// Payment provider webhook (works with both Polar and Stripe)
+	mux.HandleFunc("POST /webhooks/payment", billing.Webhook)
 
 	// ============================================================================
 	// FALLBACK
