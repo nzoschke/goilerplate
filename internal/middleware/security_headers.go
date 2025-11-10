@@ -209,7 +209,7 @@ func SecurityHeaders(next http.Handler) http.Handler {
 			"connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://" + plausibleHost,
 			"frame-ancestors 'none'",
 			"base-uri 'self'",
-			"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",
+			"form-action 'self' https://sandbox.polar.sh https://polar.sh",
 		}, "; ")
 
 		w.Header().Set("Content-Security-Policy", cspPolicy)

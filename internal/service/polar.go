@@ -1,4 +1,4 @@
-package payment
+package service
 
 import (
 	"context"
@@ -14,16 +14,15 @@ import (
 	standardwebhooks "github.com/standard-webhooks/standard-webhooks/libraries/go"
 	"github.com/templui/goilerplate/internal/config"
 	"github.com/templui/goilerplate/internal/model"
-	"github.com/templui/goilerplate/internal/service"
 )
 
-type PolarProvider struct {
+type PolarService struct {
 	cfg                 *config.Config
-	subscriptionService *service.SubscriptionService
+	subscriptionService *SubscriptionService
 	client              *polargo.Polar
 }
 
-func NewPolarProvider(cfg *config.Config, subscriptionService *service.SubscriptionService) *PolarProvider {
+func NewPolarService(cfg *config.Config, subscriptionService *SubscriptionService) *PolarService {
 	var serverOption polargo.SDKOption
 	if cfg.PolarSandboxMode {
 		serverOption = polargo.WithServer(polargo.ServerSandbox)
@@ -38,18 +37,14 @@ func NewPolarProvider(cfg *config.Config, subscriptionService *service.Subscript
 		serverOption,
 	)
 
-	return &PolarProvider{
+	return &PolarService{
 		cfg:                 cfg,
 		subscriptionService: subscriptionService,
 		client:              client,
 	}
 }
 
-func (p *PolarProvider) Name() string {
-	return model.ProviderPolar
-}
-
-func (p *PolarProvider) CreateCheckoutURL(userID, planID, interval, customerEmail, customerName string) (string, error) {
+func (p *PolarService) CreateCheckoutURL(userID, planID, interval, customerEmail, customerName string) (string, error) {
 	ctx := context.Background()
 
 	sub, err := p.subscriptionService.Subscription(userID)
@@ -93,7 +88,7 @@ func (p *PolarProvider) CreateCheckoutURL(userID, planID, interval, customerEmai
 	return res.Checkout.URL, nil
 }
 
-func (p *PolarProvider) CustomerPortalURL(userID string) (string, error) {
+func (p *PolarService) CustomerPortalURL(userID string) (string, error) {
 	ctx := context.Background()
 
 	sub, err := p.subscriptionService.Subscription(userID)
@@ -127,11 +122,7 @@ func (p *PolarProvider) CustomerPortalURL(userID string) (string, error) {
 	return res.CustomerSession.CustomerPortalURL, nil
 }
 
-func (p *PolarProvider) HandleWebhook(payload []byte, headers http.Header) error {
-	webhookID := headers.Get("webhook-id")
-	timestamp := headers.Get("webhook-timestamp")
-	signature := headers.Get("webhook-signature")
-
+func (p *PolarService) HandleWebhook(payload []byte, webhookID, timestamp, signature string) error {
 	if p.cfg.PolarWebhookSecret == "" {
 		slog.Warn("polar no webhook secret configured, skipping signature verification")
 	} else {
@@ -140,12 +131,12 @@ func (p *PolarProvider) HandleWebhook(payload []byte, headers http.Header) error
 			return fmt.Errorf("failed to create webhook verifier: %w", err)
 		}
 
-		httpHeaders := http.Header{}
-		httpHeaders.Set("webhook-id", webhookID)
-		httpHeaders.Set("webhook-timestamp", timestamp)
-		httpHeaders.Set("webhook-signature", signature)
+		headers := http.Header{}
+		headers.Set("webhook-id", webhookID)
+		headers.Set("webhook-timestamp", timestamp)
+		headers.Set("webhook-signature", signature)
 
-		err = wh.Verify(payload, httpHeaders)
+		err = wh.Verify(payload, headers)
 		if err != nil {
 			return fmt.Errorf("invalid webhook signature: %w", err)
 		}
@@ -180,7 +171,7 @@ func (p *PolarProvider) HandleWebhook(payload []byte, headers http.Header) error
 	}
 }
 
-func (p *PolarProvider) handleSubscriptionCreated(data json.RawMessage) error {
+func (p *PolarService) handleSubscriptionCreated(data json.RawMessage) error {
 	var subscription struct {
 		ID                string            `json:"id"`
 		CustomerID        string            `json:"customer_id"`
@@ -214,7 +205,6 @@ func (p *PolarProvider) handleSubscriptionCreated(data json.RawMessage) error {
 		sub.PlanID = planID
 	}
 
-	sub.Provider = model.ProviderPolar
 	sub.ProviderCustomerID = &subscription.CustomerID
 	sub.ProviderSubscriptionID = &subscription.ID
 	sub.Status = model.SubscriptionStatusActive
@@ -247,7 +237,7 @@ func (p *PolarProvider) handleSubscriptionCreated(data json.RawMessage) error {
 	return nil
 }
 
-func (p *PolarProvider) handleSubscriptionUpdated(data json.RawMessage) error {
+func (p *PolarService) handleSubscriptionUpdated(data json.RawMessage) error {
 	var subscription struct {
 		ID                string  `json:"id"`
 		Amount            *int    `json:"amount"`
@@ -321,7 +311,7 @@ func (p *PolarProvider) handleSubscriptionUpdated(data json.RawMessage) error {
 	return nil
 }
 
-func (p *PolarProvider) handleSubscriptionCanceled(data json.RawMessage) error {
+func (p *PolarService) handleSubscriptionCanceled(data json.RawMessage) error {
 	var subData struct {
 		ID               string  `json:"id"`
 		CurrentPeriodEnd *string `json:"current_period_end"`
@@ -361,7 +351,7 @@ func (p *PolarProvider) handleSubscriptionCanceled(data json.RawMessage) error {
 	return nil
 }
 
-func (p *PolarProvider) handleSubscriptionUncanceled(data json.RawMessage) error {
+func (p *PolarService) handleSubscriptionUncanceled(data json.RawMessage) error {
 	var subData struct {
 		ID string `json:"id"`
 	}
@@ -388,7 +378,7 @@ func (p *PolarProvider) handleSubscriptionUncanceled(data json.RawMessage) error
 	return nil
 }
 
-func (p *PolarProvider) handleSubscriptionRevoked(data json.RawMessage) error {
+func (p *PolarService) handleSubscriptionRevoked(data json.RawMessage) error {
 	var subData struct {
 		ID string `json:"id"`
 	}
@@ -418,7 +408,7 @@ func (p *PolarProvider) handleSubscriptionRevoked(data json.RawMessage) error {
 	return nil
 }
 
-func (p *PolarProvider) getPolarProductID(planID, interval string) string {
+func (p *PolarService) getPolarProductID(planID, interval string) string {
 	switch {
 	case planID == model.SubscriptionPlanPro && interval == model.SubscriptionIntervalMonthly:
 		return p.cfg.PolarProductIDProMonthly
@@ -433,7 +423,7 @@ func (p *PolarProvider) getPolarProductID(planID, interval string) string {
 	}
 }
 
-func (p *PolarProvider) getLocalPlanID(productID string) string {
+func (p *PolarService) getLocalPlanID(productID string) string {
 	switch productID {
 	case p.cfg.PolarProductIDProMonthly, p.cfg.PolarProductIDProYearly:
 		return model.SubscriptionPlanPro

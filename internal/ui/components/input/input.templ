@@ -1,4 +1,4 @@
-// templui component input - version: v0.99.0 installed by templui v0.99.0
+// templui component input - version: b969666090a0851c78bd7ba856ad6910ae090aaa installed by templui v0.98.0
 package input
 
 import (
@@ -37,6 +37,7 @@ type Props struct {
 	Value            string
 	Disabled         bool
 	Readonly         bool
+	Required         bool
 	FileAccept       string
 	HasError         bool
 	NoTogglePassword bool
@@ -74,6 +75,7 @@ templ Input(props ...Props) {
 			}
 			disabled?={ p.Disabled }
 			readonly?={ p.Readonly }
+			required?={ p.Required }
 			if p.HasError {
 				aria-invalid="true"
 			}

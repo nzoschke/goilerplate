@@ -2,9 +2,9 @@ package pages
 
 import (
 	"github.com/templui/goilerplate/internal/ctxkeys"
+	"github.com/templui/goilerplate/internal/ui/components/alert"
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/csrf"
-	"github.com/templui/goilerplate/internal/ui/components/form"
 	"github.com/templui/goilerplate/internal/ui/components/icon"
 	"github.com/templui/goilerplate/internal/ui/components/input"
 	"github.com/templui/goilerplate/internal/ui/components/label"
@@ -34,9 +34,19 @@ templ Auth(errorMsg string) {
 					<h2 class="text-3xl font-bold">Welcome</h2>
 					<p class="text-muted-foreground mt-2">Sign in or create your account</p>
 				</div>
+				if errorMsg != "" {
+					<div class="mb-6">
+						@alert.Alert(alert.Props{Variant: alert.VariantDestructive}) {
+							@icon.CircleAlert()
+							@alert.Description() {
+								{ errorMsg }
+							}
+						}
+					</div>
+				}
 				<form action="/auth/magic-link" method="POST" class="space-y-6">
 					@csrf.Token()
-					@form.Item() {
+					<div>
 						@label.Label(label.Props{
 							For:   "email",
 							Class: "block mb-2",
@@ -47,16 +57,11 @@ templ Auth(errorMsg string) {
 							ID:          "email",
 							Name:        "email",
 							Type:        input.TypeEmail,
+							Required:    true,
 							Placeholder: "name@example.com",
-							HasError:    errorMsg != "",
 							Attributes:  templ.Attributes{"autofocus": ""},
 						})
-						if errorMsg != "" {
-							@form.Message(form.MessageProps{Variant: form.MessageVariantError}) {
-								{ errorMsg }
-							}
-						}
-					}
+					</div>
 					@button.Button(button.Props{
 						Type:      button.TypeSubmit,
 						FullWidth: true,
@@ -107,11 +112,15 @@ templ Auth(errorMsg string) {
 					</div>
 				}
 				<!-- Password option -->
-				<p class="mt-6 text-center text-sm text-muted-foreground">
-					<a href="/auth/password" class="text-primary hover:underline">
+				<div class="mt-6 text-center">
+					@button.Button(button.Props{
+						Variant: button.VariantLink,
+						Href:    "/auth/password",
+						Class:   "text-sm",
+					}) {
 						Sign in with password instead
-					</a>
-				</p>
+					}
+				</div>
 			</div>
 		</div>
 	}

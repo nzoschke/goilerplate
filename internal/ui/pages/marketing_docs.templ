@@ -194,16 +194,10 @@ templ Docs(currentPage *model.DocPage, docsTree *model.DocPage, prevPage *model.
 					});
 				});
 
-				// Scroll to top and close mobile sheet after content swap
+				// Scroll to top after content swap
 				document.body.addEventListener('htmx:afterSwap', (e) => {
 					if (e.detail.target.id === 'docs-content-wrapper') {
 						window.scrollTo(0, 0);
-
-						// Close mobile sheet if open
-						const sheet = document.querySelector('[data-tui-dialog-content][data-tui-dialog-open="true"][data-tui-sheet-content]');
-						if (sheet) {
-							window.tui.dialog.close(sheet.getAttribute('data-dialog-instance'));
-						}
 					}
 				});
 			</script>

@@ -1,4 +1,4 @@
-// templui component dialog - version: v0.99.0 installed by templui v0.99.0
+// templui component dialog - version: b969666090a0851c78bd7ba856ad6910ae090aaa installed by templui v0.98.0
 package dialog
 
 import (
@@ -105,11 +105,11 @@ templ Trigger(props ...TriggerProps) {
 		{{ p = props[0] }}
 	}
 	{{ instanceID := "" }}
-	// Explicit For prop takes priority over inherited context
-	if p.For != "" {
-		{{ instanceID = p.For }}
-	} else if val := ctx.Value(instanceKey); val != nil {
+	// Try to get instance ID from context first, fallback to For prop
+	if val := ctx.Value(instanceKey); val != nil {
 		{{ instanceID = val.(string) }}
+	} else if p.For != "" {
+		{{ instanceID = p.For }}
 	}
 	<span
 		if p.ID != "" {

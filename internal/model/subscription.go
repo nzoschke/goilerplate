@@ -10,7 +10,6 @@ type Subscription struct {
 	UserID                 string     `db:"user_id"`
 	PlanID                 string     `db:"plan_id"`
 	Status                 string     `db:"status"`
-	Provider               string     `db:"provider"`
 	ProviderCustomerID     *string    `db:"provider_customer_id"`
 	ProviderSubscriptionID *string    `db:"provider_subscription_id"`
 	CurrentPeriodEnd       *time.Time `db:"current_period_end"`
@@ -24,11 +23,6 @@ type Subscription struct {
 const (
 	SubscriptionStatusActive    = "active"
 	SubscriptionStatusCancelled = "cancelled"
-)
-
-const (
-	ProviderPolar  = "polar"
-	ProviderStripe = "stripe"
 )
 
 const (

@@ -1,4 +1,4 @@
-// templui component selectbox - version: v0.99.0 installed by templui v0.99.0
+// templui component selectbox - version: b969666090a0851c78bd7ba856ad6910ae090aaa installed by templui v0.98.0
 package selectbox
 
 import (
@@ -29,6 +29,7 @@ type TriggerProps struct {
 	Attributes        templ.Attributes
 	Name              string
 	Form              string
+	Required          bool
 	Disabled          bool
 	HasError          bool
 	Multiple          bool
@@ -143,6 +144,7 @@ templ Trigger(props ...TriggerProps) {
 					"data-tui-selectbox-show-pills":          strconv.FormatBool(p.ShowPills),
 					"data-tui-selectbox-selected-count-text": p.SelectedCountText,
 					"tabindex":                               "0",
+					"required":                               strconv.FormatBool(p.Required),
 					"aria-invalid":                           utils.If(p.HasError, "true"),
 				},
 			),
@@ -155,6 +157,7 @@ templ Trigger(props ...TriggerProps) {
 				if p.Form != "" {
 					form={ p.Form }
 				}
+				required?={ p.Required }
 				{ p.Attributes... }
 			/>
 			{ children... }

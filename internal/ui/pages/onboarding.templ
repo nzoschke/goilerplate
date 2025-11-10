@@ -2,9 +2,9 @@ package pages
 
 import (
 	"github.com/templui/goilerplate/internal/ctxkeys"
+	"github.com/templui/goilerplate/internal/ui/components/alert"
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/csrf"
-	"github.com/templui/goilerplate/internal/ui/components/form"
 	"github.com/templui/goilerplate/internal/ui/components/icon"
 	"github.com/templui/goilerplate/internal/ui/components/input"
 	"github.com/templui/goilerplate/internal/ui/components/label"
@@ -39,9 +39,17 @@ templ Onboarding(errorMsg string) {
 						<p class="text-muted-foreground mt-2">What should we call you?</p>
 					}
 				</div>
+				if errorMsg != "" {
+					@alert.Alert(alert.Props{Variant: alert.VariantDestructive}) {
+						@icon.CircleAlert()
+						@alert.Description() {
+							{ errorMsg }
+						}
+					}
+				}
 				<form action="/auth/onboarding" method="POST" class="space-y-6">
 					@csrf.Token()
-					@form.Item() {
+					<div>
 						@label.Label(label.Props{
 							For:   "name",
 							Class: "block mb-2",
@@ -52,16 +60,11 @@ templ Onboarding(errorMsg string) {
 							ID:          "name",
 							Name:        "name",
 							Type:        input.TypeText,
+							Required:    true,
 							Placeholder: "John Doe",
-							HasError:    errorMsg != "",
 							Attributes:  templ.Attributes{"autofocus": ""},
 						})
-						if errorMsg != "" {
-							@form.Message(form.MessageProps{Variant: form.MessageVariantError}) {
-								{ errorMsg }
-							}
-						}
-					}
+					</div>
 					@button.Button(button.Props{
 						Type:      button.TypeSubmit,
 						FullWidth: true,
