@@ -11,6 +11,8 @@ import "github.com/templui/goilerplate/internal/ui/components/toast"
 import "github.com/templui/goilerplate/internal/ui/components/calendar"
 import "github.com/templui/goilerplate/internal/ui/components/datepicker"
 import "github.com/templui/goilerplate/internal/ui/components/progress"
+import "fmt"
+import "time"
 
 type SEOProps struct {
 	Title       string
@@ -32,7 +34,7 @@ templ Base(props ...SEOProps) {
 				<title>{ cfg.AppName }</title>
 			}
 			<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico"/>
-			<link href="/assets/css/output.css" rel="stylesheet"/>
+			<link href={ "/assets/css/output.css?v=" + templ.EscapeString(fmt.Sprintf("%d", time.Now().Unix())) } rel="stylesheet"/>
 			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js" integrity="sha384-ZBXiYtYQ6hJ2Y0ZNoYuI+Nq5MqWBr+chMrS/RkXpNzQCApHEhOt2aY8EJgqwHLkJ" crossorigin="anonymous"></script>
 			// Component scripts
 			@input.Script()
@@ -58,6 +60,16 @@ templ Base(props ...SEOProps) {
 			{ children... }
 			// Global Toast Container
 			<div id="toast-container"></div>
+			// Built with goilerplate Badge
+			<a
+				href="https://goilerplate.com"
+				target="_blank"
+				rel="noopener"
+				class="fixed bottom-4 right-4 z-40 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground border border-border rounded-full bg-background/80 backdrop-blur-sm transition-all hover:scale-105 hover:shadow-md flex items-center gap-2"
+			>
+				<span class="w-2 h-2 rounded-full bg-foreground animate-pulse"></span>
+				Built with goilerplate
+			</a>
 		</body>
 	</html>
 }
