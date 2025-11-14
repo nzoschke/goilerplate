@@ -1,27 +1,45 @@
 # License
 
-Copyright © 2024 goilerplate
+Copyright © 2025 Axel Adrian
 
-## Usage Rights
+## License Grant
 
-✓ Use in your projects (personal/commercial)
-✓ Modify as needed
-✓ Client work (per license tier)
+This license grants you a non-exclusive, non-transferable, revocable right to use goilerplate.
 
-## Restrictions
+**You are permitted to:**
 
-✗ No sharing or redistribution
-✗ No reselling or sublicensing
-✗ No competing products
-✗ No template/theme marketplace sales
+- Use goilerplate in unlimited personal and commercial projects
+- Modify the code for your internal use
+- Use goilerplate in client work (per your license tier: Single = 1 developer, Team = 5 developers, Enterprise = 25 developers)
+- Use goilerplate in open source projects
+- Bundle and distribute goilerplate in compiled production builds
 
-Violations = license termination + DMCA + legal action.
+**You are not permitted to:**
 
-All sales final. No refunds.
+- Share or redistribute the source code
+- Sell or distribute templates, themes, or boilerplates that are primarily just goilerplate with minimal modifications
+- Create competing products (UI kits, component libraries, design systems, boilerplates, starter kits)
+- Sell or sublicense goilerplate to third parties
+
+## License Tiers
+
+- **Single:** 1 developer
+- **Team:** Up to 5 developers
+- **Enterprise:** Up to 25 developers
+
+Each license tier determines how many developers within your organization can use goilerplate.
+
+## Important Terms
+
+- The software is **licensed, not sold**
+- All sales are final. No refunds for digital products once accessed
+- We reserve the right to modify, discontinue, or relicense the software
+- License violations will result in termination and legal action
 
 ## Warranty & Liability
 
-THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY DAMAGES ARISING FROM USE OF THIS SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE USE OF THIS SOFTWARE.
 
-Questions? hello@axeladrian.com
+## Questions
+
+hello@axeladrian.com
