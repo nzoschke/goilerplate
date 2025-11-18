@@ -1,5 +1,5 @@
 # Development Services
-# Run with: make dev
+# Run with: task dev
 
 services:
   # MinIO (S3-compatible storage) - ENABLED by default

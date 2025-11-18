@@ -1,4 +1,5 @@
-// templui component dialog - version: v0.99.0 installed by templui v0.99.0
+// templui component dialog - version: v0.101.0 installed by templui v0.101.0
+// 📚 Documentation: https://templui.io/docs/components/dialog
 package dialog
 
 import (
@@ -31,11 +32,12 @@ type TriggerProps struct {
 }
 
 type ContentProps struct {
-	ID              string
-	Class           string
-	Attributes      templ.Attributes
-	HideCloseButton bool
-	Open            bool // Initial open state for standalone usage (when no context)
+	ID               string
+	Class            string
+	Attributes       templ.Attributes
+	HideCloseButton  bool
+	Open             bool // Initial open state for standalone usage (when no context)
+	DisableAutoFocus bool
 }
 
 type CloseProps struct {
@@ -194,6 +196,9 @@ templ Content(props ...ContentProps) {
 		}
 		data-tui-dialog-content
 		data-dialog-instance={ instanceID }
+		if p.DisableAutoFocus {
+			data-tui-dialog-disable-autofocus="true"
+		}
 		if open {
 			data-tui-dialog-open="true"
 		} else {

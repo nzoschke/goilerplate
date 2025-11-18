@@ -9,7 +9,7 @@ Production-ready Go boilerplate with templ, HTMX, and TailwindCSS.
 cp .env.example .env
 
 # Start
-make dev
+task dev
 ```
 
 Open [http://localhost:7331](http://localhost:7331)
