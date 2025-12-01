@@ -158,10 +158,10 @@ func SecurityHeaders(next http.Handler) http.Handler {
 		//     'self' = fonts from your domain
 		//     data: = data URL fonts (some icon fonts use this)
 		//
-		//   connect-src 'self' www.google-analytics.com analytics.google.com plausible.io
+		//   connect-src 'self' *.google-analytics.com analytics.google.com plausible.io
 		//     Controls which domains can be contacted via AJAX/fetch/WebSocket.
 		//     'self' = only your domain (prevents data exfiltration to attacker's server)
-		//     analytics domains = allow Google Analytics + Plausible to send events
+		//     analytics domains = allow Google Analytics (wildcard for regional subdomains) + Plausible to send events
 		//
 		//   frame-ancestors 'none'
 		//     Controls which sites can embed your page in iframe (CSP equivalent of X-Frame-Options).
@@ -206,7 +206,7 @@ func SecurityHeaders(next http.Handler) http.Handler {
 			"style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
 			imgSrc, // Dynamic img-src with S3 endpoint
 			"font-src 'self' data:",
-			"connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://" + plausibleHost,
+			"connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://" + plausibleHost,
 			"frame-ancestors 'none'",
 			"base-uri 'self'",
 			"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",
