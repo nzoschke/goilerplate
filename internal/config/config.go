@@ -61,9 +61,11 @@ type Config struct {
 	StripePriceIDEnterpriseYearly  string
 
 	// Analytics (all optional, can be used simultaneously)
-	GoogleAnalyticsID string
+	UmamiWebsiteID    string
+	UmamiHost         string // Default: cloud.umami.is, can be self-hosted
 	PlausibleDomain   string
 	PlausibleHost     string // Default: plausible.io, can be self-hosted
+	GoogleAnalyticsID string
 
 	// Observability (optional)
 	SentryDSN string
@@ -135,9 +137,11 @@ func Load() *Config {
 		StripePriceIDEnterpriseYearly:   envString("STRIPE_PRICE_ID_ENTERPRISE_YEARLY", ""),
 
 		// Analytics
-		GoogleAnalyticsID: envString("GOOGLE_ANALYTICS_ID", ""),
+		UmamiWebsiteID:    envString("UMAMI_WEBSITE_ID", ""),
+		UmamiHost:         envString("UMAMI_HOST", "cloud.umami.is"),
 		PlausibleDomain:   envString("PLAUSIBLE_DOMAIN", ""),
 		PlausibleHost:     envString("PLAUSIBLE_HOST", "plausible.io"),
+		GoogleAnalyticsID: envString("GOOGLE_ANALYTICS_ID", ""),
 
 		// Observability
 		SentryDSN: envString("SENTRY_DSN", ""),
@@ -238,9 +242,11 @@ func (c *Config) Sanitized() *Config {
 		GoogleClientID: c.GoogleClientID,
 		GitHubClientID: c.GitHubClientID,
 
-		GoogleAnalyticsID: c.GoogleAnalyticsID,
+		UmamiWebsiteID:    c.UmamiWebsiteID,
+		UmamiHost:         c.UmamiHost,
 		PlausibleDomain:   c.PlausibleDomain,
 		PlausibleHost:     c.PlausibleHost,
+		GoogleAnalyticsID: c.GoogleAnalyticsID,
 
 		S3Endpoint: c.S3Endpoint, // Needed for CSP policies
 	}

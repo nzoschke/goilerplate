@@ -6,14 +6,32 @@ import "github.com/templui/goilerplate/internal/ctxkeys"
 // Multiple providers can be used simultaneously
 templ Analytics() {
 	{{ cfg := ctxkeys.Config(ctx) }}
-	// Google Analytics 4
-	if cfg.GoogleAnalyticsID != "" {
-		@GoogleAnalytics()
+	// Umami Analytics (recommended)
+	if cfg.UmamiWebsiteID != "" {
+		@Umami()
 	}
 	// Plausible Analytics
 	if cfg.PlausibleDomain != "" {
 		@Plausible()
 	}
+	// Google Analytics 4
+	if cfg.GoogleAnalyticsID != "" {
+		@GoogleAnalytics()
+	}
+}
+
+// Umami renders Umami Analytics script (recommended)
+// Requires: UMAMI_WEBSITE_ID
+// Optional: UMAMI_HOST (defaults to cloud.umami.is, set for self-hosted)
+templ Umami() {
+	{{ cfg := ctxkeys.Config(ctx) }}
+	{{ host := cfg.UmamiHost }}
+	if host == "" {
+		{{ host = "cloud.umami.is" }}
+	}
+	<!-- Umami Analytics -->
+	<script nonce={ templ.GetNonce(ctx) } defer src={ "https://" + host + "/script.js" } data-website-id={ cfg.UmamiWebsiteID }></script>
+	<!-- End Umami Analytics -->
 }
 
 // GoogleAnalytics renders Google Analytics 4 (direct integration)

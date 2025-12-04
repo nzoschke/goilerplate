@@ -193,20 +193,26 @@ func SecurityHeaders(next http.Handler) http.Handler {
 			imgSrc += " " + cfg.S3Endpoint
 		}
 
-	// Plausible host (default plausible.io, configurable for self-hosted)
-	plausibleHost := "plausible.io"
-	if cfg != nil && cfg.PlausibleHost != "" {
-		plausibleHost = cfg.PlausibleHost
-	}
+		// Umami host (default cloud.umami.is, configurable for self-hosted)
+		umamiHost := "cloud.umami.is"
+		if cfg != nil && cfg.UmamiHost != "" {
+			umamiHost = cfg.UmamiHost
+		}
+
+		// Plausible host (default plausible.io, configurable for self-hosted)
+		plausibleHost := "plausible.io"
+		if cfg != nil && cfg.PlausibleHost != "" {
+			plausibleHost = cfg.PlausibleHost
+		}
 
 		// Build CSP policy with real nonce value
 		cspPolicy := strings.Join([]string{
 			"default-src 'self'",
-			"script-src 'self' 'nonce-" + nonce + "' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com https://" + plausibleHost,
+			"script-src 'self' 'nonce-" + nonce + "' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://" + umamiHost + " https://" + plausibleHost + " https://www.googletagmanager.com",
 			"style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
 			imgSrc, // Dynamic img-src with S3 endpoint
 			"font-src 'self' data:",
-			"connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://" + plausibleHost,
+			"connect-src 'self' https://" + umamiHost + " https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
 			"frame-ancestors 'none'",
 			"base-uri 'self'",
 			"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",
