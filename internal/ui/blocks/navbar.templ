@@ -26,21 +26,21 @@ templ Navbar() {
 				<!-- Desktop Navigation -->
 				<div class="hidden md:flex gap-2">
 					@button.Button(button.Props{
-						Href:    "#features",
+						Href:    "/#features",
 						Variant: button.VariantGhost,
 						Size:    button.SizeSm,
 					}) {
 						Features
 					}
 					@button.Button(button.Props{
-						Href:    "#pricing",
+						Href:    "/#pricing",
 						Variant: button.VariantGhost,
 						Size:    button.SizeSm,
 					}) {
 						Pricing
 					}
 					@button.Button(button.Props{
-						Href:    "#faq",
+						Href:    "/#faq",
 						Variant: button.VariantGhost,
 						Size:    button.SizeSm,
 					}) {
@@ -152,17 +152,17 @@ templ MobileNav() {
 				@sheet.Close(sheet.CloseProps{
 					Class: "flex items-center px-3 py-2 rounded-md hover:bg-accent text-foreground w-full text-left",
 				}) {
-					<a href="#features" class="w-full">Features</a>
+					<a href="/#features" class="w-full">Features</a>
 				}
 				@sheet.Close(sheet.CloseProps{
 					Class: "flex items-center px-3 py-2 rounded-md hover:bg-accent text-foreground w-full text-left",
 				}) {
-					<a href="#pricing" class="w-full">Pricing</a>
+					<a href="/#pricing" class="w-full">Pricing</a>
 				}
 				@sheet.Close(sheet.CloseProps{
 					Class: "flex items-center px-3 py-2 rounded-md hover:bg-accent text-foreground w-full text-left",
 				}) {
-					<a href="#faq" class="w-full">FAQ</a>
+					<a href="/#faq" class="w-full">FAQ</a>
 				}
 				<a href="/blog" class="flex items-center px-3 py-2 rounded-md hover:bg-accent text-foreground">
 					Blog
