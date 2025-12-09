@@ -194,9 +194,13 @@ func SecurityHeaders(next http.Handler) http.Handler {
 		}
 
 		// Umami host (default cloud.umami.is, configurable for self-hosted)
+		// Cloud requires multiple gateway domains, self-hosted only needs the single host
 		umamiHost := "cloud.umami.is"
+		umamiCsp := "https://cloud.umami.is https://gateway.umami.is https://eu.umami.is https://api-gateway-eu.umami.dev https://api-gateway.umami.dev"
+
 		if cfg != nil && cfg.UmamiHost != "" {
 			umamiHost = cfg.UmamiHost
+			umamiCsp = "https://" + cfg.UmamiHost
 		}
 
 		// Plausible host (default plausible.io, configurable for self-hosted)
@@ -212,7 +216,7 @@ func SecurityHeaders(next http.Handler) http.Handler {
 			"style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
 			imgSrc, // Dynamic img-src with S3 endpoint
 			"font-src 'self' data:",
-			"connect-src 'self' https://" + umamiHost + " https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
+			"connect-src 'self' " + umamiCsp + " https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
 			"frame-ancestors 'none'",
 			"base-uri 'self'",
 			"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",

@@ -113,7 +113,7 @@ func NewS3Storage(cfg S3Config) (*S3Storage, error) {
 
 	presignClient := s3.NewPresignClient(client)
 
-	return &S3Storage{
+	storage := &S3Storage{
 		client:               client,
 		presignClient:        presignClient,
 		bucket:               cfg.Bucket,
@@ -122,7 +122,36 @@ func NewS3Storage(cfg S3Config) (*S3Storage, error) {
 		publicURL:            publicURL,
 		presignExpiryPublic:  cfg.PresignExpiryPublic,
 		presignExpiryPrivate: cfg.PresignExpiryPrivate,
-	}, nil
+	}
+
+	// Auto-create bucket if it doesn't exist
+	if err := storage.ensureBucket(ctx); err != nil {
+		return nil, fmt.Errorf("failed to ensure bucket exists: %w", err)
+	}
+
+	return storage, nil
+}
+
+// ensureBucket checks if bucket exists, creates it if not
+func (s *S3Storage) ensureBucket(ctx context.Context) error {
+	// Check if bucket exists
+	_, err := s.client.HeadBucket(ctx, &s3.HeadBucketInput{
+		Bucket: aws.String(s.bucket),
+	})
+	if err == nil {
+		return nil // Bucket exists
+	}
+
+	// Bucket doesn't exist, try to create
+	_, err = s.client.CreateBucket(ctx, &s3.CreateBucketInput{
+		Bucket: aws.String(s.bucket),
+	})
+	if err != nil {
+		return fmt.Errorf("bucket %q does not exist and could not be created: %w", s.bucket, err)
+	}
+
+	slog.Info("created S3 bucket", "bucket", s.bucket)
+	return nil
 }
 
 // Save stores a file in S3

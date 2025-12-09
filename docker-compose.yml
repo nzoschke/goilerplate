@@ -5,8 +5,7 @@ services:
   # MinIO (S3-compatible storage) - ENABLED by default
   # Provides local S3 storage for file uploads without cloud costs
   # Console: http://localhost:9001 (minioadmin/minioadmin)
-  # Create bucket 'dev-uploads' after first start
-  # See: docs/guides/cloud-storage.md
+  # Bucket is auto-created on app startup
   minio:
     image: minio/minio:latest
     command: server /data --console-address ":9001"
