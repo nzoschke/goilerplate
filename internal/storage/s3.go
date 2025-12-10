@@ -133,25 +133,36 @@ func NewS3Storage(cfg S3Config) (*S3Storage, error) {
 }
 
 // ensureBucket checks if bucket exists, creates it if not
+// Retries connection for up to 30s to handle slow container startup
 func (s *S3Storage) ensureBucket(ctx context.Context) error {
-	// Check if bucket exists
-	_, err := s.client.HeadBucket(ctx, &s3.HeadBucketInput{
-		Bucket: aws.String(s.bucket),
-	})
-	if err == nil {
-		return nil // Bucket exists
+	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
+	var lastErr error
+	for attempt := 1; attempt <= 15; attempt++ {
+		// Check if bucket exists
+		_, err := s.client.HeadBucket(ctx, &s3.HeadBucketInput{
+			Bucket: aws.String(s.bucket),
+		})
+		if err == nil {
+			return nil // Bucket exists
+		}
+
+		// Try to create bucket (maybe it just doesn't exist yet)
+		_, createErr := s.client.CreateBucket(ctx, &s3.CreateBucketInput{
+			Bucket: aws.String(s.bucket),
+		})
+		if createErr == nil {
+			slog.Info("created S3 bucket", "bucket", s.bucket)
+			return nil
+		}
+
+		lastErr = err
+		slog.Debug("waiting for S3 storage", "attempt", attempt, "bucket", s.bucket)
+		time.Sleep(2 * time.Second)
 	}
 
-	// Bucket doesn't exist, try to create
-	_, err = s.client.CreateBucket(ctx, &s3.CreateBucketInput{
-		Bucket: aws.String(s.bucket),
-	})
-	if err != nil {
-		return fmt.Errorf("bucket %q does not exist and could not be created: %w", s.bucket, err)
-	}
-
-	slog.Info("created S3 bucket", "bucket", s.bucket)
-	return nil
+	return fmt.Errorf("S3 storage not available after 30s: %w", lastErr)
 }
 
 // Save stores a file in S3
