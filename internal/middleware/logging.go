@@ -64,7 +64,7 @@ func RequestLogging(next http.Handler) http.Handler {
 			"path", r.URL.Path,
 			"status", rw.statusCode,
 			"duration_ms", duration.Milliseconds(),
-			"remote_addr", r.RemoteAddr,
+			"remote_addr", getClientIP(r),
 		)
 	})
 }
