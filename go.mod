@@ -68,7 +68,7 @@ require (
 	github.com/samber/slog-common v0.19.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/spyzhov/ajson v0.8.0 // indirect
-	github.com/templui/templui v0.101.0 // indirect
+	github.com/templui/templui v1.0.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b // indirect
 	golang.org/x/mod v0.28.0 // indirect

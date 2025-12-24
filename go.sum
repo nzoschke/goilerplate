@@ -147,8 +147,8 @@ github.com/stretchr/testify v1.11.1 h1:7s2iGBzp5EwR7/aIZr8ao5+dra3wiQyKjjFuvgVKu
 github.com/stretchr/testify v1.11.1/go.mod h1:wZwfW3scLgRK+23gO65QZefKpKQRnfz6sD981Nm4B6U=
 github.com/stripe/stripe-go/v81 v81.4.0 h1:AuD9XzdAvl193qUCSaLocf8H+nRopOouXhxqJUzCLbw=
 github.com/stripe/stripe-go/v81 v81.4.0/go.mod h1:C/F4jlmnGNacvYtBp/LUHCvVUJEZffFQCobkzwY1WOo=
-github.com/templui/templui v0.101.0 h1:Nv2WiyevFZ+6jtELRYxmVwHlu9WXXIyi6etvgP+tkbI=
-github.com/templui/templui v0.101.0/go.mod h1:SnKmOIs7t/ngsdWUws97CVodbz89ne9kQv3ivgdhiHo=
+github.com/templui/templui v1.0.0 h1:nsCh+tTL8U9rhh0hpwkvDpiDCPP43aoBB85TLgCh/Kg=
+github.com/templui/templui v1.0.0/go.mod h1:SnKmOIs7t/ngsdWUws97CVodbz89ne9kQv3ivgdhiHo=
 github.com/xyproto/randomstring v1.0.5 h1:YtlWPoRdgMu3NZtP45drfy1GKoojuR7hmRcnhZqKjWU=
 github.com/xyproto/randomstring v1.0.5/go.mod h1:rgmS5DeNXLivK7YprL0pY+lTuhNQW3iGxZ18UQApw/E=
 github.com/yuin/goldmark v1.7.13 h1:GPddIs617DnBLFFVJFgpo1aBfe/4xcvMc3SB5t/D0pA=
