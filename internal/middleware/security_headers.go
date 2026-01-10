@@ -216,7 +216,7 @@ func SecurityHeaders(next http.Handler) http.Handler {
 			"style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
 			imgSrc, // Dynamic img-src with S3 endpoint
 			"font-src 'self' data:",
-			"connect-src 'self' " + umamiCsp + " https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
+			"connect-src 'self' " + umamiCsp + " https://api-gateway.umami.dev https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
 			"frame-ancestors 'none'",
 			"base-uri 'self'",
 			"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",
