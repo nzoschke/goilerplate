@@ -20,6 +20,8 @@ go.work
 .env
 .env.local
 .env.*.local
+.envrc
+.env.production
 
 # Database
 /data/

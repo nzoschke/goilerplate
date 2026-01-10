@@ -20,6 +20,7 @@ require (
 	github.com/resend/resend-go/v2 v2.27.1-0.20251019011045-efb2a5f3daa7
 	github.com/samber/slog-multi v1.5.0
 	github.com/samber/slog-sentry/v2 v2.9.3
+	github.com/spf13/cobra v1.10.2
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20250711233419-a173a6c0125c
 	github.com/stripe/stripe-go/v81 v81.4.0
 	github.com/yuin/goldmark v1.7.13
@@ -54,6 +55,7 @@ require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
@@ -67,6 +69,7 @@ require (
 	github.com/samber/lo v1.51.0 // indirect
 	github.com/samber/slog-common v0.19.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
+	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/spyzhov/ajson v0.8.0 // indirect
 	github.com/templui/templui v1.0.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect

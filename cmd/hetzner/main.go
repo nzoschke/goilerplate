@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net"
 	"os"
 	"os/exec"
@@ -66,7 +67,28 @@ func main() {
 		},
 	}
 
-	servicesCmd.AddCommand(listCmd, deleteCmd)
+	// services create
+	var createName, createCmd, createConfig string
+	createCmdObj := &cobra.Command{
+		Use:   "create",
+		Short: "Build, deploy, and create a systemd service",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if sshHost == "" {
+				return fmt.Errorf("--host is required or set SSH_HOST env")
+			}
+			return createService(sshHost, sshPort, sshKeyPath, createName, createCmd, createConfig)
+		},
+	}
+	// Get default name from current directory
+	defaultName := ""
+	if cwd, err := os.Getwd(); err == nil {
+		defaultName = filepath.Base(cwd)
+	}
+	createCmdObj.Flags().StringVar(&createName, "name", defaultName, "Service name (default: directory name)")
+	createCmdObj.Flags().StringVar(&createCmd, "cmd", "cmd/server", "Go package to build")
+	createCmdObj.Flags().StringVar(&createConfig, "config", ".env.production", "Config file to deploy")
+
+	servicesCmd.AddCommand(listCmd, deleteCmd, createCmdObj)
 	rootCmd.AddCommand(servicesCmd)
 
 	// sites command
@@ -113,7 +135,22 @@ func main() {
 		},
 	}
 
-	sitesCmd.AddCommand(sitesListCmd, sitesShowCmd, sitesDeleteCmd)
+	// sites create
+	var siteCreateName, siteCreateConfig string
+	sitesCreateCmd := &cobra.Command{
+		Use:   "create",
+		Short: "Create a Caddy site from config",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if sshHost == "" {
+				return fmt.Errorf("--host is required or set SSH_HOST env")
+			}
+			return createSite(sshHost, sshPort, sshKeyPath, siteCreateName, siteCreateConfig)
+		},
+	}
+	sitesCreateCmd.Flags().StringVar(&siteCreateName, "name", defaultName, "Site name (default: directory name)")
+	sitesCreateCmd.Flags().StringVar(&siteCreateConfig, "config", ".env.production", "Config file with APP_URL and PORT")
+
+	sitesCmd.AddCommand(sitesListCmd, sitesShowCmd, sitesDeleteCmd, sitesCreateCmd)
 	rootCmd.AddCommand(sitesCmd)
 
 	if err := rootCmd.Execute(); err != nil {
@@ -243,6 +280,139 @@ func deleteService(host, port, keyPath, serviceName string) error {
 
 	fmt.Printf("Service %s deleted successfully.\n", serviceName)
 	return nil
+}
+
+func createService(host, port, keyPath, name, cmdPath, configPath string) error {
+	if name == "" {
+		return fmt.Errorf("service name is required")
+	}
+
+	// Check if config file exists
+	if _, err := os.Stat(configPath); err != nil {
+		return fmt.Errorf("config file not found: %s", configPath)
+	}
+
+	// Cross-compile for Linux
+	fmt.Printf("Building %s for linux/amd64...\n", cmdPath)
+	tmpBinary := filepath.Join(os.TempDir(), name+"-linux-amd64")
+	buildCmd := exec.Command("go", "build", "-o", tmpBinary, "./"+cmdPath)
+	buildCmd.Env = append(os.Environ(), "GOOS=linux", "GOARCH=amd64", "CGO_ENABLED=0")
+	buildCmd.Stdout = os.Stdout
+	buildCmd.Stderr = os.Stderr
+	if err := buildCmd.Run(); err != nil {
+		return fmt.Errorf("build failed: %w", err)
+	}
+	defer os.Remove(tmpBinary)
+
+	// Connect to server
+	client, err := sshConnect(host, port, keyPath)
+	if err != nil {
+		return fmt.Errorf("ssh connect: %w", err)
+	}
+	defer client.Close()
+
+	// Create directory
+	srvPath := "/srv/" + name
+	fmt.Printf("Creating %s...\n", srvPath)
+	if _, err := runSSHCommand(client, "mkdir -p "+srvPath); err != nil {
+		return fmt.Errorf("mkdir: %w", err)
+	}
+
+	// Upload binary
+	fmt.Printf("Uploading binary to %s/app...\n", srvPath)
+	if err := scpFile(client, tmpBinary, srvPath+"/app", 0755); err != nil {
+		return fmt.Errorf("upload binary: %w", err)
+	}
+
+	// Upload config
+	fmt.Printf("Uploading config to %s/.env...\n", srvPath)
+	if err := scpFile(client, configPath, srvPath+"/.env", 0644); err != nil {
+		return fmt.Errorf("upload config: %w", err)
+	}
+
+	// Create systemd service
+	serviceContent := fmt.Sprintf(`[Unit]
+Description=%s
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%s
+ExecStart=%s/app
+Restart=always
+RestartSec=5
+EnvironmentFile=%s/.env
+
+[Install]
+WantedBy=multi-user.target
+`, name, srvPath, srvPath, srvPath)
+
+	servicePath := "/etc/systemd/system/" + name + ".service"
+	fmt.Printf("Creating systemd service %s...\n", servicePath)
+
+	// Write service file via SSH
+	escaped := strings.ReplaceAll(serviceContent, "'", "'\\''")
+	if _, err := runSSHCommand(client, fmt.Sprintf("echo '%s' > %s", escaped, servicePath)); err != nil {
+		return fmt.Errorf("create service file: %w", err)
+	}
+
+	// Reload systemd
+	fmt.Println("Reloading systemd...")
+	if _, err := runSSHCommand(client, "systemctl daemon-reload"); err != nil {
+		return fmt.Errorf("daemon-reload: %w", err)
+	}
+
+	// Enable and start service
+	fmt.Printf("Enabling %s...\n", name)
+	if _, err := runSSHCommand(client, "systemctl enable "+name); err != nil {
+		return fmt.Errorf("enable service: %w", err)
+	}
+
+	fmt.Printf("Starting %s...\n", name)
+	if _, err := runSSHCommand(client, "systemctl start "+name); err != nil {
+		return fmt.Errorf("start service: %w", err)
+	}
+
+	// Check status
+	status, _ := runSSHCommand(client, "systemctl is-active "+name)
+	fmt.Printf("\nService %s created and started (%s)\n", name, strings.TrimSpace(status))
+	fmt.Printf("  Binary: %s/app\n", srvPath)
+	fmt.Printf("  Config: %s/.env\n", srvPath)
+	fmt.Printf("  Service: %s\n", servicePath)
+
+	return nil
+}
+
+func scpFile(client *ssh.Client, localPath, remotePath string, mode os.FileMode) error {
+	// Open local file
+	f, err := os.Open(localPath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	stat, err := f.Stat()
+	if err != nil {
+		return err
+	}
+
+	// Create session
+	session, err := client.NewSession()
+	if err != nil {
+		return err
+	}
+	defer session.Close()
+
+	// Start scp on remote
+	go func() {
+		w, _ := session.StdinPipe()
+		defer w.Close()
+		fmt.Fprintf(w, "C%04o %d %s\n", mode, stat.Size(), filepath.Base(remotePath))
+		io.Copy(w, f)
+		fmt.Fprint(w, "\x00")
+	}()
+
+	return session.Run("scp -t " + remotePath)
 }
 
 type CaddySite struct {
@@ -396,6 +566,120 @@ func deleteSite(host, port, keyPath, domain string) error {
 	}
 
 	fmt.Printf("Site %s deleted successfully.\n", domain)
+	return nil
+}
+
+func parseEnvFile(path string) (map[string]string, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	env := make(map[string]string)
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		// Skip empty lines and comments
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		// Parse KEY=VALUE
+		if idx := strings.Index(line, "="); idx > 0 {
+			key := strings.TrimSpace(line[:idx])
+			value := strings.TrimSpace(line[idx+1:])
+			// Remove quotes if present
+			value = strings.Trim(value, `"'`)
+			// Remove inline comments
+			if commentIdx := strings.Index(value, " #"); commentIdx > 0 {
+				value = strings.TrimSpace(value[:commentIdx])
+			}
+			env[key] = value
+		}
+	}
+	return env, scanner.Err()
+}
+
+func createSite(host, port, keyPath, name, configPath string) error {
+	if name == "" {
+		return fmt.Errorf("site name is required")
+	}
+
+	// Parse config file for APP_URL and PORT
+	env, err := parseEnvFile(configPath)
+	if err != nil {
+		return fmt.Errorf("read config file: %w", err)
+	}
+
+	appURL := env["APP_URL"]
+	appPort := env["PORT"]
+
+	if appURL == "" {
+		return fmt.Errorf("APP_URL not found in %s", configPath)
+	}
+	if appPort == "" {
+		return fmt.Errorf("PORT not found in %s", configPath)
+	}
+
+	// Extract domain from APP_URL (remove protocol)
+	domain := appURL
+	domain = strings.TrimPrefix(domain, "https://")
+	domain = strings.TrimPrefix(domain, "http://")
+	domain = strings.TrimSuffix(domain, "/")
+
+	fmt.Printf("Creating Caddy site:\n")
+	fmt.Printf("  Domain: %s\n", domain)
+	fmt.Printf("  Proxy:  localhost:%s\n", appPort)
+
+	// Connect to server
+	client, err := sshConnect(host, port, keyPath)
+	if err != nil {
+		return fmt.Errorf("ssh connect: %w", err)
+	}
+	defer client.Close()
+
+	// Create Caddy config
+	caddyConfig := fmt.Sprintf(`%s {
+	reverse_proxy localhost:%s
+}
+`, domain, appPort)
+
+	// Ensure sites directory exists
+	if _, err := runSSHCommand(client, "mkdir -p /etc/caddy/sites"); err != nil {
+		return fmt.Errorf("mkdir: %w", err)
+	}
+
+	// Write config file
+	configFilePath := "/etc/caddy/sites/" + name
+	fmt.Printf("Creating %s...\n", configFilePath)
+	escaped := strings.ReplaceAll(caddyConfig, "'", "'\\''")
+	if _, err := runSSHCommand(client, fmt.Sprintf("echo '%s' > %s", escaped, configFilePath)); err != nil {
+		return fmt.Errorf("create config file: %w", err)
+	}
+
+	// Check if import exists in Caddyfile
+	caddyfile, _ := runSSHCommand(client, "cat /etc/caddy/Caddyfile")
+	hasImport := strings.Contains(caddyfile, "import /etc/caddy/sites/*") ||
+		strings.Contains(caddyfile, "import sites/*")
+	if !hasImport {
+		fmt.Println("Adding import directive to Caddyfile...")
+		if _, err := runSSHCommand(client, `sed -i '1i import /etc/caddy/sites/*' /etc/caddy/Caddyfile`); err != nil {
+			return fmt.Errorf("update Caddyfile: %w", err)
+		}
+	}
+
+	// Reload Caddy
+	fmt.Println("Reloading Caddy...")
+	if output, err := runSSHCommand(client, "systemctl reload caddy 2>&1"); err != nil {
+		// Try to get more details
+		journalOutput, _ := runSSHCommand(client, "journalctl -u caddy -n 10 --no-pager 2>&1")
+		return fmt.Errorf("reload caddy: %w\n%s\n%s", err, output, journalOutput)
+	}
+
+	fmt.Printf("\nSite %s created successfully.\n", domain)
+	fmt.Printf("  Config: %s\n", configFilePath)
+	fmt.Printf("  URL: https://%s\n", domain)
+
 	return nil
 }
 
