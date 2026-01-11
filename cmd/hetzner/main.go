@@ -88,7 +88,41 @@ func main() {
 	createCmdObj.Flags().StringVar(&createCmd, "cmd", "cmd/server", "Go package to build")
 	createCmdObj.Flags().StringVar(&createConfig, "config", ".env.production", "Config file to deploy")
 
-	servicesCmd.AddCommand(listCmd, deleteCmd, createCmdObj)
+	// services update
+	var updateName, updateCmd, updateConfig string
+	updateCmdObj := &cobra.Command{
+		Use:   "update",
+		Short: "Rebuild and redeploy an existing service",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if sshHost == "" {
+				return fmt.Errorf("--host is required or set SSH_HOST env")
+			}
+			return updateService(sshHost, sshPort, sshKeyPath, updateName, updateCmd, updateConfig)
+		},
+	}
+	updateCmdObj.Flags().StringVar(&updateName, "name", defaultName, "Service name (default: directory name)")
+	updateCmdObj.Flags().StringVar(&updateCmd, "cmd", "cmd/server", "Go package to build")
+	updateCmdObj.Flags().StringVar(&updateConfig, "config", ".env.production", "Config file to deploy")
+
+	// services logs
+	var logsName string
+	var logsFollow bool
+	var logsLines int
+	logsCmdObj := &cobra.Command{
+		Use:   "logs",
+		Short: "View service logs",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if sshHost == "" {
+				return fmt.Errorf("--host is required or set SSH_HOST env")
+			}
+			return serviceLogs(sshHost, sshPort, sshKeyPath, logsName, logsLines, logsFollow)
+		},
+	}
+	logsCmdObj.Flags().StringVar(&logsName, "name", defaultName, "Service name (default: directory name)")
+	logsCmdObj.Flags().IntVarP(&logsLines, "lines", "n", 50, "Number of lines to show")
+	logsCmdObj.Flags().BoolVarP(&logsFollow, "follow", "f", false, "Follow log output")
+
+	servicesCmd.AddCommand(listCmd, deleteCmd, createCmdObj, updateCmdObj, logsCmdObj)
 	rootCmd.AddCommand(servicesCmd)
 
 	// sites command
@@ -324,9 +358,13 @@ func createService(host, port, keyPath, name, cmdPath, configPath string) error 
 		return fmt.Errorf("upload binary: %w", err)
 	}
 
-	// Upload config
+	// Upload config (strip comments)
 	fmt.Printf("Uploading config to %s/.env...\n", srvPath)
-	if err := scpFile(client, configPath, srvPath+"/.env", 0644); err != nil {
+	cleanedConfig, err := stripConfigComments(configPath)
+	if err != nil {
+		return fmt.Errorf("read config: %w", err)
+	}
+	if err := scpContent(client, cleanedConfig, srvPath+"/.env", 0644); err != nil {
 		return fmt.Errorf("upload config: %w", err)
 	}
 
@@ -381,6 +419,157 @@ WantedBy=multi-user.target
 	fmt.Printf("  Service: %s\n", servicePath)
 
 	return nil
+}
+
+func serviceLogs(host, port, keyPath, name string, lines int, follow bool) error {
+	if name == "" {
+		return fmt.Errorf("service name is required")
+	}
+
+	client, err := sshConnect(host, port, keyPath)
+	if err != nil {
+		return fmt.Errorf("ssh connect: %w", err)
+	}
+	defer client.Close()
+
+	session, err := client.NewSession()
+	if err != nil {
+		return fmt.Errorf("new session: %w", err)
+	}
+	defer session.Close()
+
+	cmd := fmt.Sprintf("journalctl -u %s -n %d --no-pager", name, lines)
+	if follow {
+		cmd = fmt.Sprintf("journalctl -u %s -n %d -f", name, lines)
+	}
+
+	session.Stdout = os.Stdout
+	session.Stderr = os.Stderr
+
+	return session.Run(cmd)
+}
+
+func updateService(host, port, keyPath, name, cmdPath, configPath string) error {
+	if name == "" {
+		return fmt.Errorf("service name is required")
+	}
+
+	// Check if config file exists
+	if _, err := os.Stat(configPath); err != nil {
+		return fmt.Errorf("config file not found: %s", configPath)
+	}
+
+	// Cross-compile for Linux
+	fmt.Printf("Building %s for linux/amd64...\n", cmdPath)
+	tmpBinary := filepath.Join(os.TempDir(), name+"-linux-amd64")
+	buildCmd := exec.Command("go", "build", "-o", tmpBinary, "./"+cmdPath)
+	buildCmd.Env = append(os.Environ(), "GOOS=linux", "GOARCH=amd64", "CGO_ENABLED=0")
+	buildCmd.Stdout = os.Stdout
+	buildCmd.Stderr = os.Stderr
+	if err := buildCmd.Run(); err != nil {
+		return fmt.Errorf("build failed: %w", err)
+	}
+	defer os.Remove(tmpBinary)
+
+	// Connect to server
+	client, err := sshConnect(host, port, keyPath)
+	if err != nil {
+		return fmt.Errorf("ssh connect: %w", err)
+	}
+	defer client.Close()
+
+	srvPath := "/srv/" + name
+
+	// Stop the service
+	fmt.Printf("Stopping %s...\n", name)
+	if _, err := runSSHCommand(client, "systemctl stop "+name); err != nil {
+		fmt.Printf("Warning: stop failed (may not be running): %v\n", err)
+	}
+
+	// Upload binary
+	fmt.Printf("Uploading binary to %s/app...\n", srvPath)
+	if err := scpFile(client, tmpBinary, srvPath+"/app", 0755); err != nil {
+		return fmt.Errorf("upload binary: %w", err)
+	}
+
+	// Upload config (strip comments)
+	fmt.Printf("Uploading config to %s/.env...\n", srvPath)
+	cleanedConfig, err := stripConfigComments(configPath)
+	if err != nil {
+		return fmt.Errorf("read config: %w", err)
+	}
+	if err := scpContent(client, cleanedConfig, srvPath+"/.env", 0644); err != nil {
+		return fmt.Errorf("upload config: %w", err)
+	}
+
+	// Start the service
+	fmt.Printf("Starting %s...\n", name)
+	if _, err := runSSHCommand(client, "systemctl start "+name); err != nil {
+		return fmt.Errorf("start service: %w", err)
+	}
+
+	// Check status
+	status, _ := runSSHCommand(client, "systemctl is-active "+name)
+	fmt.Printf("\nService %s updated (%s)\n", name, strings.TrimSpace(status))
+
+	return nil
+}
+
+func stripConfigComments(path string) ([]byte, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := scanner.Text()
+		trimmed := strings.TrimSpace(line)
+
+		// Skip empty lines and full-line comments
+		if trimmed == "" || strings.HasPrefix(trimmed, "#") {
+			continue
+		}
+
+		// Remove trailing comments (but preserve the value)
+		if idx := strings.Index(line, "="); idx > 0 {
+			key := line[:idx+1]
+			value := line[idx+1:]
+			// Remove trailing comment
+			if commentIdx := strings.Index(value, " #"); commentIdx > 0 {
+				value = strings.TrimSpace(value[:commentIdx])
+			}
+			line = key + value
+		}
+
+		lines = append(lines, line)
+	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+
+	return []byte(strings.Join(lines, "\n") + "\n"), nil
+}
+
+func scpContent(client *ssh.Client, content []byte, remotePath string, mode os.FileMode) error {
+	session, err := client.NewSession()
+	if err != nil {
+		return err
+	}
+	defer session.Close()
+
+	go func() {
+		w, _ := session.StdinPipe()
+		defer w.Close()
+		fmt.Fprintf(w, "C%04o %d %s\n", mode, len(content), filepath.Base(remotePath))
+		w.Write(content)
+		fmt.Fprint(w, "\x00")
+	}()
+
+	return session.Run("scp -t " + remotePath)
 }
 
 func scpFile(client *ssh.Client, localPath, remotePath string, mode os.FileMode) error {
