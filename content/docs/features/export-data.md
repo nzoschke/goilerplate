@@ -1,132 +1,130 @@
 ---
-title: "Export Data"
-description: "Export your goals and progress data (Pro & Enterprise feature)"
+title: "Data & Export"
+description: "Export your collection and manage your JukeLab data"
 order: 3
 ---
 
 ## Data Export
 
-**Available on: Pro and Enterprise plans**
+**Available on: Connoisseur plan**
 
-Your progress data belongs to you. Pro and Enterprise users can export their complete goal history at any time.
+Your collection data belongs to you. Connoisseur users can export their complete album list at any time.
 
 ## What You Can Export
 
-### Complete Goal Data
-- Goal titles and descriptions
-- All logged repetitions with dates
-- Progress percentages
-- Completion status
-- Created and updated timestamps
+### Complete Collection Data
+- Album titles and artists
+- Track listings
+- Spotify links (where applicable)
+- Jukebox settings
 
 ### Export Format
 
 Data is exported as **JSON** format, making it:
-- Easy to import into spreadsheets (Excel, Google Sheets)
-- Compatible with data analysis tools
+- Easy to import into spreadsheets
+- Compatible with other tools
 - Human-readable
-- Machine-parseable for custom tools
+- Great for backups
 
 ## How to Export
 
-### Export All Goals
+### Export Your Collection
 
-1. Go to your **Goals** page
-2. Click **"Export Goals"** button
-3. Download `goals-export.json`
+1. Go to your **Jukebox Settings**
+2. Click **"Export Collection"**
+3. Download your data file
 
-That's it! Your complete data is now saved locally.
+That's it! Your complete collection is now saved locally.
 
 ### What's in the Export
 
 ```json
 {
-  "exported_at": "2024-10-29T12:00:00Z",
-  "goals": [
+  "jukebox": {
+    "name": "My House Party",
+    "created": "2024-01-15"
+  },
+  "albums": [
     {
-      "id": "goal_abc123",
-      "title": "Practice Guitar Daily",
-      "description": "20 minutes of focused practice",
-      "current_step": 47,
-      "status": "active",
-      "created_at": "2024-09-12T08:00:00Z",
-      "updated_at": "2024-10-29T11:30:00Z"
+      "title": "Rumours",
+      "artist": "Fleetwood Mac",
+      "spotify_id": "...",
+      "tracks": 11
     }
-  ]
+  ],
+  "total_albums": 100,
+  "total_tracks": 1247
 }
 ```
 
 ## Use Cases
 
-### Personal Analysis
-Import into a spreadsheet to analyze:
-- Your completion rate
-- Average time to reach 100
-- Most successful goal types
-- Patterns in your progress
-
 ### Backup
-Keep a local backup of your progress. While we backup all data, some users prefer having their own copy.
 
-### Portfolio/Resume
-Showcase your completed goals and consistency:
-- "Coded for 100 consecutive days"
-- "Completed 5 different 100-day challenges"
-- "Maintained 3 simultaneous goals for 100 days"
+Keep a backup of your carefully curated collection. If you ever need to recreate your jukebox, you have the data.
 
-### Custom Tools
-Build custom tools or integrations:
-- Import into other tracking apps
-- Create custom visualizations
-- Analyze with data science tools
-- Build personal dashboards
+### Sharing
+
+Share your collection list with friends who want inspiration for their own jukeboxes.
+
+### Migration
+
+Move your collection to a different jukebox or share album ideas with other JukeLab users.
+
+### Analysis
+
+See stats about your collection:
+- Total albums and tracks
+- Most represented artists
+- Genre distribution
 
 ## Upgrade to Export
 
-Export is a Pro/Enterprise feature. Free plan users can upgrade anytime.
+Export is a Connoisseur feature. Nerd plan users can upgrade anytime.
 
-### Why Pro/Enterprise Only?
+### Why Connoisseur Only?
 
-Data export requires additional infrastructure and bandwidth. By limiting it to paid plans, we can:
-- Provide reliable, fast exports
-- Maintain data integrity
-- Support continued development
+Data export is included in the Connoisseur plan alongside other premium features like offline mode and MP3 support.
 
-Free users still own their data and can always view it in-app. Export just makes it portable.
+Nerd users still own their data and can view it in-app. Export makes it portable.
 
 → [Compare Plans](/docs/plans/features)
 
 ## Privacy & Security
 
 ### Your Data is Yours
+
 - We never sell your data
 - We never share it with third parties
 - Export lets you take it anywhere
 
-### What We See
-When you export data, we log:
-- That an export was requested (for security)
-- Timestamp
+### What We Don't Track
 
-We don't see:
-- What you do with exported data
-- Where you store it
-- How you use it
+- What songs get played at your parties
+- Your guests' information
+- Listening habits or analytics
+- Anything we could sell
 
-## API Access (Enterprise)
+## Deleting Data
 
-Enterprise users can access their data via API:
-- Programmatic data access
-- Real-time sync
-- Build custom integrations
-- Automate workflows
+### Delete a Jukebox
 
-Contact us for API documentation and credentials.
+1. Go to jukebox settings
+2. Click **"Delete Jukebox"**
+3. Confirm deletion
 
-→ [Enterprise Plans](/docs/plans/features)
+This removes the jukebox and collection. The guest link becomes invalid.
+
+### Delete Your Account
+
+1. Go to Account Settings
+2. Click **"Delete Account"**
+3. Confirm deletion
+
+This permanently removes all your data. Export first if you want to keep it.
 
 ## Next Steps
 
-- [Goal Management](/docs/features/goal-management) - Organize your goals
-- [Upgrade to Pro](/app/billing) - Get export access
+- [Collection Management](/docs/features/goal-management) - Organize your albums
+- [Upgrade to Connoisseur](/app/billing) - Get export access
 - [Plans & Features](/docs/plans/features) - See all features

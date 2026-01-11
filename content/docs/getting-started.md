@@ -1,165 +1,163 @@
 ---
 title: "Getting Started"
-description: "Learn how to create your first goal and start your journey to mastery"
+description: "Learn how to create your first jukebox and start sharing music"
 order: 2
 ---
 
 ## Quick Start Guide
 
-Getting started with Law of 100 takes less than 2 minutes. Let's walk through creating your first goal.
+Getting started with JukeLab takes about 10 minutes. Let's walk through creating your first jukebox.
 
 ## Step 1: Create an Account
 
-1. Click **"Start Your First Goal"** on the homepage
+1. Click **"Get Started Free"** on the homepage
 2. Sign up with your email or use Google/GitHub
 3. Verify your email address
 4. You're in!
 
-## Step 2: Create Your First Goal
+## Step 2: Connect Spotify
 
-Once you're logged in, you'll see your dashboard. Time to create your first goal.
+JukeLab works with your Spotify Premium account.
 
-### What Makes a Good Goal?
+1. Click **"Connect Spotify"** in your dashboard
+2. Log in to Spotify and authorize JukeLab
+3. Your Spotify library is now available for curation
 
-A good first goal should be:
+**Note:** Spotify Premium is required for playback control. The Connoisseur plan also supports MP3 files.
 
-- ✅ **Specific**: "Write 500 words daily" not "Get better at writing"
-- ✅ **Measurable**: You can clearly say "yes, I did it" or "no, I didn't"
-- ✅ **Daily or Regular**: Something you can practice frequently
-- ✅ **10-30 minutes**: Long enough to matter, short enough to sustain
-- ✅ **Exciting**: You're motivated to work on it, not just "should" do it
+## Step 3: Curate Your Collection
 
-### Creating Your Goal
+Now the fun part: choosing your 100 albums.
 
-1. Click **"Start New Goal"**
-2. Enter your goal title
-   - Example: "Practice Spanish Conversation"
-   - Example: "Do 20 Push-ups"
-   - Example: "Write 500 Words"
-3. Add a description (optional but recommended)
-   - What do you want to achieve?
-   - Why does this matter to you?
-   - What will success look like?
-4. Click **"Start Goal"**
+### What Makes a Great Collection?
 
-That's it! Your goal is now live.
+A great jukebox collection should be:
 
-## Step 3: Log Your First Rep
+- ✅ **Varied**: Cover different genres and eras
+- ✅ **Quality throughout**: Every track on every album should hold up
+- ✅ **Guest-friendly**: Include recognizable crowd pleasers
+- ✅ **Personal**: Add your favorites that always get great reactions
 
-Now comes the important part: actually doing the thing.
+### Adding Albums
 
-1. Complete your first repetition (go do it right now!)
-2. Come back to the app
-3. Click on your goal
-4. Click **"Add Progress"** or the **"+"** button
-5. Your counter updates: **1/100** ✨
+1. Browse your Spotify library or search for albums
+2. Click **"Add to Collection"** on albums you want
+3. See your collection grow in the sidebar
+4. Aim for 100 albums (you can have fewer, but more = more variety)
 
-Congratulations! You've taken the hardest step - starting.
+### Pro Tips
 
-## Step 4: Build Your Streak
+- **Mix eras**: Include classics alongside recent releases
+- **Cover moods**: High energy, mellow, sing-along—variety matters
+- **Include guilty pleasures**: ABBA belongs in your jukebox
+- **Avoid one-hit-wonders**: Every song should be good
 
-Now the journey really begins. Your goal is to log reps consistently.
+## Step 4: Set Up Your Jukebox Device
 
-### Tips for Building a Streak
+Choose a device to run your jukebox:
 
-**Set a Schedule**: Pick a specific time each day
-- "After my morning coffee"
-- "During my lunch break"
-- "Before bed"
+- **Old tablet** (ideal—set it on a table for guests to see)
+- **Spare phone**
+- **Laptop**
 
-**Start Small**: Don't try to be perfect
-- Tired? Do a shorter version
-- Busy? Do the minimum
-- Just show up
+This device shows the now-playing screen and connects to your speakers.
 
-**Track Immediately**: Log your rep right after completing it
-- Don't wait until end of day
-- Strike while the motivation is hot
+### Setup Steps
 
-## Understanding Your Dashboard
+1. Open JukeLab on your jukebox device
+2. Go to your jukebox
+3. Click **"Enter Jukebox Mode"**
+4. Connect to your speaker (Bluetooth, aux, or Airplay)
+5. The screen shows now-playing and the queue
 
-### Goal Cards
-Each goal shows:
-- Title and description
-- Current progress (e.g., "23/100")
-- Progress bar visualization
-- Status (Active or Completed)
+## Step 5: Share the Guest Link
 
-### Sorting Options
-Sort your goals by:
-- **Recent**: Last updated goals first
-- **Progress**: Closest to completion first
-- **Title**: Alphabetical order
+Time to let your guests in!
 
-### Quick Actions
-- Click a goal to see details
-- Click "+" to add progress
-- View your complete history
+1. Click **"Share"** or **"Get Guest Link"**
+2. Copy the link
+3. Share via text, email, or a QR code at your party
 
-## Your First Week
+Guests can:
+- Browse your 100 albums
+- See what's playing and queued
+- Add songs to the queue
+- All from their own phones
 
-Here's what to expect in your first week:
+## Step 6: Start the Party
 
-### Days 1-3: The Honeymoon
-You're excited. Motivation is high. Enjoy it, but don't rely on it.
+Hit play and let the music flow. Here's what to expect:
 
-### Days 4-7: The Reality Check
-Motivation fades. This is normal. This is where discipline begins.
+### Smart Shuffle
 
-**The Secret**: You don't need motivation. You just need to show up.
+When nobody's actively queueing, smart shuffle plays from your collection. It ensures variety—no artist plays twice in a row.
+
+### Guest Queuing
+
+When guests add songs, they play in order after the current queue. Popular picks rise naturally.
+
+### Your Control
+
+You can always:
+- Skip a song
+- Add songs yourself
+- Adjust volume
+- Clear the queue if needed
+
+## Your First Party: What to Expect
+
+### Before Guests Arrive
+
+- Start playing some mellow music to set the vibe
+- Make sure the guest link is easy to share (maybe a QR code on the table)
+- Test that your jukebox device is connected to speakers
+
+### As Guests Arrive
+
+- Share the link as people show up
+- Give them a quick explanation: "Browse my albums, queue whatever you want"
+- Watch the queue start filling up
+
+### During the Party
+
+- Relax! The music handles itself
+- Guests will read the room and queue appropriately
+- You're free to actually enjoy hosting
 
 ## Common Beginner Questions
 
-### What if I miss a day?
+### What if nobody queues anything?
 
-**Option 1**: If you catch it quickly (within 24 hours), log it late. We track total reps, not perfect streaks.
+Smart shuffle keeps playing from your collection. Guests can jump in whenever they want. No awkward silence.
 
-**Option 2**: Just continue tomorrow. One missed day doesn't erase your progress.
+### What if someone queues the same artist over and over?
 
-**Remember**: The goal is 100 total reps, not a perfect 100-day streak.
+Smart shuffle ensures variety. The system prevents back-to-back plays from the same artist.
 
-### Can I work on multiple goals?
+### Do guests need Spotify accounts?
 
-Yes! But we recommend starting with just one goal until you hit 30 days. Building one solid habit is better than juggling multiple weak ones.
+No! Guests only need the link. They browse and queue through their browser—no app or account required.
 
-**Free Plan**: Up to 3 active goals
-**Pro Plan**: Up to 25 active goals
-**Enterprise**: Unlimited goals
+### Can guests play anything from Spotify?
 
-### How long should each rep take?
+No—guests can only queue songs from albums in your collection. That's the point! You curate, they choose.
 
-This depends on your goal. Most people find success with:
-- Physical goals: 15-30 minutes
-- Learning goals: 20-30 minutes
-- Creative goals: 30-45 minutes
-- Mindfulness: 10-20 minutes
+### What if my internet goes down?
 
-**The key**: Consistency beats duration. 15 minutes daily beats 2 hours weekly.
-
-### What happens when I reach 100?
-
-Celebration! 🎉
-
-Your goal is marked as **Completed** and archived. You can:
-- View your complete history
-- Export your data (Pro/Enterprise)
-- Start a new related goal
-- Take a well-deserved break
-
-Most importantly: **you've proven to yourself that you finish what you start.** That's a superpower.
+The Connoisseur plan includes offline mode with MP3 support. For Nerd plans, you'll need internet for Spotify playback.
 
 ## Next Steps
 
 Now that you know the basics:
 
-1. **[Learn about Features](/docs/features/tracking-progress)** - Understand everything the app can do
-2. **[Choose Your Challenge](/docs/guides/choosing-goals)** - Need help picking a goal?
-3. **[Read Success Stories](/blog/success-stories-100-days-of-transformation)** - Get inspired by others' journeys
+1. **[Learn about Features](/docs/features/tracking-progress)** - Understand everything JukeLab can do
+2. **[Build Your Collection](/docs/guides/choosing-goals)** - Tips for curating the perfect 100 albums
+3. **[Read Party Stories](/blog/success-stories-100-days-of-transformation)** - Get inspired by other hosts
 
 ## Most Important
 
-The app is just a tool. **The real work happens when you close the app and actually do the thing.**
+The app is just a tool. **The real magic happens when guests start contributing to the music.**
 
-Track your progress, stay consistent, and trust the process.
+Trust your curation, share the link, and enjoy your party.
 
-See you at rep 100! 🚀
+See you on the dance floor! 🎵

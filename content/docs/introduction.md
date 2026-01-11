@@ -1,75 +1,83 @@
 ---
 title: "Introduction"
-description: "Welcome to Law of 100 - Master anything through the power of repetition"
+description: "Welcome to JukeLab - A real jukebox for your party"
 order: 1
 ---
 
-## Welcome to Law of 100
+## Welcome to JukeLab
 
-**Law of 100** is a goal tracking app built on a simple principle: **do something 100 times to achieve mastery.**
+**JukeLab** is a party music app built on a simple idea: **curate a collection of 100 albums, set up a device, and let your guests control the music all night.**
 
-Whether you're learning a new skill, building a habit, or working toward a personal goal, consistent repetition is the key to transformation. We help you track your progress and stay motivated on your journey.
+No more fighting over Bluetooth. No more one person playing DJ all night. Just great music, shared by everyone.
 
-## The Law of 100 Principle
+## The JukeLab Concept
 
-The concept is simple but powerful:
+The idea is simple but powerful:
 
-> **When you do something 100 times, you move from beginner to competent. From conscious effort to unconscious mastery.**
+> **You curate the collection. Your guests pick the songs. Everyone enjoys the party.**
 
-- **100 push-ups** → Build strength and discipline
-- **100 days of meditation** → Transform your mental clarity
-- **100 writing sessions** → Develop your creative voice
-- **100 coding challenges** → Master programming fundamentals
+Think of it like a classic jukebox in a bar, except:
 
-The specific goal matters less than the commitment to repetition. After 100 times, you're not just skilled - you're transformed.
+- **You choose the records** (your 100 albums)
+- **Guests browse and queue** from their own phones
+- **The music never stops** thanks to smart shuffle
 
-## What Makes Us Different
+The result? A party where the music just works.
 
-### Simple by Design
-No complicated features, no overwhelming dashboards. Just your goals, your progress, and the motivation to keep going.
+## What Makes JukeLab Different
 
-### Focus on the Journey
-We celebrate every rep, not just the destination. Your 47th repetition is just as important as your 100th.
+### Curated, Not Random
+
+Generic playlists feel impersonal. JukeLab puts your taste front and center—guests pick from albums you love.
+
+### Shared Control
+
+No more Bluetooth battles. Everyone can queue songs from their own device, but everything stays on-vibe because you've pre-approved the collection.
 
 ### Privacy First
-Your goals are private by default. Share only what you want, when you want. This is your journey.
+
+We don't collect data about your music preferences or listening habits. Your jukebox, your business.
 
 ## How It Works
 
-### 1. Create a Goal
-Choose what you want to master. Make it specific, measurable, and repeatable.
+### 1. Curate Your Collection
 
-### 2. Track Your Progress
-Log each repetition as you complete it. Watch your progress bar grow from 0 to 100.
+Choose up to 100 albums from Spotify (or MP3s with Connoisseur plan). These become your jukebox's library.
 
-### 3. Stay Motivated
-See your streak, celebrate milestones, and build the identity of someone who finishes what they start.
+### 2. Set Up Your Jukebox
 
-### 4. Achieve Mastery
-By rep 100, you won't just have a new skill - you'll be a different person.
+Pick a device to be your jukebox—a tablet, old phone, or laptop works perfectly.
+
+### 3. Share the Link
+
+Send your guests a link. They can browse your collection and queue songs from their own devices.
+
+### 4. Enjoy the Party
+
+The music plays, guests contribute, and you can actually enjoy hosting instead of being the DJ.
 
 ## Who This Is For
 
-### For Learners
-Track your language learning, coding practice, or any educational goal. Consistency beats intensity every time.
+### Party Hosts
 
-### For Athletes
-Build physical habits that last. From daily runs to push-ups to yoga, repetition builds bodies.
+Throw better parties with music everyone can contribute to. From house parties to wedding receptions.
 
-### For Creators
-Writers, artists, musicians - your craft improves through repetition. Track your daily practice and watch your skills compound.
+### Music Lovers
 
-### For Personal Growth
-Meditation, journaling, gratitude practice - build the habits that transform your mental health and well-being.
+Share your collection without hovering over the turntable. Let others discover the albums you love.
+
+### Anyone Tired of Bluetooth Battles
+
+If you've ever fought over the aux cord, JukeLab is for you.
 
 ## Getting Started
 
-Ready to start your journey? Check out our [Getting Started Guide](/docs/getting-started) to create your first goal.
+Ready to create your jukebox? Check out our [Getting Started Guide](/docs/getting-started) to curate your first collection.
 
-Or read about [Choosing Your First Challenge](/docs/guides/choosing-goals) if you need help deciding what to track.
+Or read about [Building Your Collection](/docs/guides/choosing-goals) if you need help picking albums.
 
-## Join Thousands on Their Journey
+## Join Thousands of Hosts
 
-Over 8,400 people have used Law of 100 to transform their lives. Your turn starts now.
+Over 2,500 people have transformed their parties with JukeLab. Your turn starts now.
 
-**What will you master?**
+**What's in your jukebox?**

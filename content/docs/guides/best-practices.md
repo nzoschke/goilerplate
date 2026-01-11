@@ -1,241 +1,251 @@
 ---
 title: "Best Practices"
-description: "Proven strategies from users who've completed their 100 reps"
+description: "Proven strategies for hosting great parties with JukeLab"
 order: 2
 ---
 
 ## Strategies for Success
 
-After analyzing thousands of completed goals, we've identified patterns that separate those who finish from those who quit.
+After analyzing feedback from thousands of parties, we've identified patterns that separate amazing gatherings from mediocre ones.
 
 Here's what works.
 
-## Before You Start
+## Before the Party
 
-### Set Your "Why"
-Don't just set a goal. Know why it matters.
+### Know Your Crowd
 
-**Bad:** "I should exercise"
-**Good:** "I want energy to play with my kids"
+Don't curate for yourself alone. Think about who's coming.
 
-Your "why" fuels you when motivation fades (and it will fade).
+**Questions to ask:**
+- What age range are my guests?
+- What genres resonate with this group?
+- Are there any genres to definitely avoid?
+- What songs always get people singing along?
 
-### Schedule It
-"I'll do it when I have time" = you won't do it.
+### Balance Your Collection
 
-Pick a specific time:
-- After morning coffee
-- During lunch break
-- Before bed
-- Immediately after work
+The best collections cover multiple moods:
 
-**Habit stacking:** Attach your new goal to an existing habit.
-"After I brush my teeth, I'll do my push-ups"
+| Type | Percentage | Purpose |
+|------|------------|---------|
+| Crowd Pleasers | 40-50% | Songs everyone knows |
+| Energy Builders | 20-25% | Get people moving |
+| Vibe Setters | 15-20% | Mellow, atmospheric |
+| Wild Cards | 10-15% | Your personal gems |
 
-### Tell Someone
-Public commitment increases completion rates by 65%.
+### Test Your Setup
 
-- Tell a friend
-- Post on social media
-- Join an accountability group
-- Start a challenge with someone
+Before guests arrive:
+- Confirm Spotify is connected
+- Test speaker connection
+- Check volume levels
+- Verify the guest link works
 
-The mild embarrassment of quitting publicly motivates continuation.
+Nothing kills a party like troubleshooting tech in front of guests.
 
-## Daily Execution
+## Setting Up the Jukebox
 
-### Track Immediately
-Log your rep right after completing it.
+### Choose the Right Device
 
-**Why:**
-- Captures the satisfaction dopamine hit
-- Prevents forgetting
-- Reinforces the habit loop: Do → Track → Feel Good → Repeat
+**Best options:**
+- Old tablet (ideal - visible display)
+- Spare phone
+- Laptop (works but less visible)
 
-### Lower Your Standards
-On hard days, do the minimum:
+**Placement tips:**
+- Near the speakers
+- Visible to guests (they can see what's playing)
+- Accessible for you to control if needed
 
-- Tired? Do 5 push-ups instead of 20
-- Busy? Write 100 words instead of 500
-- Sick? Do what you can safely do
+### Share the Link Early
 
-**Showing up matters more than perfection.**
+Send the guest link before the party or right as people arrive:
+- Text it to guests
+- Create a QR code for the table
+- Mention it as people walk in
 
-### Never Miss Twice
-You'll miss days. That's okay. But never miss two days in a row.
+### Seed the Queue
 
-One missed day is a hiccup. Two is the start of a pattern.
+Before guests arrive, queue 3-5 songs to:
+- Set the initial vibe
+- Show guests what kind of music to expect
+- Avoid awkward silence
 
-### Celebrate Small Wins
-Every 10 reps, acknowledge your progress:
+## During the Party
 
-- Day 10: "I've done this 10 times!"
-- Day 25: "Quarter way there!"
-- Day 50: "Halfway! I'm actually doing this!"
+### Trust the System
 
-Most people never make it to 10. You're already exceptional.
+The hardest part? Letting go.
 
-## Dealing With Challenges
+**Resist the urge to:**
+- Micromanage the queue
+- Skip songs you didn't choose
+- Worry about what's playing
 
-### The Plateau (Days 30-60)
-This is where most people quit. Progress feels invisible. Motivation is gone.
+If it's in your collection, it's pre-approved. Trust your curation.
 
-**Strategies:**
-- Review your "why"
-- Look back at day 1 (you've come so far!)
-- Just do today. Don't think about day 100
-- Lean on your accountability partner
-- Make it easier temporarily (you can increase again later)
+### Let Guests Discover
 
-### Boredom
-Around day 40, it gets boring. The novelty is gone.
+When guests queue something you love, mention it:
+- "Oh nice pick! Have you heard their other album?"
+- "This is a great one - who queued it?"
 
-**Strategies:**
-- Add small variations (different location, time, approach)
-- Consume content about your goal (motivation through others)
-- Reward yourself at milestones
-- Remember: boredom means it's becoming automatic (that's good!)
+Music becomes a conversation starter.
 
-### Life Happens
-Sick. Travel. Family emergency. Work deadline.
+### Read the Room (But Don't Over-Correct)
 
-**Strategies:**
-- Do a modified version if possible
-- Use the 24-hour grace period (log late if you can)
-- If you must miss, miss only one day
-- Don't use it as an excuse to quit
+If the vibe feels off:
+- Wait a song or two - it often self-corrects
+- Guests naturally queue appropriate music
+- Only intervene if something feels really wrong
 
-**Remember:** The goal is 100 total reps, not 100 consecutive days. Life happens. Adjust and continue.
+## Common Scenarios
 
-## What NOT to Do
+### Nobody's Queueing
 
-### Don't Chase Perfection
-Your 47th rep will be imperfect. That's not failure - that's progress.
+**Don't panic.** Smart shuffle keeps playing.
 
-Perfect is the enemy of done. Progress > Perfection.
+Some crowds are shy. Try:
+- Mentioning the jukebox casually
+- Pointing to the QR code
+- Queueing a song yourself to demonstrate
 
-### Don't Compare
-Someone else is on day 80 while you're on day 12?
+The music plays either way.
 
-So what? They started earlier. You're both building the same skill: showing up.
+### Someone's Dominating the Queue
 
-Comparison is the thief of joy. Focus on your own journey.
+This rarely happens, but if it does:
+- Smart shuffle ensures variety
+- Let it play out - they'll stop eventually
+- Your collection is still controlling quality
 
-### Don't Rely on Motivation
-Motivation got you started. Discipline gets you finished.
+### Energy Needs Adjustment
 
-**Expect motivation to fade around day 10-15.** That's normal. That's when the real work begins.
+If the vibe doesn't match the moment:
+- Queue a few songs yourself to redirect
+- Skip if absolutely necessary
+- Most crowds self-regulate naturally
 
-### Don't Quit on a Bad Day
-Never make the decision to quit after a bad rep or a missed day.
+## Special Occasions
 
-Sleep on it. Revisit tomorrow. Most "I quit" decisions are emotional, not rational.
+### Dinner Parties
+
+- Heavy on vibe setters (60%+)
+- Instrumental and acoustic work well
+- Keep volume lower (conversation > music)
+- Mellow → slightly more energy as dinner wraps
+
+### House Parties
+
+- More energy builders (40%+)
+- Include sing-along favorites
+- Expect natural progression from chill to dance
+- Late night: return to mellow
+
+### BBQs / Outdoor Gatherings
+
+- Classic rock, reggae, soul work great
+- Upbeat but not overwhelming
+- Background music, not dance music
+- Long afternoon = varied energy
+
+### Game Nights
+
+- Mostly instrumental
+- Lo-fi, ambient, soundtracks
+- Nothing too attention-grabbing
+- Volume low enough for conversation
 
 ## Pro Tips
 
-### Morning Is Magic
-Morning completions have a 78% higher success rate than evening goals.
+### The QR Code Trick
 
-**Why:**
-- Willpower is highest in the morning
-- Won't get derailed by the day
-- Gives you a win before 9am
-- Builds momentum for the rest of the day
+Print your guest link as a QR code:
+- Table tent cards
+- On a sign near speakers
+- In your party invitation
 
-### Use Visual Trackers
-Beyond our app, use physical trackers:
-- Calendar with X marks
-- Jar with marbles (move one for each rep)
-- Progress poster on wall
+Makes sharing effortless.
 
-**Visual progress = motivation fuel.**
+### Evening Arc
 
-### Join the Community
-Find others doing 100-day challenges:
-- Reddit: r/100DaysOf
-- Twitter: #100DaysOfCode, #100DaysOfX
-- Instagram: #lawof100
+Great parties follow a natural arc:
 
-Share your journey. Get encouragement. Give encouragement.
+**Early** (guests arriving): Mellow, welcoming
+**Building** (everyone's here): Energy rises
+**Peak** (dance time): High energy, crowd pleasers
+**Late** (winding down): Return to mellow
 
-### Prepare for the "Dip"
-Everyone hits a dip around day 30-50. Expect it.
+Let guests guide this naturally.
 
-When it comes, don't be surprised. Say "Ah, there's the dip everyone warned me about. I'll push through."
+### Post-Party Notes
 
-Expecting it reduces its power.
+After each party, note:
+- Which albums got the most plays
+- Any awkward moments
+- Songs people specifically mentioned
+- Albums nobody touched
 
-### Plan for Travel
-Traveling kills streaks. Plan ahead:
-- Pack minimal equipment if needed
-- Research locations (gym, quiet spot, etc.)
-- Adjust goal temporarily if needed (shorter version okay)
-- Set phone reminders
+Use this to refine your collection.
+
+## What NOT to Do
+
+### Don't Over-Curate Live
+
+Your job was before the party (building the collection). During the party, let it flow.
+
+### Don't Apologize for Music
+
+If a song plays that surprises you, don't apologize. You approved it. Own it.
+
+### Don't Be the DJ
+
+The whole point is NOT being the DJ. Enjoy your own party.
+
+### Don't Kill Momentum
+
+Resist skipping just because you're tired of a song. Others might love it.
 
 ## The Psychology
 
-### Identity Shift
-Somewhere around rep 50-70, something changes.
+### Guest Investment
 
-You stop "trying to be" and start "being."
-- Not trying to write → You're a writer
-- Not trying to exercise → You're an athlete
-- Not trying to learn → You're a student
+When guests queue songs, they become invested in the party's success. They're not just attending - they're contributing.
 
-**This is the moment everything changes.**
+### Shared Experience
 
-### Compound Confidence
-Each day you keep your promise to yourself, you build self-trust.
+Picking music together creates shared memories. "Remember when you queued that song?" becomes party lore.
 
-After 100 days, you're not just skilled at X. You're someone who keeps their word. That's worth more than any specific skill.
+### Host Freedom
 
-### The Ripple Effect
-Completing one 100-day goal often triggers changes in other areas:
+When you're not DJing, you can:
+- Actually talk to guests
+- Eat your own food
+- Be present
+- Enjoy the music too
 
-- Start exercising → Eat better
-- Start writing → Read more
-- Start coding → Career shift
+## Your Party Checklist
 
-**One disciplined area tends to spread.**
+**Before:**
+- [ ] Collection curated and balanced
+- [ ] Spotify connected and tested
+- [ ] Speaker setup confirmed
+- [ ] Guest link ready to share
+- [ ] Initial queue seeded
 
-## Your Daily Checklist
+**During:**
+- [ ] Share the link early
+- [ ] Trust the system
+- [ ] Enjoy your party
+- [ ] Note what works/doesn't
 
-Use this daily:
-
-- [ ] Did I complete my rep?
-- [ ] Did I log it immediately?
-- [ ] Am I still connected to my "why"?
-- [ ] Did I celebrate this small win?
-- [ ] Did I schedule tomorrow's rep?
-
-Five simple questions. Powerful results.
-
-## When You Want to Quit
-
-You will want to quit. Probably multiple times. When that urge hits:
-
-1. **Wait 24 hours** - Don't decide while emotional
-2. **Review day 1** - Look how far you've come
-3. **Do just one more** - Commit to just tomorrow
-4. **Ask why** - Is the goal wrong, or is this the plateau?
-5. **Adjust if needed** - Make it easier rather than quitting
-
-Most quit urges pass in 24 hours if you don't act on them.
-
-## The Ultimate Secret
-
-Here it is, the thing that separates finishers from quitters:
-
-**Finishers show up on days they don't want to.**
-
-That's it. That's the whole game.
-
-Your successful days don't count nearly as much as your "I really don't want to but I'm doing it anyway" days.
-
-Those days build the person who achieves hard things.
+**After:**
+- [ ] Update collection based on feedback
+- [ ] Remove underperforming albums
+- [ ] Add requested albums
 
 ## Next Steps
 
-- [Staying Motivated](/docs/guides/staying-motivated) - Push through hard days
-- [Multiple Goals](/docs/guides/multiple-goals) - Balance several challenges
-- [After 100](/docs/guides/after-100) - What happens when you finish
+- [Building Your Collection](/docs/guides/choosing-goals) - Curate the perfect 100
+- [FAQ](/docs/faq) - Common questions answered
+- [Features](/docs/features) - Everything JukeLab can do

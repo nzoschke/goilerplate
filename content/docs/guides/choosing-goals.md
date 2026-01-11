@@ -1,160 +1,220 @@
 ---
-title: "Choosing Your Goals"
-description: "How to pick a challenge that sets you up for success"
+title: "Building Your Collection"
+description: "How to curate a 100-album collection that works for any party"
 order: 1
 ---
 
-## The Art of Goal Selection
+## The Art of Curation
 
-Not all goals are created equal. The right goal energizes you. The wrong goal drains you.
+Not all albums are created equal for parties. The right collection energizes your guests. The wrong one falls flat.
 
 Here's how to choose wisely.
 
 ## The 4 Criteria
 
-Your goal should check all four boxes:
+Every album should check these boxes:
 
-### 1. Daily (or Regular)
-Can you practice this daily or very frequently?
+### 1. Quality Throughout
 
-**Why it matters:** Your brain consolidates learning during sleep. Daily practice = more consolidation cycles = faster mastery.
+Can you play any random track from this album?
 
-✅ "Write 500 words daily"
-❌ "Write a novel" (too vague on frequency)
+**Why it matters:** Guests can queue any song. Every track needs to hold up, not just the hits.
 
-### 2. Measurable
-Can you clearly answer "Did I do it today?"
+✅ Rumours by Fleetwood Mac (every song is great)
+❌ An album with one hit and filler
 
-**Why it matters:** Ambiguity kills momentum. Clear metrics maintain it.
+### 2. Party-Appropriate
 
-✅ "Do 20 push-ups"
-❌ "Work on fitness" (too vague)
+Does it work in a social setting?
 
-### 3. Time-Bound (10-30 minutes)
-Does it take a sustainable amount of time?
+**Why it matters:** Your dinner party is not the time for experimental noise albums.
 
-**Why it matters:** Too short won't drive progress. Too long leads to burnout.
+✅ Kind of Blue by Miles Davis (sets a mood)
+❌ Extremely niche or polarizing music
 
-✅ "Practice Spanish 15 minutes"
-❌ "Study Spanish all day" (unsustainable)
+### 3. Guest-Friendly
 
-### 4. Exciting But Achievable
-Does it challenge you without overwhelming you?
+Will at least some guests recognize or appreciate it?
 
-**Why it matters:** Too easy = no growth. Too hard = quit.
+**Why it matters:** Familiar music creates connection. Too obscure and nobody queues it.
 
-✅ "Learn basic Python" (stretch but doable)
-❌ "Become a senior developer in 100 days" (unrealistic)
+✅ Thriller by Michael Jackson (everyone knows it)
+❌ Deep cuts nobody's heard of
 
-## Popular First Goals
+### 4. Fits the Vibe
 
-### Physical
-- **100 push-ups** (1 per day, scale as needed)
-- **10,000 steps daily** (easy to track, low injury risk)
-- **20-minute yoga** (flexibility + mindfulness)
-- **Plank challenge** (1 minute daily, progressive)
+Does it belong with your other albums?
 
-### Creative
-- **Write 500 words** (blog, journal, fiction - anything)
-- **Draw daily** (15 minutes, any subject)
-- **Photo project** (one photo daily with theme)
-- **Music practice** (20 minutes scales or songs)
+**Why it matters:** Your collection should feel cohesive, not random.
 
-### Learning
-- **Duolingo streak** (language learning, gamified)
-- **Code daily** (#100DaysOfCode - huge community)
-- **Read 20 pages** (finish 6-8 books in 100 days)
-- **Online course** (one lesson per day)
+✅ Albums that share energy/mood with others
+❌ Wildly out-of-place genres
 
-### Mindfulness
-- **10-minute meditation** (most life-changing according to users)
-- **Gratitude journal** (3 things daily, 5 minutes)
-- **No social media** (100 days breaking habit)
-- **Morning routine** (consistent wake-up ritual)
+## Building a Balanced Collection
 
-## Red Flags: Goals to Avoid
+### The 4-Category Framework
 
-### Outcome-Focused Goals
-❌ "Lose 20 pounds"
-✅ "Walk 10,000 steps daily"
+| Category | Albums | Purpose | Examples |
+|----------|--------|---------|----------|
+| **Crowd Pleasers** | 40-50 | Songs everyone knows | Beatles, Fleetwood Mac, Whitney Houston |
+| **Energy Builders** | 20-25 | Get people dancing | Daft Punk, Beyoncé, Prince |
+| **Vibe Setters** | 15-20 | Background/mellow | Miles Davis, Frank Ocean, Norah Jones |
+| **Wild Cards** | 10-15 | Your personal favorites | Your favorite obscure gems |
 
-**Why:** You control actions, not outcomes. Focus on what you can do, not what might happen.
+### Cover the Decades
 
-### Vague Goals
-❌ "Get better at guitar"
-✅ "Practice scales 20 minutes daily"
+| Era | Albums | Examples |
+|-----|--------|----------|
+| Classics (60s-70s) | 15-20 | Beatles, Stones, Stevie Wonder |
+| 80s-90s | 20-25 | Prince, Nirvana, Whitney |
+| 2000s | 15-20 | Kanye, Amy Winehouse, Arctic Monkeys |
+| Recent | 10-15 | Current hits, new releases |
 
-**Why:** Vague goals have no clear completion criteria. You never know if you "did it today."
+### Cover the Genres
 
-### Too Many at Once
-❌ Starting 5 different goals simultaneously
-✅ Master one, then add another
+Don't go too deep in any single genre:
 
-**Why:** Diffusion is weakness. Focus is power.
+- **Rock/Alternative**: 25-30 albums
+- **Pop/R&B**: 25-30 albums
+- **Hip-Hop/Rap**: 15-20 albums
+- **Electronic/Dance**: 10-15 albums
+- **Soul/Funk/Jazz**: 10-15 albums
+- **Other**: 5-10 albums
 
-### Purely Negative Goals
-❌ "Don't eat sugar for 100 days"
-✅ "Eat fruit when I crave sweets"
+Adjust based on your typical crowd.
 
-**Why:** Your brain struggles with "don't." Give it something TO do, not something to avoid.
+## Red Flags: Albums to Avoid
 
-## Decision Framework
+### One-Hit-Wonder Albums
 
-Still stuck? Use this:
+❌ Albums where only one song is good
+✅ Albums where every track holds up
 
-### Step 1: Brain Dump (5 minutes)
-Write down every skill you've wished you had. Don't filter. Just list.
+**Why:** Guests can queue any song, not just the hit.
 
-### Step 2: Apply 4 Criteria (5 minutes)
-Cross out anything that fails daily, measurable, time-bound, or exciting-but-achievable.
+### Too Niche
 
-### Step 3: Gut Check (1 minute)
-Close your eyes. Imagine yourself on day 50 of each remaining goal. Which one makes you feel most proud?
+❌ Experimental jazz only you understand
+✅ Accessible entry points to genres
 
-That's your answer.
+**Why:** If nobody recognizes it, nobody queues it.
 
-### Step 4: Make It Specific
-Transform it into a precise daily action:
+### Mood Killers
 
-❌ "Get fit" → ✅ "Do 20 push-ups daily"
-❌ "Learn Spanish" → ✅ "Practice Duolingo 15 minutes daily"
-❌ "Be creative" → ✅ "Write 500 words daily"
+❌ Super sad, aggressive, or jarring albums
+✅ Music that keeps the energy positive
 
-## Special Case: No Ideas
+**Why:** One wrong song can kill the vibe.
 
-If you're completely blank, start with a "universal" goal that benefits everyone:
+### Guilty Pleasures You're Embarrassed About
 
-1. **Daily walking** (10,000 steps or 30 minutes)
-2. **Daily reading** (20 pages, any book)
-3. **Daily meditation** (10 minutes, any style)
+Actually, include these! ABBA, Spice Girls, cheesy 80s pop - people love singing along to "guilty pleasures."
 
-These three build health, knowledge, and mental clarity - foundations for everything else.
+## Building Your First Collection
+
+### Step 1: Start with Essentials (30 albums)
+
+Begin with albums you know work at parties:
+- Albums that always get compliments
+- Songs people request
+- Classics you love
+
+### Step 2: Add Variety (40 albums)
+
+Fill gaps in your collection:
+- Missing decades?
+- Missing genres?
+- Missing energy levels?
+
+### Step 3: Personal Favorites (20 albums)
+
+Add your wild cards:
+- Albums you want to share
+- Underrated gems
+- Conversation starters
+
+### Step 4: Fill to 100 (10 albums)
+
+Round out with solid picks:
+- Safe crowd pleasers
+- Recent hits
+- Seasonal favorites
+
+## Collection Ideas by Occasion
+
+### House Party
+
+Heavy on crowd pleasers and energy:
+- 60% recognizable hits
+- 30% danceable energy builders
+- 10% your personal picks
+
+### Dinner Party
+
+Heavy on vibe setters:
+- 60% mellow/atmospheric
+- 20% sophisticated pop/R&B
+- 20% gentle conversation music
+
+### BBQ / Outdoor
+
+Casual, upbeat, but not overwhelming:
+- Classic rock
+- Reggae
+- Soul/funk
+- Country (if appropriate for crowd)
+
+### Game Night
+
+Background music that doesn't distract:
+- Instrumental
+- Lo-fi hip-hop
+- Movie soundtracks
+- Ambient electronic
+
+## Maintaining Your Collection
+
+### After Each Party
+
+Ask yourself:
+- Which albums got played the most?
+- Which albums never got touched?
+- Did guests request anything you didn't have?
+- Any awkward moments?
+
+### Regular Updates
+
+- Remove albums nobody plays
+- Add new releases you love
+- Rotate seasonal picks
+- Refresh based on guest feedback
+
+### Don't Over-Optimize
+
+Your collection doesn't need to be perfect. It needs to be good enough that any random song works.
+
+Trust your taste. That's why you're the host.
 
 ## The Secret Truth
 
-Here's what nobody tells you: **the specific goal matters less than you think.**
+Here's what matters most: **any collection you've thoughtfully curated beats a random playlist.**
 
-Yes, choosing well helps. But the real skill you're building isn't the goal itself. It's:
+Your guests aren't music critics. They want to have fun. If you've put thought into your 100 albums, you're already ahead of 99% of parties.
 
-- Discipline
-- Consistency
-- Self-trust
-- Following through
+The perfect collection doesn't exist. A good collection that you use does.
 
-Once you've done it once, you can do it for any goal.
+## Start Today
 
-Your first 100 isn't about the skill. It's about proving to yourself that you finish what you start.
+Don't overthink it:
+1. Add 50 albums you love and know work
+2. Throw a party
+3. Learn what works
+4. Adjust
 
-## Start Tomorrow
-
-Not Monday. Not next month. Tomorrow.
-
-Pick your goal. Make it specific. Make it measurable.
-
-Then just start.
+Your collection will evolve. That's the point.
 
 ## Next Steps
 
-- [Getting Started](/docs/getting-started) - Create your first goal
-- [Best Practices](/docs/guides/best-practices) - Set yourself up for success
-- [Staying Motivated](/docs/guides/staying-motivated) - Push through the hard days
+- [Getting Started](/docs/getting-started) - Set up your jukebox
+- [Best Practices](/docs/guides/best-practices) - Tips for great parties
+- [FAQ](/docs/faq) - Common questions

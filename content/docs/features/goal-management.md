@@ -1,213 +1,159 @@
 ---
-title: "Goal Management"
-description: "Create, edit, archive, and organize your goals effectively"
+title: "Collection Management"
+description: "How to curate and organize your 100-album collection"
 order: 2
 ---
 
-## Creating Goals
+## Building Your Collection
 
-### The Basics
+Your collection is the heart of JukeLab. Learn how to curate, organize, and maintain your 100-album library.
 
-1. Click **"Start New Goal"** from your dashboard
-2. Enter a **Title** - be specific
-3. Add a **Description** (optional but recommended)
-4. Click **"Start Goal"**
+### Adding Albums from Spotify
 
-Your goal is now active and ready to track!
+1. Go to your JukeLab dashboard
+2. Click **"Add Albums"**
+3. Browse your Spotify library or search
+4. Click **"Add"** on albums you want
+5. See your collection count grow
 
-### Goal Title Guidelines
+### Search Tips
 
-**Good Titles:**
-- "Practice Spanish for 15 minutes daily"
-- "Do 20 push-ups"
-- "Write 500 words"
-- "Meditate for 10 minutes"
+- **Search by artist** - Find all albums by a specific artist
+- **Search by album** - Find a specific album title
+- **Browse saved** - See albums already in your Spotify library
+- **Browse playlists** - Find albums from your playlists
 
-**Poor Titles:**
-- "Get better" (too vague)
-- "Exercise" (not specific enough)
-- "Learn stuff" (what stuff?)
+### Collection Limit
 
-The more specific, the better. Future you will thank you.
+- All plans support up to **100 albums**
+- This equals roughly 1,200+ songs
+- You can have fewer than 100
 
-### Descriptions
+## Organizing Your Collection
 
-Use the description to:
-- Explain what success looks like
-- Note why this matters to you
-- Define specific parameters
-- Add motivational reminders
+### Viewing Your Collection
 
-**Example:**
-```
-Title: Practice Guitar Scales
-Description: 20 minutes of focused practice on major and
-minor scales. Goal is to play them smoothly at 120 BPM
-by day 100. This matters because I want to join a band
-next year.
-```
+Your collection page shows:
+- All added albums
+- Album artwork
+- Artist names
+- Track counts
 
-## Editing Goals
+### Removing Albums
 
-Need to adjust your goal? You can edit:
-- Title
-- Description
+To remove an album:
+1. Go to your collection
+2. Find the album
+3. Click **"Remove"**
+4. Confirm removal
 
-**Note**: You cannot edit the current progress count. Progress is sacred - it represents actual work completed.
+**Note:** Removing an album removes all its songs from your jukebox. Guests can no longer queue those tracks.
 
-### When to Edit
+### Replacing Albums
 
-**Good reasons to edit:**
-- Clarify vague language
-- Add more context to description
-- Fix typos
+Swap albums as your taste evolves:
+1. Remove albums that didn't work well
+2. Add new ones you want to try
+3. Your collection updates immediately
 
-**Bad reasons to edit:**
-- Making goal easier because it's hard
-- Changing goal completely mid-journey
-- Adjusting to avoid accountability
+## Multiple Jukeboxes
 
-If your goal needs significant changes, consider completing the current one and starting a new one.
+Create different collections for different occasions:
 
-## Archiving vs. Deleting
+- **Dinner Party** - Mellow jazz, soul, acoustic
+- **House Party** - Upbeat, danceable, crowd pleasers
+- **Game Night** - Instrumental, lo-fi, ambient
+- **BBQ** - Rock, reggae, classic hits
 
-### Completed Goals
+### Creating Another Jukebox
 
-When you reach 100/100, your goal is automatically marked as **Completed** and moved to your completed goals archive.
+1. Go to your dashboard
+2. Click **"New Jukebox"**
+3. Name it (e.g., "Dinner Party Mix")
+4. Curate 100 albums for this occasion
 
-You can still:
-- View complete history
-- Export data (Pro/Enterprise)
-- Reference for future goals
+Each jukebox has its own:
+- Collection
+- Guest link
+- Queue
 
-### Abandoning Goals
+## Collection Strategy
 
-Sometimes you need to stop a goal before 100. That's okay! Here's how to handle it:
+### Balance Your Collection
 
-**Option 1: Keep It**
-Leave it as-is in your active goals. Maybe you'll come back to it.
+Aim for variety across:
 
-**Option 2: Delete It**
-If you're sure you won't continue, delete it. Your other goals deserve your focus.
+| Category | Album Count | Examples |
+|----------|-------------|----------|
+| Crowd Pleasers | 40-50 | Classics everyone knows |
+| Energy Builders | 20-25 | Dance, party anthems |
+| Vibe Setters | 15-20 | Mellow, atmospheric |
+| Wild Cards | 10-15 | Your personal favorites |
 
-**No Shame**: Adjusting goals is part of the process. Better to focus on goals you'll actually complete than keep dead goals around.
+### Quality Over Quantity
 
-## Organizing Multiple Goals
+Every album should pass this test:
 
-Working on multiple goals? Here's how to stay organized:
+- Would you be happy if any random track played?
+- Does every song hold up, not just the hits?
+- Does it fit the overall vibe?
 
-### Use Sorting
+### Update Regularly
 
-Sort your goals dashboard by:
+After each party:
+- Note which albums never got played
+- Note which songs guests loved
+- Swap out underperformers
+- Add new discoveries
 
-**Recent**: See what you've worked on lately
-- Great for daily review
-- Catch goals you've neglected
+## MP3 Collections (Connoisseur)
 
-**Progress**: Focus on completion
-- Prioritize goals close to finishing
-- Get quick wins
+Connoisseur plan users can add MP3 files:
 
-**Title**: Alphabetical organization
-- Find specific goals quickly
-- Clean, organized view
+### Adding MP3s
 
-### Priority System
+1. Go to **"Add Albums"**
+2. Select **"Upload MP3s"**
+3. Organize files by album folder
+4. Upload and tag your music
 
-Since we don't have a built-in priority feature (yet!), use title prefixes:
+### Why Use MP3s?
 
-```
-🔥 Learn Python - High priority
-⭐ Morning Journaling - Medium priority
-📚 Read 30 Pages - Low priority
-```
-
-Simple but effective!
-
-### Focus on One at a Time
-
-**Controversial advice**: Despite allowing multiple goals, we recommend focusing on ONE goal at a time until you hit 30+ days.
-
-Why?
-- Builds discipline muscle
-- Proves you can follow through
-- Better results than spreading yourself thin
-
-Once you've proven you can do one goal for 30+ days, add another.
-
-## Goal Limits by Plan
-
-### Free Plan
-- **3 active goals maximum**
-- Perfect for beginners
-- Focus on quality over quantity
-
-### Pro Plan
-- **25 active goals maximum**
-- For serious habit builders
-- Balance multiple life areas
-
-### Enterprise Plan
-- **Unlimited goals**
-- For teams and power users
-- Track everything that matters
-
-→ [See all plan features](/docs/plans/features)
+- **Offline mode** - Works without internet
+- **Rare tracks** - Music not on Spotify
+- **Vinyl digitization** - Add your physical collection
+- **Local artists** - Independent music you own
 
 ## Best Practices
 
 ### Start Small
-One focused goal beats three half-hearted ones.
 
-### Be Specific
-"Practice coding" is vague. "Complete one LeetCode problem" is specific.
+Don't try to curate 100 albums at once:
+1. Start with 30-50 albums you know well
+2. Test at a small gathering
+3. Add more based on what works
+4. Iterate over time
 
-### Make It Measurable
-You should be able to answer "Did I do it today?" with a clear yes or no.
+### Get Feedback
 
-### Choose Actions, Not Outcomes
-- ❌ "Lose 20 pounds" (outcome)
-- ✅ "Walk 10,000 steps daily" (action)
+Ask guests after parties:
+- "Any songs you wished we had?"
+- "Anything that felt out of place?"
+- "What was the highlight?"
 
-Actions are under your control. Outcomes aren't always.
+Use feedback to improve your collection.
 
-### Review Weekly
-Every Sunday, review your goals:
-- Which need more attention?
-- Which are on track?
-- Any need to be adjusted or archived?
+### Keep It Fresh
 
-## Troubleshooting
+Rotate albums periodically:
+- Add new releases you love
+- Remove albums that never get picked
+- Refresh seasonal selections
 
-### "I have too many goals"
-
-If you're overwhelmed:
-1. Archive/delete goals you're not actively working on
-2. Focus on your top 1-3 goals
-3. Add others back later
-
-Quality > Quantity, always.
-
-### "I keep starting but not finishing"
-
-This is common. Try:
-- Pick ONE goal only
-- Make it smaller/easier
-- Set a daily reminder
-- Find an accountability partner
-
-The problem isn't usually the goal. It's trying to do too much at once.
-
-### "My goal limit feels restrictive"
-
-Good! Limits force prioritization. What REALLY matters?
-
-If you consistently max out your goal limit and finish them, you're ready for an upgrade.
-
-→ [Upgrade to Pro](/app/billing)
+Your collection should evolve with your taste and your guests' preferences.
 
 ## Next Steps
 
-- [Tracking Progress](/docs/features/tracking-progress) - Log your reps
-- [Export Data](/docs/features/export-data) - Own your data
+- [Playback & Queue](/docs/features/tracking-progress) - Understand playback
+- [Export Data](/docs/features/export-data) - Export your collection
 - [Best Practices](/docs/guides/best-practices) - Pro tips

@@ -4,80 +4,110 @@ description: "Detailed breakdown of features in each plan"
 order: 1
 ---
 
-## Free vs Pro vs Enterprise
+## Nerd vs Connoisseur
 
 Detailed feature comparison to help you choose the right plan.
 
 ## Core Features
 
-Features available in **all plans**:
+Features available in **both plans**:
 
-### Goal Tracking
-✓ Create and track goals from 0 to 100
-✓ Log progress with one click
-✓ Visual progress bars and percentages
-✓ View complete goal history
+### Music Playback
+✓ Spotify Premium integration
+✓ Up to 100 albums in your collection
+✓ Smart shuffle maintains variety
+✓ Seamless playback control
 
-### Dashboard
-✓ Clean, organized goal view
-✓ Sort by recent, progress, or title
-✓ Filter active vs completed goals
-✓ Mobile-responsive design
+### Guest Experience
+✓ Share a link - no app needed
+✓ Guests browse your collection
+✓ Queue songs from their phones
+✓ Real-time queue updates
 
-### Mobile Access
-✓ Works on phone, tablet, desktop
-✓ Fast loading and performance
-✓ Progressive web app support
-✓ Syncs across all devices
+### Jukebox Display
+✓ Now playing screen
+✓ Queue visibility
+✓ Album art display
+✓ Works on any device
 
 ### Privacy
-✓ Private goals by default
+✓ No tracking of listening habits
+✓ No data collection on guests
 ✓ Secure authentication
-✓ Data encryption
 ✓ No ads, ever
 
 ## Plan Differences
 
 What changes between plans:
 
-### Free Plan
+### Nerd Plan - $5/month
 
-**Goal Limit: 3 active goals**
+**Perfect for:**
+- Regular party hosts
+- Spotify users
+- House parties and BBQs
+- Anyone starting out
 
-Perfect for:
-- Beginners starting their first goal
-- Focused users who prefer 1-3 goals
-- Testing before committing
-- Budget-conscious users
+**Core Features:**
+- Spotify integration
+- 100 albums per jukebox
+- Unlimited guests
+- Social queue control
+- Smart shuffle
+- Mobile-friendly interface
 
 **Support:**
-- Community support (Discord, GitHub)
+- Email support (48-hour response)
 - Documentation access
-- 48-hour email response (best effort)
 
 **What's Not Included:**
+- ❌ Offline mode
+- ❌ MP3 file support
 - ❌ Data export
+- ❌ Custom themes
 - ❌ Priority support
-- ❌ Advanced features
 
-**Cost: $0/month**
+**Cost: $5/month or $50/year**
 
-### Pro Plan
+### Connoisseur Plan - $10/month
 
-**Goal Limit: 25 active goals**
+**Perfect for:**
+- Serious music hosts
+- Venues without WiFi
+- Vinyl collectors
+- Maximum customization
 
-Everything in Free, plus:
+Everything in Nerd, plus:
 
-**More Goals:**
-- Track up to 25 active goals
-- Perfect for multiple life areas
-- Balance work, health, hobbies, learning
+**Offline Mode:**
+- Works without internet
+- Perfect for remote venues
+- Download before the party
+- No Spotify required when offline
+
+**MP3 Support:**
+- Upload your own music files
+- Rare tracks not on Spotify
+- Digitized vinyl collection
+- Local artist music
 
 **Data Export:**
-- Export all goals as JSON
+- Export your collection as JSON
 - Download anytime
 - Own your data completely
-- Import into other tools
+- Backup your curation work
+
+**Custom Themes:**
+- Personalize the jukebox display
+- Match your party aesthetic
+- Multiple color schemes
+- Custom branding (coming soon)
+
+**Playlist Management:**
+- Advanced organization tools
+- Quick album swapping
+- Bulk import/export
+- Collection templates
 
 **Priority Support:**
 - 24-hour email response
@@ -90,179 +120,83 @@ Everything in Free, plus:
 - Beta test upcoming updates
 - Influence product direction
 
-**Cost: $9/month or $90/year**
+**Cost: $10/month or $100/year**
 
-→ [Upgrade to Pro](/app/billing)
+→ [Upgrade to Connoisseur](/app/billing)
 
-### Enterprise Plan
+## Collection Details
 
-**Goal Limit: Unlimited**
+### Album Limit
 
-Everything in Pro, plus:
+Both plans support **100 albums** per jukebox.
 
-**Unlimited Goals:**
-- No restrictions
-- Track everything that matters
-- Perfect for teams or power users
+This equals roughly **1,200+ songs** - plenty for any party.
 
-**API Access:**
-- RESTful API access
-- Real-time data sync
-- Build custom integrations
-- Programmatic goal management
-- Webhooks for automation
+### Multiple Jukeboxes
 
-**Team Features:**
-- Shared goals (coming soon)
-- Team dashboards (coming soon)
-- Collaboration tools (coming soon)
-- Admin controls (coming soon)
+Create different jukeboxes for different occasions:
+- Dinner party collection
+- House party collection
+- Game night collection
+- BBQ collection
 
-**Dedicated Support:**
-- 12-hour response time
-- Video call support available
-- Custom integration help
-- Dedicated success manager
-
-**Advanced Reporting:**
-- Custom data exports
-- Advanced analytics (coming soon)
-- Bulk operations
-- Historical data analysis
-
-**SLA Guarantee:**
-- 99.9% uptime guarantee
-- Priority incident response
-- Scheduled maintenance windows
-- Status page access
-
-**Cost: $29/month or $290/year**
-
-→ [Contact Sales](/app/billing)
-
-## Goal Limits Explained
-
-### Why Limits Matter
-
-Goal limits exist to encourage focus:
-- **Too many goals** = scattered effort
-- **Right amount** = sustainable progress
-- **Limits force prioritization**
-
-### What Counts as "Active"?
-
-An active goal is one that:
-- Is not yet complete (< 100 reps)
-- Is not deleted
-
-Completed goals (100/100) don't count toward your limit.
-
-### What If I Hit My Limit?
-
-**Free (3 goals):**
-Options:
-1. Complete one goal to free up a slot
-2. Delete/archive a goal you're not pursuing
-3. Upgrade to Pro for 25 goals
-
-**Pro (25 goals):**
-Options:
-1. Complete some goals (you've got this!)
-2. Archive inactive goals
-3. Upgrade to Enterprise for unlimited
-
-**Enterprise (Unlimited):**
-No limits! Track as many as you want.
-
-## Feature Roadmap
-
-Coming soon to all plans:
-
-### Short Term (Next 3 months)
-- Email reminders
-- Streak tracking
-- Goal templates
-- Progress notes
-
-### Medium Term (3-6 months)
-- Mobile apps (iOS/Android)
-- Team collaboration
-- Advanced analytics
-- Goal categories
-
-### Long Term (6-12 months)
-- Social features
-- Challenges and competitions
-- Coaching integrations
-- Public profiles (opt-in)
-
-Pro and Enterprise users get early access to all new features.
+Each jukebox has its own:
+- Album collection
+- Guest link
+- Queue
 
 ## Frequently Asked Questions
 
 ### Can I downgrade?
 
-Yes, anytime. When you downgrade:
-- Excess goals become read-only (if over new limit)
-- You retain all data
-- No data is deleted
+Yes, anytime. When you downgrade from Connoisseur to Nerd:
+- Your collection remains intact
+- You lose access to offline mode and MP3s
 - Can upgrade again anytime
 
 ### What happens to my data if I cancel?
 
-- All data remains accessible
-- Can still view (but not edit) on Free plan
+- All data remains until you delete it
+- Can export first (Connoisseur)
 - Data never deleted unless you request it
 - Can reactivate subscription anytime
 
 ### Do you offer discounts?
 
 Yes! We offer:
-- **20% off** annual plans (already reflected in pricing)
-- **Student discounts** - email us with your .edu address
-- **Non-profit discounts** - contact us for details
-- **Bulk Enterprise** - volume discounts available
+- **Annual savings** - $10-20 off per year
+- **Student discounts** - Email us with your .edu address
+- **Non-profit discounts** - Contact us for details
 
-### Can I try Pro before paying?
+### Can I try before paying?
 
-We don't offer free trials, but we do offer:
-- **14-day money-back guarantee**
-- Start with Free to test the core experience
-- Upgrade when you hit the 3-goal limit
+We offer:
+- **14-day money-back guarantee** on all plans
+- Full refund if not satisfied
 
-Most users know within a week if they need Pro.
+### Is there a free plan?
 
-### Is there a lifetime deal?
+Not currently. Both plans are paid to ensure:
+- Sustainable development
+- Quality support
+- Server reliability
+- Feature updates
 
-Not at this time. We need sustainable recurring revenue to:
-- Keep servers running
-- Actively develop features
-- Provide support
-- Maintain data security
-
-Monthly/annual subscriptions ensure we can serve you long-term.
+At $5/month, Nerd is quite affordable for what you get.
 
 ## Need Help Choosing?
 
-Still not sure which plan is right?
-
-**Start with Free** if you:
-- Haven't tried Law of 100 before
-- Want to focus on 1-3 goals only
+**Choose Nerd** if you:
+- Use Spotify Premium
+- Host parties with WiFi
+- Want the core JukeLab experience
 - Are budget-conscious
-- Want to test the concept first
 
-**Upgrade to Pro** if you:
-- Hit the 3-goal limit
-- Want to export your data
-- Need faster support
-- Work on many life areas simultaneously
-
-**Choose Enterprise** if you:
-- Are a team or organization
-- Need API access
-- Want unlimited goals
-- Require SLA guarantees
+**Choose Connoisseur** if you:
+- Need offline functionality
+- Have music not on Spotify
+- Want maximum customization
+- Need priority support
 
 → [See all plans](/docs/plans)
 

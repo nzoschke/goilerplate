@@ -1,135 +1,137 @@
 ---
-title: "Tracking Progress"
-description: "Learn how to log reps, view history, and track your journey"
+title: "Playback & Queue"
+description: "Understanding playback controls and the guest queue"
 order: 1
 ---
 
-## Logging Progress
+## Playback & Queue
 
-The core action in Law of 100 is simple: log a rep when you complete one.
+JukeLab's playback system keeps the music flowing while giving guests control over what plays next.
 
-### How to Add Progress
+## How the Queue Works
 
-1. Navigate to your goal
-2. Click the **"+ Add Progress"** button
-3. Your counter increments: 23/100 → 24/100
-4. Your progress bar updates automatically
+### Guest Queuing
 
-That's it! Keep it simple.
+When guests open your shared link, they can:
 
-### When to Log
+1. **Browse your collection** - See all 100 albums you've curated
+2. **View album tracks** - Tap an album to see all songs
+3. **Add to queue** - Tap a song to add it to the queue
+4. **See what's coming** - View the current queue
 
-**Best Practice**: Log immediately after completing a rep
-- Captures the momentum and satisfaction
-- Prevents forgetting
-- Reinforces the habit loop
+### Queue Order
 
-**Acceptable**: Log at end of day
-- Review your day
-- Log all completed reps
-- Better late than never
+Songs play in the order they were added:
 
-### Editing Progress
+1. Currently playing track
+2. Songs queued by guests (in order added)
+3. Smart shuffle picks (when queue is empty)
 
-Need to adjust? You can:
-- Add notes to individual reps (coming soon)
-- View your complete history
-- Track multiple reps in one day if needed
+### Multiple Guests
 
-## Progress Visualization
+When multiple guests queue songs:
+- Songs are added in real-time
+- Everyone sees the same queue
+- First-come, first-served ordering
 
-### Progress Bar
-Visual representation of your journey from 0 to 100. Watching it fill up is incredibly motivating.
+## Smart Shuffle
 
-### Percentage Complete
-See exactly how far you've come: "47% complete"
+When the queue is empty, smart shuffle takes over.
 
-### Current Step
-Always know where you are: "47/100"
+### How It Works
 
-### Status Badge
-- **Active**: Currently working on this goal
-- **Completed**: You did it! 🎉
+Smart shuffle plays songs from your collection with these rules:
 
-## Viewing History
+- **No repeat artists** - Won't play the same artist back-to-back
+- **Album variety** - Spreads selections across your collection
+- **Continuous play** - Never stops, never goes silent
 
-Click on any goal to see:
-- All logged reps with dates
-- Progress over time
-- Milestones reached
-- Total time invested
+### When It Activates
 
-### Sorting and Filtering
+Smart shuffle fills in when:
+- No songs are in the queue
+- The last queued song finishes
+- You clear the queue
 
-On your dashboard, sort goals by:
-- **Recent**: Last updated first
-- **Progress**: Closest to completion first
-- **Title**: Alphabetical
+### Overriding Shuffle
 
-Filter by:
-- **Active**: Currently working on
-- **Completed**: Finished goals
+Guests can always add songs to queue, which play before shuffle picks.
 
-## Understanding Your Progress
+## Host Controls
 
-### Key Milestones
+The host (on the jukebox device) has full control:
 
-We automatically highlight important milestones:
+### Playback Controls
 
-- **Day 10**: First milestone - proven commitment
-- **Day 25**: Quarter mark - building momentum
-- **Day 50**: Halfway point - over the hump!
-- **Day 75**: Home stretch - finish line in sight
-- **Day 100**: Victory! Goal completed
+- **Play/Pause** - Stop and start music
+- **Skip** - Jump to the next song
+- **Volume** - Adjust playback volume
 
-### Progress Insights
+### Queue Management
 
-Your progress tells a story:
+- **Clear queue** - Remove all queued songs
+- **Remove song** - Delete individual songs from queue
+- **Add songs** - Queue songs yourself (you're a guest too!)
 
-**Consistent**: Regular reps, steady progress
-→ Keep doing what you're doing!
+### Display Options
 
-**Sporadic**: Long gaps, burst activity
-→ Consider setting daily reminders
+- **Now Playing** - Shows current track and album art
+- **Up Next** - Shows the next few songs in queue
+- **Full Queue** - View the entire queue
 
-**Plateauing**: Stuck at same number for days
-→ Time to re-commit or adjust your goal
+## Now Playing Screen
 
-## Best Practices
+The jukebox device shows a beautiful now-playing screen:
 
-### Daily Tracking
-Track daily (or at your chosen frequency). Consistency is the secret ingredient.
+**What's Displayed:**
+- Album artwork (large)
+- Song title
+- Artist name
+- Album name
+- Queue status
 
-### Honest Logging
-Only log reps you actually complete. You're only cheating yourself otherwise.
+**Why It Matters:**
 
-### Celebrate Small Wins
-Every 10 reps, acknowledge your progress. You're doing something most people never do - following through.
+Set up the jukebox where guests can see it. The display:
+- Shows guests what's playing
+- Encourages participation
+- Creates visual ambiance
+- Confirms when songs get queued
 
-### Don't Break the Chain
-Visual streaks are powerful motivators. Try to keep your chain of X's unbroken.
+## Tips for Hosts
 
-## Mobile Tracking
+### Before the Party
 
-Law of 100 works perfectly on mobile devices:
-- Quick access from home screen
-- Fast loading
-- Easy one-tap logging
-- Progress synced across all devices
+- Queue 3-5 songs to establish the vibe
+- Test that playback works
+- Make sure volume is set correctly
 
-Perfect for logging on-the-go!
+### During the Party
 
-## Export Your Progress
+- Let smart shuffle and guests handle music
+- Only intervene if something feels off
+- Enjoy not being the DJ!
 
-Pro and Enterprise users can export their complete progress data:
-- JSON format for data analysis
-- Complete history of all reps
-- Import into spreadsheets or other tools
+### If No One's Queuing
 
-Your data, your way.
+Don't worry—smart shuffle keeps playing. Some crowds take time to warm up. The music never stops either way.
+
+## Technical Notes
+
+### Latency
+
+- Queue updates in real-time (within 1-2 seconds)
+- All guests see the same queue state
+- Works across different devices and browsers
+
+### Connection
+
+- Requires internet for Spotify playback
+- Guest devices need internet to browse/queue
+- Connoisseur offline mode works without internet (using MP3s)
 
 ## Next Steps
 
-- [Goal Management](/docs/features/goal-management) - Organize your goals
+- [Collection Management](/docs/features/goal-management) - Organize your albums
 - [Plans & Limits](/docs/plans/features) - Understand plan features
-- [Best Practices](/docs/guides/best-practices) - Tips for success
+- [Best Practices](/docs/guides/best-practices) - Tips for great parties
