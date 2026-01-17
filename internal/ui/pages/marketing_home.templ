@@ -33,32 +33,55 @@ templ Home() {
 templ HomeHero() {
 	<section id="hero" class="relative overflow-hidden py-24">
 		<div class="container mx-auto px-4">
-			<div class="mx-auto max-w-5xl text-center">
-				<h1 class="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-					A Real Jukebox
-					<br/>
-					<span class="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">For Your Party</span>
-				</h1>
-				<p class="mx-auto mt-6 max-w-2xl text-xl text-muted-foreground">
-					Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night.
-					No more fighting over the Bluetooth.
-				</p>
-				<div class="mt-10 flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-3 px-4 sm:px-0">
-					@button.Button(button.Props{
-						Href:  "/jukebox",
-						Size:  button.SizeLg,
-						Class: "w-full sm:w-auto",
-					}) {
-						Open Web App →
-					}
-					@button.Button(button.Props{
-						Href:    "https://apps.apple.com/app/id1480787158",
-						Variant: button.VariantOutline,
-						Size:    button.SizeLg,
-						Class:   "w-full sm:w-auto",
-					}) {
-						Download iOS App
-					}
+			<div class="mx-auto max-w-6xl">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div class="text-center lg:text-left">
+						<h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+							A real jukebox for your party
+						</h1>
+						<p class="mt-6 max-w-xl text-lg text-muted-foreground">
+							JukeLab brings an old-school jukebox to your next party. Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night.
+						</p>
+						<div class="mt-8 flex flex-col sm:flex-row w-full sm:w-auto items-center lg:justify-start justify-center gap-3">
+							@button.Button(button.Props{
+								Href:  "https://apps.apple.com/app/id1480787158",
+								Size:  button.SizeLg,
+								Class: "w-full sm:w-auto",
+							}) {
+								@icon.Apple(icon.Props{Size: 20, Class: "mr-2"})
+								Download on the App Store
+							}
+							@button.Button(button.Props{
+								Href:    "/jukebox",
+								Variant: button.VariantOutline,
+								Size:    button.SizeLg,
+								Class:   "w-full sm:w-auto",
+							}) {
+								@icon.Play(icon.Props{Size: 16, Class: "mr-2"})
+								Play on the web
+							}
+						</div>
+					</div>
+					<div class="flex justify-center lg:justify-end">
+						<div class="relative w-full max-w-md" id="hero-slideshow">
+							<img src="/assets/img/ipad.png" alt="JukeLab on iPad" class="w-full opacity-100 transition-opacity duration-1000" data-slide="0"/>
+							<img src="/assets/img/daft.jpg" alt="JukeLab interface" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" data-slide="1"/>
+							<img src="/assets/img/numpad.png" alt="JukeLab numpad" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" data-slide="2"/>
+						</div>
+						<script nonce={ templ.GetNonce(ctx) }>
+							(function() {
+								const slides = document.querySelectorAll('#hero-slideshow img');
+								let current = 0;
+								setInterval(() => {
+									slides[current].classList.remove('opacity-100');
+									slides[current].classList.add('opacity-0');
+									current = (current + 1) % slides.length;
+									slides[current].classList.remove('opacity-0');
+									slides[current].classList.add('opacity-100');
+								}, 4000);
+							})();
+						</script>
+					</div>
 				</div>
 			</div>
 		</div>
