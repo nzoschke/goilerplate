@@ -23,6 +23,7 @@ func main() {
 
 	rootCmd.AddCommand(cmd.DevCmd())
 	rootCmd.AddCommand(cmd.GenCmd())
+	rootCmd.AddCommand(cmd.BuildCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)

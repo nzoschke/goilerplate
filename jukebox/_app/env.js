@@ -1,0 +1,1 @@
+export const env={"PUBLIC_SPOTIFY_CLIENT_ID":"576b29fb8dd149f294aac649f2b156d6","PUBLIC_ORIGIN":"http://127.0.0.1:8080/jukebox"}

@@ -30,6 +30,9 @@ func SecurityHeaders(next http.Handler) http.Handler {
 
 		// Get config to check for S3 endpoint (for CSP img-src)
 		cfg := ctxkeys.Config(r.Context())
+
+		// Check if this is a jukebox route - needs relaxed CSP for SvelteKit
+		isJukeboxRoute := strings.HasPrefix(r.URL.Path, "/jukebox")
 		// X-Frame-Options: Prevents clickjacking attacks
 		//
 		// Clickjacking is when an attacker embeds your site in an invisible iframe
@@ -210,17 +213,33 @@ func SecurityHeaders(next http.Handler) http.Handler {
 		}
 
 		// Build CSP policy with real nonce value
-		cspPolicy := strings.Join([]string{
-			"default-src 'self'",
-			"script-src 'self' 'nonce-" + nonce + "' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://" + umamiHost + " https://" + plausibleHost + " https://www.googletagmanager.com",
-			"style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
-			imgSrc, // Dynamic img-src with S3 endpoint
-			"font-src 'self' data:",
-			"connect-src 'self' " + umamiCsp + " https://api-gateway.umami.dev https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
-			"frame-ancestors 'none'",
-			"base-uri 'self'",
-			"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",
-		}, "; ")
+		var cspPolicy string
+		if isJukeboxRoute {
+			// Relaxed CSP for SvelteKit jukebox app - needs unsafe-inline and unsafe-eval for framework
+			cspPolicy = strings.Join([]string{
+				"default-src 'self'",
+				"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sdk.scdn.co",
+				"style-src 'self' 'unsafe-inline'",
+				"img-src 'self' data: https:",
+				"font-src 'self' data:",
+				"connect-src 'self' https://api.spotify.com https://accounts.spotify.com https://*.spotify.com https://*.scdn.co",
+				"frame-src https://sdk.scdn.co",
+				"frame-ancestors 'none'",
+				"base-uri 'self'",
+			}, "; ")
+		} else {
+			cspPolicy = strings.Join([]string{
+				"default-src 'self'",
+				"script-src 'self' 'nonce-" + nonce + "' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://" + umamiHost + " https://" + plausibleHost + " https://www.googletagmanager.com",
+				"style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
+				imgSrc, // Dynamic img-src with S3 endpoint
+				"font-src 'self' data:",
+				"connect-src 'self' " + umamiCsp + " https://api-gateway.umami.dev https://" + plausibleHost + " https://*.google-analytics.com https://analytics.google.com",
+				"frame-ancestors 'none'",
+				"base-uri 'self'",
+				"form-action 'self' https://sandbox.polar.sh https://polar.sh https://checkout.stripe.com",
+			}, "; ")
+		}
 
 		w.Header().Set("Content-Security-Policy", cspPolicy)
 
