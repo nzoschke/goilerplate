@@ -246,6 +246,6 @@ When you're not DJing, you can:
 
 ## Next Steps
 
-- [Building Your Collection](/docs/guides/choosing-goals) - Curate the perfect 100
+- [Building Your Collection](/docs/guides/building-your-collection) - Curate the perfect 100
 - [FAQ](/docs/faq) - Common questions answered
 - [Features](/docs/features) - Everything JukeLab can do

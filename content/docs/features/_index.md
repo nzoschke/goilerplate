@@ -10,8 +10,8 @@ Explore everything JukeLab can do to make your parties better.
 
 ### Core Features
 
-- **[Playback & Queue](/docs/features/tracking-progress)** - Smart shuffle, guest queuing, and playback controls
-- **[Collection Management](/docs/features/goal-management)** - Curate and organize your 100-album collection
+- **[Playback & Queue](/docs/features/playback-queue)** - Smart shuffle, guest queuing, and playback controls
+- **[Collection Management](/docs/features/collection-management)** - Curate and organize your 100-album collection
 - **[Data & Export](/docs/features/export-data)** - Export your collection and manage your data
 
 ### Feature Highlights

@@ -154,6 +154,6 @@ Your collection should evolve with your taste and your guests' preferences.
 
 ## Next Steps
 
-- [Playback & Queue](/docs/features/tracking-progress) - Understand playback
+- [Playback & Queue](/docs/features/playback-queue) - Understand playback
 - [Export Data](/docs/features/export-data) - Export your collection
 - [Best Practices](/docs/guides/best-practices) - Pro tips

@@ -150,8 +150,8 @@ The Connoisseur plan includes offline mode with MP3 support. For Nerd plans, you
 
 Now that you know the basics:
 
-1. **[Learn about Features](/docs/features/tracking-progress)** - Understand everything JukeLab can do
-2. **[Build Your Collection](/docs/guides/choosing-goals)** - Tips for curating the perfect 100 albums
+1. **[Learn about Features](/docs/features/playback-queue)** - Understand everything JukeLab can do
+2. **[Build Your Collection](/docs/guides/building-your-collection)** - Tips for curating the perfect 100 albums
 3. **[Read Party Stories](/blog/success-stories-100-days-of-transformation)** - Get inspired by other hosts
 
 ## Most Important

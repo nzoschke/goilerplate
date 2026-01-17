@@ -132,6 +132,6 @@ Don't worry—smart shuffle keeps playing. Some crowds take time to warm up. The
 
 ## Next Steps
 
-- [Collection Management](/docs/features/goal-management) - Organize your albums
+- [Collection Management](/docs/features/collection-management) - Organize your albums
 - [Plans & Limits](/docs/plans/features) - Understand plan features
 - [Best Practices](/docs/guides/best-practices) - Tips for great parties

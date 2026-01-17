@@ -10,7 +10,7 @@ Learn from experienced hosts. These guides cover common scenarios and proven str
 
 ## Getting Started
 
-### [Building Your Collection](/docs/guides/choosing-goals)
+### [Building Your Collection](/docs/guides/building-your-collection)
 Not sure which albums to include? This guide helps you curate a collection that works for any party.
 
 ### [Best Practices](/docs/guides/best-practices)

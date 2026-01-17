@@ -125,6 +125,6 @@ This permanently removes all your data. Export first if you want to keep it.
 
 ## Next Steps
 
-- [Collection Management](/docs/features/goal-management) - Organize your albums
+- [Collection Management](/docs/features/collection-management) - Organize your albums
 - [Upgrade to Connoisseur](/app/billing) - Get export access
 - [Plans & Features](/docs/plans/features) - See all features
