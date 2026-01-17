@@ -69,57 +69,14 @@ func buildJukebox() error {
 		return fmt.Errorf("npm install failed: %w", err)
 	}
 
-	// Patch svelte.config.js
-	fmt.Println("==> Patching svelte.config.js with base=/jukebox...")
-	svelteConfig := `import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-	preprocess: vitePreprocess(),
-	kit: {
-		adapter: adapter(),
-		paths: {
-			base: '/jukebox'
-		},
-		prerender: {
-			handleHttpError: ({ path, referrer, message }) => {
-				// Warn but don't fail on 404s - some links may be broken or dynamic
-				console.warn(` + "`Warning: ${message} (from ${referrer})`" + `);
-			}
-		}
-	}
-};
-
-export default config;
-`
-	if err := os.WriteFile(filepath.Join(jukelabDir, "svelte.config.js"), []byte(svelteConfig), 0644); err != nil {
-		return fmt.Errorf("failed to write svelte.config.js: %w", err)
-	}
-
-	// Patch href.ts to use SvelteKit base path
-	fmt.Println("==> Patching href.ts to use base path...")
-	hrefTs := `import { base } from "$app/paths";
-
-export const href = (path: string) => {
-  // skip absolute or inlined data URLs
-  if (path.startsWith("data:")) return path;
-  if (path.startsWith("http://") || path.startsWith("https://")) return path;
-
-  return base + path;
-};
-
-export const ishref = (path: string, url: URL) => {
-  return url.pathname == href(path);
-};
-`
-	if err := os.WriteFile(filepath.Join(jukelabDir, "src/lib/href.ts"), []byte(hrefTs), 0644); err != nil {
-		return fmt.Errorf("failed to write href.ts: %w", err)
-	}
-
-	// Build
-	fmt.Println("==> Building SvelteKit app...")
-	if err := runIn(jukelabDir, "npm", "run", "build"); err != nil {
+	// Build with BASE_PATH
+	fmt.Println("==> Building SvelteKit app with BASE_PATH=/jukebox...")
+	buildCmd := exec.Command("npm", "run", "build")
+	buildCmd.Dir = jukelabDir
+	buildCmd.Stdout = os.Stdout
+	buildCmd.Stderr = os.Stderr
+	buildCmd.Env = append(os.Environ(), "BASE_PATH=/jukebox")
+	if err := buildCmd.Run(); err != nil {
 		return fmt.Errorf("npm run build failed: %w", err)
 	}
 
