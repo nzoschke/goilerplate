@@ -3,11 +3,14 @@ package routes
 import (
 	"io/fs"
 	"net/http"
+	"path"
+	"strings"
 
 	"github.com/templui/goilerplate/assets"
 	"github.com/templui/goilerplate/internal/app"
 	"github.com/templui/goilerplate/internal/handler"
 	"github.com/templui/goilerplate/internal/middleware"
+	"github.com/templui/goilerplate/jukebox"
 )
 
 func SetupRoutes(app *app.App) http.Handler {
@@ -36,13 +39,19 @@ func SetupRoutes(app *app.App) http.Handler {
 	sub, _ := fs.Sub(assets.AssetsFS, ".")
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.FS(sub))))
 
+	// JukeLab SvelteKit app (served at /jukebox)
+	jukeboxSub, _ := fs.Sub(jukebox.JukeboxFS, ".")
+	mux.Handle("GET /jukebox/", http.StripPrefix("/jukebox/", spaFileServer(http.FS(jukeboxSub))))
+	mux.HandleFunc("GET /jukebox", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/jukebox/", http.StatusMovedPermanently)
+	})
+
 	// SEO
 	mux.HandleFunc("GET /robots.txt", seo.Robots)
 	mux.HandleFunc("GET /sitemap.xml", seo.Sitemap)
 
 	// Home
 	mux.HandleFunc("GET /{$}", home.HomePage)
-	mux.HandleFunc("GET /jukebox", home.JukeboxPage)
 
 	// Content
 	mux.HandleFunc("GET /blog", blog.ListPosts)
@@ -148,4 +157,52 @@ func SetupRoutes(app *app.App) http.Handler {
 	)
 
 	return handler
+}
+
+// spaFileServer serves static files with SPA fallback support for SvelteKit static builds.
+// It handles:
+// 1. Direct file requests (e.g., /_app/immutable/chunks/xxx.js)
+// 2. Clean URLs (e.g., /spotify/desktop/ -> spotify/desktop.html)
+// 3. SPA fallback to index.html for client-side routing
+func spaFileServer(fsys http.FileSystem) http.Handler {
+	fileServer := http.FileServer(fsys)
+
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		urlPath := r.URL.Path
+
+		// Clean the path
+		urlPath = path.Clean("/" + urlPath)
+		if urlPath == "/" {
+			urlPath = "/index.html"
+		}
+
+		// Try to open the exact file first
+		f, err := fsys.Open(urlPath)
+		if err == nil {
+			stat, _ := f.Stat()
+			f.Close()
+			if !stat.IsDir() {
+				// File exists, serve it
+				fileServer.ServeHTTP(w, r)
+				return
+			}
+		}
+
+		// For paths like /spotify/desktop/ or /spotify/desktop, try .html file
+		// SvelteKit static adapter creates spotify/desktop.html for /spotify/desktop route
+		cleanPath := strings.TrimSuffix(urlPath, "/")
+		if cleanPath != "" && !strings.Contains(path.Base(cleanPath), ".") {
+			htmlPath := cleanPath + ".html"
+			if f, err := fsys.Open(htmlPath); err == nil {
+				f.Close()
+				r.URL.Path = htmlPath
+				fileServer.ServeHTTP(w, r)
+				return
+			}
+		}
+
+		// Fallback to index.html for SPA routing
+		r.URL.Path = "/index.html"
+		fileServer.ServeHTTP(w, r)
+	})
 }

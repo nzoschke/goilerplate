@@ -96,7 +96,7 @@ templ Navbar() {
 					<!-- Not logged in: Show Web App, iOS, Sign Up -->
 					<div class="hidden md:flex gap-2 items-center">
 						@button.Button(button.Props{
-							Href:    "/jukebox",
+							Href:    "/jukebox/spotify/desktop",
 							Variant: button.VariantGhost,
 							Size:    button.SizeSm,
 						}) {
@@ -203,7 +203,7 @@ templ MobileNav() {
 					</form>
 				} else {
 					@button.Button(button.Props{
-						Href:      "/jukebox",
+						Href:      "/jukebox/spotify/desktop",
 						Variant:   button.VariantOutline,
 						FullWidth: true,
 					}) {

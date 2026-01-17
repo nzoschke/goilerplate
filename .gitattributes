@@ -1,0 +1,4 @@
+# Jukebox build artifacts - suppress diffs and mark as generated
+jukebox/_app/** binary -diff linguist-generated
+jukebox/**/*.html binary -diff linguist-generated
+jukebox/**/*.json binary -diff linguist-generated
