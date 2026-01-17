@@ -32,9 +32,11 @@ const (
 )
 
 const (
-	SubscriptionPlanFree       = "free"
-	SubscriptionPlanPro        = "pro"
-	SubscriptionPlanEnterprise = "enterprise"
+	SubscriptionPlanFree        = "free"
+	SubscriptionPlanPro         = "pro"
+	SubscriptionPlanEnterprise  = "enterprise"
+	SubscriptionPlanNerd        = "nerd"
+	SubscriptionPlanConnoisseur = "connoisseur"
 )
 
 const (
@@ -90,9 +92,9 @@ func (s *Subscription) GetGoalLimit() int {
 	switch s.PlanID {
 	case SubscriptionPlanFree:
 		return 3
-	case SubscriptionPlanPro:
+	case SubscriptionPlanPro, SubscriptionPlanNerd:
 		return 25
-	case SubscriptionPlanEnterprise:
+	case SubscriptionPlanEnterprise, SubscriptionPlanConnoisseur:
 		return -1 // unlimited
 	default:
 		return 3
@@ -112,6 +114,13 @@ func (s *Subscription) HasFeature(feature string) bool {
 			FeatureExport,
 		},
 		SubscriptionPlanEnterprise: {
+			FeatureExport,
+			FeaturePrioritySupport,
+		},
+		SubscriptionPlanNerd: {
+			FeatureExport,
+		},
+		SubscriptionPlanConnoisseur: {
 			FeatureExport,
 			FeaturePrioritySupport,
 		},
