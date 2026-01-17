@@ -1,37 +1,36 @@
 ---
 title: "Features"
-description: "Explore all the features that help you track and achieve your goals"
+description: "Explore all of JukeLab's features"
 order: 3
 ---
 
-## Core Features
+## JukeLab Features
 
-Law of 100 provides everything you need to track your journey from 0 to 100.
+Explore everything JukeLab can do to make your parties better.
 
-### Goal Tracking
-Create and manage multiple goals simultaneously. Each goal tracks progress from 0 to 100 with visual progress bars and completion percentages.
+### Core Features
 
-### Progress Visualization
-See your journey at a glance with progress bars, percentages, and milestone indicators. Watch your numbers grow and feel motivated to continue.
+- **[Playback & Queue](/docs/features/playback-queue)** - Smart shuffle, guest queuing, and playback controls
+- **[Collection Management](/docs/features/collection-management)** - Curate and organize your 100-album collection
+- **[Data & Export](/docs/features/export-data)** - Export your collection and manage your data
 
-### Multiple Goals
-Work on several skills simultaneously (plan limits apply). Focus on what matters most to you.
+### Feature Highlights
 
-### Mobile Friendly
-Track your progress from any device. Desktop, tablet, or phone - your goals sync everywhere.
+**Curated Collections**
+Build a library of up to 100 albums. Every song your guests can play is one you've chosen.
 
-## Learn More
+**Guest Queuing**
+Guests browse and queue from their own phones. No app required—just share a link.
 
-- [Tracking Progress](/docs/features/tracking-progress) - Log reps and view your history
-- [Goal Management](/docs/features/goal-management) - Edit, archive, and organize goals
-- [Export Data](/docs/features/export-data) - Own your data (Pro/Enterprise)
+**Smart Shuffle**
+When nobody's queueing, smart shuffle keeps the music flowing with automatic variety.
 
-## Coming Soon
+**Multi-Device Support**
+Works on any device with a browser. Use a tablet as your jukebox display.
 
-We're constantly improving. Features in development:
+**Offline Mode** (Connoisseur)
+Add MP3 files for parties without reliable internet.
 
-- Reminders and notifications
-- Goal templates
-- Progress insights and analytics
-- Community features
-- API access (Enterprise)
+---
+
+Dive into each feature section to learn more.

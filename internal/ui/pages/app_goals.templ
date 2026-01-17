@@ -29,8 +29,8 @@ templ Goals(goals []*model.Goal, sortBy string) {
 	@layouts.App("Goals") {
 		<div class="container max-w-7xl px-6 py-8">
 			<div class="mb-8">
-				<h1 class="text-3xl font-bold">Law of 100</h1>
-				<p class="text-muted-foreground mt-2">Do something 100 times to master it</p>
+				<h1 class="text-3xl font-bold">My Jukeboxes</h1>
+				<p class="text-muted-foreground mt-2">Curate collections and share music with your guests</p>
 			</div>
 			@GoalsContent(goals, sortBy)
 			@dialog.Dialog(dialog.Props{ID: "create-goal-dialog"}) {

@@ -1,0 +1,55 @@
+package pages
+
+import (
+	"fmt"
+	"github.com/templui/goilerplate/internal/ctxkeys"
+	"github.com/templui/goilerplate/internal/ui/components/button"
+	"github.com/templui/goilerplate/internal/ui/components/card"
+	"github.com/templui/goilerplate/internal/ui/layouts"
+)
+
+templ Jukebox() {
+	{{ cfg := ctxkeys.Config(ctx) }}
+	@layouts.Home(layouts.SEOProps{
+		Title:       fmt.Sprintf("Jukebox - %s", cfg.AppName),
+		Description: "The JukeLab web app - coming soon",
+		Path:        ctxkeys.URLPath(ctx),
+	}) {
+		<div class="min-h-screen flex items-center justify-center py-24">
+			<div class="container mx-auto px-4">
+				<div class="mx-auto max-w-2xl">
+					@card.Card(card.Props{Class: "text-center"}) {
+						@card.Header() {
+							@card.Title(card.TitleProps{Class: "text-3xl"}) {
+								JukeLab Web App
+							}
+							@card.Description(card.DescriptionProps{Class: "text-lg mt-2"}) {
+								Coming Soon
+							}
+						}
+						@card.Content() {
+							<p class="text-muted-foreground mb-6">
+								The web version of JukeLab is under construction. In the meantime, download the iOS app to get started.
+							</p>
+							<div class="flex flex-col sm:flex-row gap-3 justify-center">
+								@button.Button(button.Props{
+									Href: "https://apps.apple.com/app/id1480787158",
+									Size: button.SizeLg,
+								}) {
+									Download iOS App
+								}
+								@button.Button(button.Props{
+									Href:    "/",
+									Variant: button.VariantOutline,
+									Size:    button.SizeLg,
+								}) {
+									Back to Home
+								}
+							</div>
+						}
+					}
+				</div>
+			</div>
+		</div>
+	}
+}

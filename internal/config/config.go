@@ -94,7 +94,7 @@ func Load() *Config {
 		AppURL:       envRequired("APP_URL"), // Required: base URL for email links and OAuth redirects
 		Port:         envString("PORT", "8090"),
 		AppTagline:   envString("APP_TAGLINE", "Build better products faster"),
-		SupportEmail: envString("SUPPORT_EMAIL", "hello@example.com"),
+		SupportEmail: envString("SUPPORT_EMAIL", "support@jukelab.com"),
 		ContentPath:  envString("CONTENT_PATH", "content"),
 
 		// Database

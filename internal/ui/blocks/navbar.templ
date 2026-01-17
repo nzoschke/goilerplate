@@ -14,15 +14,10 @@ templ Navbar() {
 		<div class="container mx-auto px-4 py-4 flex justify-between items-center">
 			<!-- Left: Logo and Desktop Nav -->
 			<div class="flex items-center gap-6">
-				@button.Button(button.Props{
-					Href:    "/",
-					Variant: button.VariantGhost,
-					Size:    button.SizeSm,
-					Class:   "font-bold",
-				}) {
-					@icon.Layers()
-					{ cfg.AppName }
-				}
+				<a href="/" class="flex items-center">
+					<img src="/assets/img/jukelab.svg" alt={ cfg.AppName } class="h-16 dark:hidden"/>
+					<img src="/assets/img/jukelab-dark.svg" alt={ cfg.AppName } class="h-16 hidden dark:block"/>
+				</a>
 				<!-- Desktop Navigation -->
 				<div class="hidden md:flex gap-2">
 					@button.Button(button.Props{
@@ -98,23 +93,37 @@ templ Navbar() {
 						Dashboard
 					}
 				} else {
-					<!-- Not logged in: Show Get Started -->
+					<!-- Not logged in: Show Web App, iOS, Sign Up -->
 					<div class="hidden md:flex gap-2 items-center">
+						@button.Button(button.Props{
+							Href:    "/jukebox",
+							Variant: button.VariantGhost,
+							Size:    button.SizeSm,
+						}) {
+							Open Web App
+						}
+						@button.Button(button.Props{
+							Href:    "https://apps.apple.com/app/id1480787158",
+							Variant: button.VariantGhost,
+							Size:    button.SizeSm,
+						}) {
+							Download iOS App
+						}
 						@button.Button(button.Props{
 							Href: "/auth",
 							Size: button.SizeSm,
 						}) {
-							Get Started
+							Sign Up
 						}
 						@ThemeSwitcher()
 					</div>
-					<!-- Mobile: Get Started + Menu -->
+					<!-- Mobile: Sign Up + Menu -->
 					@button.Button(button.Props{
 						Href:  "/auth",
 						Size:  button.SizeSm,
 						Class: "md:hidden",
 					}) {
-						Get Started
+						Sign Up
 					}
 				}
 				<!-- Mobile Menu Sheet -->
@@ -194,10 +203,24 @@ templ MobileNav() {
 					</form>
 				} else {
 					@button.Button(button.Props{
+						Href:      "/jukebox",
+						Variant:   button.VariantOutline,
+						FullWidth: true,
+					}) {
+						Open Web App
+					}
+					@button.Button(button.Props{
+						Href:      "https://apps.apple.com/app/id1480787158",
+						Variant:   button.VariantOutline,
+						FullWidth: true,
+					}) {
+						Download iOS App
+					}
+					@button.Button(button.Props{
 						Href:      "/auth",
 						FullWidth: true,
 					}) {
-						Get Started
+						Sign Up
 					}
 				}
 			</div>

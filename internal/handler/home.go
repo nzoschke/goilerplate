@@ -21,3 +21,7 @@ func (h *HomeHandler) NotFoundPage(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 	ui.Render(w, r, pages.NotFound())
 }
+
+func (h *HomeHandler) JukeboxPage(w http.ResponseWriter, r *http.Request) {
+	ui.Render(w, r, pages.Jukebox())
+}

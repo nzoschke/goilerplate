@@ -21,7 +21,7 @@ func SetupRoutes(app *app.App) http.Handler {
 	auth := handler.NewAuthHandler(app.AuthService, app.UserService, app.SubscriptionService, app.Cfg)
 	account := handler.NewAccountHandler(app.AuthService, app.UserService, app.FileService)
 	profile := handler.NewProfileHandler(app.ProfileService)
-	dashboard := handler.NewDashboardHandler(app.GoalService)
+	dashboard := handler.NewDashboardHandler()
 	settings := handler.NewSettingsHandler()
 	goal := handler.NewGoalHandler(app.GoalService)
 	billing := handler.NewBillingHandler(app.SubscriptionService, app.PaymentService)
@@ -42,6 +42,7 @@ func SetupRoutes(app *app.App) http.Handler {
 
 	// Home
 	mux.HandleFunc("GET /{$}", home.HomePage)
+	mux.HandleFunc("GET /jukebox", home.JukeboxPage)
 
 	// Content
 	mux.HandleFunc("GET /blog", blog.ListPosts)

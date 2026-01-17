@@ -1,98 +1,77 @@
 ---
 title: "Plans & Pricing"
-description: "Choose the right plan for your goals"
+description: "Choose the right plan for your jukebox"
 order: 4
 ---
 
 ## Choose Your Plan
 
-Law of 100 offers three plans designed to fit different needs. Start free, upgrade as you grow.
+JukeLab offers two plans designed to fit different needs.
 
 ## Plan Overview
 
-| Feature | Free | Pro | Enterprise |
-|---------|------|-----|------------|
-| **Active Goals** | 3 | 25 | Unlimited |
-| **Progress Tracking** | ✓ | ✓ | ✓ |
-| **Mobile Access** | ✓ | ✓ | ✓ |
-| **Export Data** | — | ✓ | ✓ |
-| **Priority Support** | — | ✓ | ✓ |
-| **API Access** | — | — | ✓ |
-| **Team Features** | — | — | ✓ |
-| **Price** | Free | $9/mo | $29/mo |
+| Feature | Nerd | Connoisseur |
+|---------|------|-------------|
+| **Albums** | 100 | 100 |
+| **Spotify Integration** | ✓ | ✓ |
+| **Unlimited Guests** | ✓ | ✓ |
+| **Smart Shuffle** | ✓ | ✓ |
+| **Social Queue** | ✓ | ✓ |
+| **Offline Mode** | — | ✓ |
+| **MP3 Support** | — | ✓ |
+| **Export Data** | — | ✓ |
+| **Custom Themes** | — | ✓ |
+| **Priority Support** | — | ✓ |
+| **Price** | $5/mo | $10/mo |
 
-## Free Plan
+## Nerd Plan
 
-Perfect for getting started.
-
-### What You Get
-- **3 active goals** at any time
-- Full progress tracking
-- Mobile-friendly interface
-- Community support
-
-### Best For
-- First-time users
-- Testing the waters
-- Focused goal-setters
-- Budget-conscious users
-
-### Limitations
-- Cannot create more than 3 active goals
-- No data export
-- Community support only
-
-**Cost: Free forever**
-
-## Pro Plan
-
-For serious habit builders.
+Everything you need for great parties.
 
 ### What You Get
-Everything in Free, plus:
-- **25 active goals** simultaneously
-- Export your data anytime
-- Priority email support
-- Early access to new features
+- **Spotify integration** - Connect your account
+- **Up to 100 albums** - Build your collection
+- **Unlimited guests** - Share with everyone
+- **Social queue control** - Guests pick songs
+- **Smart shuffle** - Never stops playing
+- **Mobile friendly** - Works everywhere
 
 ### Best For
-- Multiple life areas (fitness, learning, career, hobbies)
-- Data-driven users who want exports
-- Serious about self-improvement
-- Need faster support
+- Regular party hosts
+- House parties and BBQs
+- Music lovers who use Spotify
+- Anyone tired of Bluetooth battles
+
+**Cost: $5/month or $50/year (save $10)**
+
+→ [Get Started](/auth)
+
+## Connoisseur Plan
+
+For the serious music host.
+
+### What You Get
+Everything in Nerd, plus:
+- **Offline mode** - Works without internet
+- **MP3 file support** - Add your own files
+- **Export your collection** - Own your data
+- **Custom themes** - Personalize your jukebox
+- **Playlist management tools** - Advanced organization
+- **Priority support** - 24-hour response
+- **Early access** - Try new features first
+
+### Best For
+- Venues without reliable WiFi
+- Vinyl collectors who've digitized their library
+- Hosts who want maximum customization
+- Anyone with music not on Spotify
 
 ### Use Cases
-"I'm working on fitness (3 goals), learning Spanish (2 goals), and creative projects (5 goals) all at once"
+"I throw parties at a cabin with no internet" or "I have rare vinyl rips I want to share"
 
-**Cost: $9/month or $90/year (save $18)**
+**Cost: $10/month or $100/year (save $20)**
 
-→ [Upgrade to Pro](/app/billing)
-
-## Enterprise Plan
-
-For power users and teams.
-
-### What You Get
-Everything in Pro, plus:
-- **Unlimited goals**
-- API access for custom integrations
-- Team collaboration features
-- Dedicated support
-- Custom reporting
-- SLA guarantee
-
-### Best For
-- Teams tracking collective goals
-- Developers building integrations
-- Coaches working with clients
-- Organizations promoting habits
-
-### Use Cases
-"Our fitness studio tracks 50 clients' goals together" or "I'm a productivity coach managing 30+ goals across multiple frameworks"
-
-**Cost: $29/month or $290/year (save $58)**
-
-→ [Contact Sales](/app/billing)
+→ [Upgrade to Connoisseur](/app/billing)
 
 ## Feature Comparison
 
@@ -101,23 +80,12 @@ Detailed breakdown of what's included in each plan:
 ### [Plan Features](/docs/plans/features)
 Complete feature matrix and details
 
-### [Upgrading](/docs/plans/upgrading)
-How to upgrade, billing details, and FAQs
-
 ## Money-Back Guarantee
 
-Not satisfied with Pro or Enterprise? **We offer a 14-day money-back guarantee** on all paid plans.
+Not satisfied? **We offer a 14-day money-back guarantee** on all plans.
 
 No questions asked. Just email us within 14 days for a full refund.
 
-## Start Free, Upgrade Anytime
+## Ready to host better parties?
 
-Not sure which plan is right? Start with Free.
-
-You can always upgrade later (and we'll prorate your billing).
-
-Most users discover their needs as they use the app. Start simple, scale when you need to.
-
-**Ready to start your first goal?**
-
-→ [Create Free Account](/auth)
+→ [Create Your Jukebox](/auth)

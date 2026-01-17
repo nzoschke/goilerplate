@@ -1,242 +1,155 @@
 ---
 title: "FAQ"
-description: "Frequently asked questions about Law of 100"
+description: "Frequently asked questions about JukeLab"
 order: 6
 ---
 
 ## Frequently Asked Questions
 
-Quick answers to common questions about using Law of 100.
+Quick answers to common questions about using JukeLab.
 
 ## Getting Started
 
-### What is the Law of 100?
+### What is JukeLab?
 
-The Law of 100 is a simple principle: **do something 100 times to achieve mastery.** Consistent repetition over 100 iterations transforms skills from conscious effort to unconscious competence.
+JukeLab is a party music app that lets you curate a collection of 100 albums. Guests browse your collection and queue songs from their own phones—no more fighting over Bluetooth.
 
-### Is this really free?
+### Do I need Spotify Premium?
 
-Yes! Our Free plan is free forever. No credit card required. No tricks.
+Yes, JukeLab requires Spotify Premium for playback. The Connoisseur plan also supports MP3 files for offline use.
 
-You get 3 active goals and full progress tracking. Upgrade to Pro or Enterprise if you need more goals or advanced features.
+### Is there a free plan?
 
-### Do I need to do something 100 days in a row?
+We offer two paid plans: Nerd ($5/month) and Connoisseur ($10/month). Both include a free trial to test things out.
 
-No! The goal is **100 total repetitions**, not necessarily 100 consecutive days.
+### Why 100 albums?
 
-That said, daily consistency usually leads to better results and faster completion. But if you miss a day, just continue. The app tracks total reps, not perfect streaks.
+100 albums (~1,200+ songs) provides enough variety for any party while keeping the collection curated and manageable. You can have fewer, but 100 is the sweet spot.
 
-### What should my first goal be?
+### What devices work with JukeLab?
 
-Start with something:
-- You can practice daily (or frequently)
-- Takes 10-30 minutes
-- Is measurable (clear yes/no: did I do it?)
-- Excites and challenges you
+Any device with a modern browser works:
+- Tablets (ideal for display)
+- Phones
+- Laptops/desktops
 
-Check out our [Choosing Your Goals](/docs/guides/choosing-goals) guide for detailed help.
+For jukebox mode, we recommend a dedicated device you can leave near your speakers.
 
-## Using the App
+## Using JukeLab
 
-### How do I log progress?
+### How do guests add songs?
 
-1. Click on your goal
-2. Click the **"Add Progress"** button (or **"+"**)
-3. Your counter updates automatically
+1. Share your guest link
+2. Guests open it in their browser
+3. They browse your collection
+4. Tap to add songs to the queue
 
-That's it! Log immediately after completing each rep for best results.
+No app install or account required for guests.
 
-### Can I log multiple reps in one day?
+### Can guests play any song from Spotify?
 
-Yes! If you do your practice multiple times in one day, you can log multiple reps.
+No—guests can only queue songs from albums you've added to your collection. This ensures everything stays on-vibe.
 
-The app tracks total count from 0 to 100, regardless of how long it takes.
+### What if nobody is queueing?
 
-### What if I miss a day?
+Smart shuffle plays songs from your collection automatically. Guests can jump in and queue anytime.
 
-Missing a day doesn't erase your progress. Your count stays the same - you just continue tomorrow.
+### What if someone queues too much of one artist?
 
-**Pro tip:** Never miss two days in a row. One miss is a hiccup, two is a pattern.
+Smart shuffle ensures variety. The system won't play the same artist back-to-back, even if queued.
 
-### Can I edit or delete progress?
+### Can I skip songs?
 
-Currently, you can view your complete history but not edit individual reps. This ensures data integrity and honest tracking.
+Yes! The host can skip, clear the queue, or add songs at any time from the jukebox device.
 
-If you made a major mistake (like accidentally logging 10 reps), contact support and we can help.
+### Does it work offline?
 
-### Can I pause a goal?
+The Connoisseur plan includes offline mode. You'll need to add MP3 files to your collection beforehand. Perfect for venues without reliable WiFi.
 
-There's no formal "pause" feature, but you can simply stop logging progress for a while. Your goal stays active and you can resume anytime.
+## Collection & Albums
 
-If you know you won't continue, consider deleting it to keep your dashboard focused.
+### How do I add albums to my collection?
 
-## Goals & Limits
+1. Connect your Spotify account
+2. Browse your library or search Spotify
+3. Click "Add to Collection" on albums you want
+4. Build up to 100 albums
 
-### How many goals can I have?
+### Can I remove albums?
 
-Depends on your plan:
-- **Free**: 3 active goals
-- **Pro**: 25 active goals
-- **Enterprise**: Unlimited goals
+Yes, you can edit your collection anytime. Add and remove albums as your taste evolves.
 
-Completed goals (100/100) don't count toward your limit.
+### Do I have to have exactly 100 albums?
 
-### What counts as an "active" goal?
+No—you can have fewer. But more albums means more variety for your guests to choose from.
 
-Any goal that hasn't reached 100 reps yet and hasn't been deleted.
+### Can I create multiple jukeboxes?
 
-Once you complete a goal (100/100), it's automatically moved to your "Completed" archive and doesn't count toward your limit.
+Yes! Create different collections for different occasions. A dinner party jukebox might differ from a dance party one.
 
-### Why is there a goal limit?
+## Plans & Pricing
 
-Limits encourage focus. Most people are more successful with 1-3 deeply committed goals than 10 half-hearted ones.
+### What's included in Nerd ($5/month)?
 
-That said, if you consistently max out your limit, you're ready for an upgrade!
+- Spotify integration
+- Up to 100 albums
+- Unlimited guests
+- Social queue control
+- Smart shuffle
+- Mobile friendly
 
-### Can I delete a goal?
+### What's included in Connoisseur ($10/month)?
 
-Yes. If you decide to abandon a goal, you can delete it from your dashboard.
+Everything in Nerd, plus:
+- Offline mode
+- MP3 file support
+- Custom themes
+- Playlist management tools
+- Priority support
+- Early access to new features
 
-**Warning:** Deletion is permanent. Your progress data will be lost. Consider carefully.
+### Is annual billing cheaper?
 
-### What happens to completed goals?
-
-They move to your "Completed" archive where you can:
-- View your complete history
-- See when you finished
-- Reference for future goals
-- Export the data (Pro/Enterprise)
-
-Completed goals don't count toward your active goal limit.
-
-## Plans & Billing
-
-### What's included in the Free plan?
-
-- 3 active goals
-- Full progress tracking
-- Mobile access
-- Community support
-- No credit card required
-- Free forever
-
-### When should I upgrade to Pro?
-
-Upgrade when you:
-- Hit the 3-goal limit
-- Want to export your data
-- Need priority support
-- Work on many life areas simultaneously
-
-**Pro**: $9/month or $90/year
-
-### What's the difference between monthly and annual?
-
-Annual saves you money:
-- **Pro**: $90/year (save $18 vs monthly)
-- **Enterprise**: $290/year (save $58 vs monthly)
-
-Annual plans are paid upfront, monthly plans are charged monthly.
+Yes! Save by paying annually:
+- **Nerd**: $50/year (save $10)
+- **Connoisseur**: $100/year (save $20)
 
 ### Can I cancel anytime?
 
-Yes! Cancel anytime. No questions, no tricks.
-
-When you cancel:
-- Your plan stays active until the end of the billing period
-- You can still access your data
-- No automatic renewal
-- Can reactivate anytime
+Yes! Cancel anytime. Your subscription continues until the end of your billing period.
 
 ### Do you offer refunds?
 
-Yes! We offer a **14-day money-back guarantee** on all paid plans.
+Yes! We offer a **14-day money-back guarantee** on all plans. Not happy? Email us for a full refund.
 
-Not satisfied? Email us within 14 days for a full refund. No questions asked.
-
-### What payment methods do you accept?
-
-We accept:
-- Credit cards (Visa, Mastercard, Amex)
-- Debit cards
-- Digital wallets
-
-All payments are processed securely through Stripe.
-
-## Features
-
-### Can I export my data?
-
-**Pro and Enterprise only**: Yes! Export all your goals and progress as JSON.
-
-Go to Goals page → Click "Export Goals" → Download your data.
-
-Free plan users can view their data in-app but can't export it.
-
-### Do you have a mobile app?
-
-Not yet! But our web app works great on mobile:
-- Responsive design
-- Fast loading
-- Add to home screen for app-like experience
-- Syncs across all devices
-
-Native iOS and Android apps are on our roadmap.
-
-### Can I share my goals publicly?
-
-Not currently. All goals are private by default.
-
-Public sharing and social features are on our roadmap. We believe privacy should be the default, sharing should be opt-in.
-
-### Do you send reminders?
-
-Email reminders are coming soon! For now, we recommend:
-- Set phone calendar reminders
-- Use habit tracking apps alongside Law of 100
-- Set alarms for your practice time
-
-## Privacy & Security
-
-### Is my data private?
-
-Yes! Your goals are:
-- Private by default
-- Only visible to you
-- Encrypted in transit and at rest
-- Never shared with third parties
-- Never sold or used for advertising
+## Privacy & Data
 
 ### What data do you collect?
 
-We collect only what's necessary:
-- Email (for login and communication)
-- Goal data (titles, descriptions, progress)
-- Usage data (for improving the app)
+We collect only what's necessary to run the service:
+- Email (for login)
+- Your album collection
+- Basic usage data
 
-We don't collect:
-- Personal details beyond email
-- Data about goal content
-- Third-party tracking data
+We **don't** collect:
+- What songs get played
+- Your guests' data
+- Listening habits
+- Anything we can sell
 
-See our [Privacy Policy](/legal/privacy) for details.
+### Is my collection private?
+
+Your collection is only accessible via the guest link you share. Don't share the link, and nobody can see your jukebox.
 
 ### Can I delete my account?
 
-Yes. Go to Settings → Delete Account.
-
-**Warning:** This permanently deletes:
-- Your account
-- All goals
-- All progress data
-
-This cannot be undone. Export your data first if you want to keep it.
+Yes. Go to Settings → Delete Account. This permanently removes all your data.
 
 ## Technical
 
-### Which browsers are supported?
+### Which browsers work?
 
-We support modern browsers:
+All modern browsers:
 - Chrome (recommended)
 - Firefox
 - Safari
@@ -244,60 +157,53 @@ We support modern browsers:
 
 For best experience, use the latest version.
 
-### Why is the app slow?
+### Why isn't Spotify connecting?
 
-Usually this is due to:
-- Slow internet connection
-- Old browser version
-- Too many browser tabs open
+Common fixes:
+1. Make sure you have Spotify Premium (not Free)
+2. Try logging out and back in
+3. Check that Spotify isn't playing elsewhere
+4. Clear browser cache and try again
 
-Try:
-- Refreshing the page
-- Updating your browser
-- Closing other tabs
-- Clearing cache
+### The queue isn't updating
 
-Still slow? Email support with details.
+Usually a connection issue:
+1. Refresh the page
+2. Check your internet
+3. Make sure the jukebox device is still running
 
-### I found a bug. What should I do?
+### Can I use JukeLab on multiple devices?
 
-We appreciate bug reports! Please email support with:
-- What you were trying to do
-- What happened instead
-- Your browser and device
-- Screenshots if helpful
+Yes! Your account syncs across devices. But only one device should be in "jukebox mode" (connected to speakers) at a time.
 
-Pro and Enterprise users get priority bug fixes.
+## Hosting Tips
 
-### Do you have an API?
+### What's the best jukebox setup?
 
-**Enterprise only**: Yes! API access for programmatic data management.
+- Use a dedicated tablet or old phone as the jukebox display
+- Place it somewhere visible so guests can see what's playing
+- Connect to speakers via Bluetooth, aux, or AirPlay
+- Share the guest link via QR code on a table card
 
-Contact us for API documentation and credentials.
+### How do I share the guest link?
 
-## Community
+- Text it to guests
+- Create a QR code (many free generators online)
+- Print it on a party sign
+- Share it in a group chat
 
-### Is there a community?
+### Should I pre-queue songs?
 
-We're building community features:
-- Discord server (coming soon)
-- Social features (on roadmap)
-- Challenge groups (planned)
+It's nice to have a few songs queued before guests arrive. This sets the vibe and gives latecomers a sense of what's playing.
 
-For now, search social media for:
-- #lawof100
-- #100DaysOfX (where X is your goal)
-- r/100DaysOf on Reddit
+### What if guests don't participate?
 
-### Can I contribute?
+Some crowds are shy at first. Try:
+- Mentioning the jukebox as people arrive
+- Having a visible QR code
+- Queueing a few songs yourself to show how it works
 
-Yes! We'd love your:
-- Feature suggestions
-- Bug reports
-- Success stories
-- Feedback
-
-Email us or open a GitHub issue.
+The music plays either way via smart shuffle.
 
 ## Still Have Questions?
 
@@ -305,9 +211,7 @@ Can't find your answer?
 
 - Check our [Documentation](/docs/introduction)
 - Email [support](/app/settings)
-- Open a [GitHub issue](https://github.com/lawof100/lawof100/issues) (coming soon)
 
 We typically respond within:
-- **Free**: 48 hours
-- **Pro**: 24 hours
-- **Enterprise**: 12 hours
+- **Nerd**: 48 hours
+- **Connoisseur**: 24 hours

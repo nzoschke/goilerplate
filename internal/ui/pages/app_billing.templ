@@ -108,52 +108,36 @@ templ Billing() {
 							}
 						}
 					</div>
-					<div class="grid md:grid-cols-3 gap-4">
+					<div class="grid md:grid-cols-2 gap-4">
 						@BillingPricingCard(
-							"Free",
-							"$0",
-							"month",
-							"$0",
-							"year",
-							"Perfect for getting started",
+							"JukeLab Nerd",
+							"$5",
+							"mo",
+							"$50",
+							"yr",
+							"For music enthusiasts",
 							[]string{
-								"3 goals maximum",
-								"Basic goal tracking",
+								"Basic music analysis",
+								"Standard library access",
 								"Community support",
 							},
-							model.SubscriptionPlanFree,
+							model.SubscriptionPlanNerd,
 							subscription.PlanID,
 							subscription.PlanID != model.SubscriptionPlanFree,
 						)
 						@BillingPricingCard(
-							"Pro",
-							"$29",
-							"month",
-							"$279",
-							"year",
-							"For serious goal achievers",
+							"JukeLab Connoisseur",
+							"$10",
+							"mo",
+							"$100",
+							"yr",
+							"For serious music lovers",
 							[]string{
-								"25 goals maximum",
-								"Export goals as JSON",
-								"Email support",
-							},
-							model.SubscriptionPlanPro,
-							subscription.PlanID,
-							subscription.PlanID != model.SubscriptionPlanFree,
-						)
-						@BillingPricingCard(
-							"Enterprise",
-							"$99",
-							"month",
-							"$950",
-							"year",
-							"For teams and power users",
-							[]string{
-								"Unlimited goals",
-								"Export goals as JSON",
+								"Advanced music analysis",
+								"Full library access",
 								"Priority support",
 							},
-							model.SubscriptionPlanEnterprise,
+							model.SubscriptionPlanConnoisseur,
 							subscription.PlanID,
 							subscription.PlanID != model.SubscriptionPlanFree,
 						)
@@ -200,10 +184,10 @@ templ BillingPricingCard(
 	@card.Card(card.Props{
 		Class: utils.TwMerge(
 			"pricing-card relative h-full flex flex-col",
-			utils.If(planID == model.SubscriptionPlanPro, "border-primary ring-2 ring-primary"),
+			utils.If(planID == model.SubscriptionPlanConnoisseur, "border-primary ring-2 ring-primary"),
 		),
 	}) {
-		if planID == model.SubscriptionPlanPro {
+		if planID == model.SubscriptionPlanConnoisseur {
 			<div class="absolute -top-4 left-1/2 -translate-x-1/2">
 				@badge.Badge() {
 					Most Popular
@@ -263,7 +247,7 @@ templ BillingPricingCard(
 					@csrf.Token()
 					<input type="hidden" name="plan_id" value={ planID }/>
 					<input type="hidden" name="interval" value="monthly"/>
-					if planID == model.SubscriptionPlanPro {
+					if planID == model.SubscriptionPlanConnoisseur {
 						@button.Button(button.Props{
 							Type:  "submit",
 							Class: "w-full",
