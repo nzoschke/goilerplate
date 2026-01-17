@@ -75,9 +75,3 @@ If you've ever fought over the aux cord, JukeLab is for you.
 Ready to create your jukebox? Check out our [Getting Started Guide](/docs/getting-started) to curate your first collection.
 
 Or read about [Building Your Collection](/docs/guides/choosing-goals) if you need help picking albums.
-
-## Join Thousands of Hosts
-
-Over 2,500 people have transformed their parties with JukeLab. Your turn starts now.
-
-**What's in your jukebox?**

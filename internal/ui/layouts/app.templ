@@ -54,16 +54,6 @@ templ App(title string) {
 									<span>Dashboard</span>
 								}
 							}
-							@sidebar.MenuItem() {
-								@sidebar.MenuButton(sidebar.MenuButtonProps{
-									Href:     "/app/goals",
-									IsActive: ctxkeys.URLPath(ctx) == "/app/goals",
-									Tooltip:  "Goals",
-								}) {
-									@icon.FolderOpen(icon.Props{Class: "size-4"})
-									<span>Goals</span>
-								}
-							}
 						}
 					}
 				}

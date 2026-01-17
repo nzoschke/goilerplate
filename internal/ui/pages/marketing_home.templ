@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/templui/goilerplate/internal/ctxkeys"
 	"github.com/templui/goilerplate/internal/ui/components/accordion"
-	"github.com/templui/goilerplate/internal/ui/components/avatar"
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/card"
 	"github.com/templui/goilerplate/internal/ui/components/icon"
@@ -44,78 +43,21 @@ templ HomeHero() {
 					Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night.
 					No more fighting over the Bluetooth.
 				</p>
-				<!-- Social Proof with Avatar Group -->
-				<div class="mt-8 flex flex-col items-center justify-center gap-4">
-					<div class="flex -space-x-3 *:ring-2 *:ring-background">
-						@avatar.Avatar() {
-							@avatar.Image(avatar.ImageProps{
-								Src: "https://i.pravatar.cc/150?img=1",
-								Alt: "User",
-							})
-							@avatar.Fallback() {
-								U1
-							}
-						}
-						@avatar.Avatar() {
-							@avatar.Image(avatar.ImageProps{
-								Src: "https://i.pravatar.cc/150?img=2",
-								Alt: "User",
-							})
-							@avatar.Fallback() {
-								U2
-							}
-						}
-						@avatar.Avatar() {
-							@avatar.Image(avatar.ImageProps{
-								Src: "https://i.pravatar.cc/150?img=3",
-								Alt: "User",
-							})
-							@avatar.Fallback() {
-								U3
-							}
-						}
-						@avatar.Avatar() {
-							@avatar.Image(avatar.ImageProps{
-								Src: "https://i.pravatar.cc/150?img=4",
-								Alt: "User",
-							})
-							@avatar.Fallback() {
-								U4
-							}
-						}
-						@avatar.Avatar(avatar.Props{
-							Class: "text-muted-foreground",
-						}) {
-							@avatar.Fallback() {
-								+1k
-							}
-						}
-					</div>
-					<div class="text-center">
-						<p class="text-sm font-medium">Join thousands of party hosts using JukeLab</p>
-						<div class="flex items-center justify-center gap-1 mt-1">
-							for i := 0; i < 5; i++ {
-								@icon.Star(icon.Props{Size: 14, Class: "fill-yellow-500 text-yellow-500"})
-							}
-							<span class="ml-1 text-xs text-muted-foreground">Loved by music nerds everywhere</span>
-						</div>
-					</div>
-				</div>
 				<div class="mt-10 flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-3 px-4 sm:px-0">
 					@button.Button(button.Props{
-						Href:  "/auth",
+						Href:  "/jukebox",
 						Size:  button.SizeLg,
 						Class: "w-full sm:w-auto",
 					}) {
-						Get Started Free →
+						Open Web App →
 					}
 					@button.Button(button.Props{
-						Href:    "#pricing",
+						Href:    "https://apps.apple.com/app/id1480787158",
 						Variant: button.VariantOutline,
 						Size:    button.SizeLg,
 						Class:   "w-full sm:w-auto",
 					}) {
-						View Plans
+						Download iOS App
 					}
 				</div>
 			</div>
@@ -216,14 +158,21 @@ templ HomePricing() {
 					<span class="text-sm font-medium">Annual <span class="text-green-500">(Save 17%)</span></span>
 				</div>
 			</div>
-			<div class="mx-auto mt-16 grid max-w-4xl gap-8 lg:grid-cols-2">
+			<div class="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-3">
+				@HomePricingCard("Free", 0, 0, false, []string{
+					"Spotify Premium required",
+					"Pre-made playlists",
+					"Up to 25 albums",
+					"Basic queue control",
+					"Community support",
+				})
 				@HomePricingCard("Nerd", 5, 50, false, []string{
-					"Spotify integration",
+					"Everything in Free",
+					"Custom playlists",
 					"Up to 100 albums",
 					"Unlimited guests",
-					"Social queue control",
 					"Smart shuffle",
-					"Mobile friendly",
+					"Email support",
 				})
 				@HomePricingCard("Connoisseur", 10, 100, true, []string{
 					"Everything in Nerd",
@@ -232,7 +181,6 @@ templ HomePricing() {
 					"Custom themes",
 					"Playlist management tools",
 					"Priority support",
-					"Early access to features",
 				})
 			</div>
 		</div>
@@ -411,19 +359,19 @@ templ HomeCTA() {
 				</p>
 				<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
 					@button.Button(button.Props{
-						Href:  "/auth",
+						Href:  "/jukebox",
 						Size:  button.SizeLg,
 						Class: "w-full sm:w-auto",
 					}) {
-						Create Your Jukebox →
+						Open Web App →
 					}
 					@button.Button(button.Props{
-						Href:    "#pricing",
+						Href:    "https://apps.apple.com/app/id1480787158",
 						Variant: button.VariantOutline,
 						Size:    button.SizeLg,
 						Class:   "w-full sm:w-auto",
 					}) {
-						View Pricing
+						Download iOS App
 					}
 				</div>
 			</div>
@@ -445,70 +393,72 @@ templ HomeFAQ() {
 					@accordion.Accordion() {
 						@accordion.Item() {
 							@accordion.Trigger() {
-								How does JukeLab work?
+								What is a jukebox?
 							}
 							@accordion.Content() {
 								<p>
-									JukeLab lets you curate a collection of up to 100 albums from your Spotify library.
-									Set up a device as your jukebox, share a link with your guests, and they can browse
-									and queue songs from your curated collection. No more fighting over Bluetooth!
+									JukeLab is an old-school jukebox. A dedicated device, with a limited number of albums,
+									that you walk up to to browse and select music. Think of a dive bar setup. If you're
+									unfamiliar with the concept, ask your parents.
 								</p>
 							}
 						}
 						@accordion.Item() {
 							@accordion.Trigger() {
-								Do I need Spotify Premium?
+								What makes JukeLab different?
 							}
 							@accordion.Content() {
 								<p>
-									Yes, JukeLab works with Spotify Premium accounts. This allows for seamless playback
-									control and ensures your guests can queue songs without interruptions. The Connoisseur
-									plan also supports MP3 files for offline use.
+									Unlike other social listening apps that require everyone to use their own phones without
+									any music curation, JukeLab emphasizes curation and interaction. We've thrown countless
+									parties with it and it always works.
 								</p>
 							}
 						}
 						@accordion.Item() {
 							@accordion.Trigger() {
-								What devices can I use?
+								How do I try it?
 							}
 							@accordion.Content() {
 								<p>
-									JukeLab runs on any modern browser, which means it works on tablets, phones, laptops,
-									and desktop computers. Set up your jukebox on one device and share the guest link with
-									everyone at your party.
+									Open it in your web browser right now. You'll get an immediate idea of how the interface
+									works. After selecting a song and logging into Spotify Premium, playback functionality
+									becomes available. Invite friends to test the selection feature.
 								</p>
 							}
 						}
 						@accordion.Item() {
 							@accordion.Trigger() {
-								Can guests add any song they want?
+								How do I change the music?
 							}
 							@accordion.Content() {
 								<p>
-									Guests can only select songs from the albums you've curated. This keeps the vibe consistent
-									and ensures quality music all night. You're the DJ - guests just help pick from your collection.
+									JukeLab uses Spotify Premium. Create a Spotify playlist of 100 songs, and JukeLab turns
+									that into a playlist of 100 albums. Check out our "JukeLab 101" Spotify playlist for an example.
 								</p>
 							}
 						}
 						@accordion.Item() {
 							@accordion.Trigger() {
-								Does it work offline?
+								Do I need special hardware?
 							}
 							@accordion.Content() {
 								<p>
-									The Connoisseur plan includes offline mode, which is perfect for private gatherings without
-									reliable internet. You can also use your own MP3 files instead of Spotify when offline.
+									JukeLab works on any tablet, phone or computer where Spotify works. However, the best
+									experience is when you use it on a dedicated tablet with a number pad or similar physical
+									keyboard for that authentic jukebox feel.
 								</p>
 							}
 						}
 						@accordion.Item() {
 							@accordion.Trigger() {
-								Do you offer refunds?
+								Is this allowed?
 							}
 							@accordion.Content() {
 								<p>
-									We offer a 14-day money-back guarantee for all paid plans. If you're not satisfied,
-									contact us within 14 days of your purchase for a full refund. No questions asked.
+									JukeLab is for personal use only. When using the Spotify integration, all of their terms
+									of usage and playback apply. Additional integrations with the Internet Archive and local
+									music files may expand playback options.
 								</p>
 							}
 						}
