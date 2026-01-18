@@ -43,7 +43,7 @@ func runDev() error {
 		"-build.cmd", "./bin/do gen && go build -o ./tmp/main ./cmd/server",
 		"-build.bin", "./tmp/main",
 		"-build.delay", "100",
-		"-build.exclude_dir", "bin,node_modules,tmp,.data",
+		"-build.exclude_dir", "bin,node_modules,tmp,.data,jukelab/node_modules",
 		"-build.exclude_regex", "_templ.go$|_test.go$|output\\.css$",
 		"-build.include_ext", "go,templ,css",
 		"-build.kill_delay", "500ms",
