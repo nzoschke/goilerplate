@@ -12,6 +12,7 @@ import "github.com/templui/goilerplate/internal/ui/components/calendar"
 import "github.com/templui/goilerplate/internal/ui/components/datepicker"
 import "github.com/templui/goilerplate/internal/ui/components/progress"
 import "fmt"
+import "strings"
 import "time"
 
 type SEOProps struct {
@@ -67,7 +68,10 @@ templ seo(props SEOProps) {
 	{{ baseURL := cfg.AppURL }}
 	{{ appName := cfg.AppName }}
 	{{ appTagline := cfg.AppTagline }}
-	{{ fullTitle := props.Title + " - " + appName }}
+	{{ fullTitle := props.Title }}
+	if !strings.Contains(props.Title, appName) {
+		{{ fullTitle = props.Title + " - " + appName }}
+	}
 	@templ.Fragment("seo-title") {
 		<title id="page-title" hx-swap-oob="true">{ fullTitle }</title>
 	}

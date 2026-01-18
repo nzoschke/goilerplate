@@ -1,7 +1,6 @@
 package pages
 
 import (
-	"fmt"
 	"github.com/templui/goilerplate/internal/ctxkeys"
 	"github.com/templui/goilerplate/internal/ui/blocks"
 	"github.com/templui/goilerplate/internal/ui/components/accordion"
@@ -15,9 +14,8 @@ import (
 )
 
 templ Home() {
-	{{ cfg := ctxkeys.Config(ctx) }}
 	@layouts.Home(layouts.SEOProps{
-		Title:       fmt.Sprintf("%s - A Real Jukebox for Your Party", cfg.AppName),
+		Title:       "JukeLab - A Real Jukebox for Your Party",
 		Description: "Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night. No more fighting over Bluetooth.",
 		Path:        ctxkeys.URLPath(ctx),
 	}) {
