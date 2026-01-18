@@ -1,1 +1,0 @@
-import{a as t,j as n}from"./BCx6sPza.js";const c=(e=1e3)=>{const o=t([]);return{log:(l,s)=>{console.log(l),n(()=>{o.push({level:s||"info",msg:l}),o.length>e&&o.splice(0,o.length-e)})},get logs(){return o}}};export{c as L};

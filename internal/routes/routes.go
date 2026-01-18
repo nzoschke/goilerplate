@@ -6,11 +6,11 @@ import (
 	"path"
 	"strings"
 
+	"github.com/templui/goilerplate"
 	"github.com/templui/goilerplate/assets"
 	"github.com/templui/goilerplate/internal/app"
 	"github.com/templui/goilerplate/internal/handler"
 	"github.com/templui/goilerplate/internal/middleware"
-	"github.com/templui/goilerplate/jukebox"
 )
 
 func SetupRoutes(app *app.App) http.Handler {
@@ -40,7 +40,7 @@ func SetupRoutes(app *app.App) http.Handler {
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.FS(sub))))
 
 	// JukeLab SvelteKit app (served at /jukebox)
-	jukeboxSub, _ := fs.Sub(jukebox.JukeboxFS, ".")
+	jukeboxSub, _ := fs.Sub(goilerplate.JukeboxFS, "jukelab/build")
 	mux.Handle("GET /jukebox/", http.StripPrefix("/jukebox/", spaFileServer(http.FS(jukeboxSub))))
 	mux.HandleFunc("GET /jukebox", func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/jukebox/", http.StatusMovedPermanently)

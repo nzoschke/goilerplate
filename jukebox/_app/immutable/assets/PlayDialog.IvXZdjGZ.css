@@ -1,1 +1,0 @@
-.mirror-video.svelte-v9zh72{transform:scaleX(-1)}@keyframes svelte-v9zh72-flashAnimation{0%{opacity:0}20%{opacity:1}to{opacity:0}}.flash-overlay.svelte-v9zh72{position:fixed;top:0;left:0;width:100vw;height:100vh;background:#fff;animation:svelte-v9zh72-flashAnimation .5s ease-out;pointer-events:none;z-index:50000}
