@@ -4,11 +4,16 @@ import (
 	"fmt"
 	"github.com/templui/goilerplate/internal/ctxkeys"
 	"github.com/templui/goilerplate/internal/ui/components/accordion"
+	"github.com/templui/goilerplate/internal/ui/components/alert"
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/card"
+	"github.com/templui/goilerplate/internal/ui/components/csrf"
+	"github.com/templui/goilerplate/internal/ui/components/form"
 	"github.com/templui/goilerplate/internal/ui/components/icon"
+	"github.com/templui/goilerplate/internal/ui/components/input"
 	switchcomp "github.com/templui/goilerplate/internal/ui/components/switch"
 	"github.com/templui/goilerplate/internal/ui/layouts"
+	"strings"
 )
 
 templ Home() {
@@ -21,9 +26,9 @@ templ Home() {
 		<div class="min-h-screen">
 			@HomeHero()
 			@HomeFeatures()
+			@HomeNewsletterSection("")
 			@HomeTrustedBy()
 			@HomePricing()
-			@HomeStats()
 			@HomeFAQ()
 			@HomeCTA()
 		</div>
@@ -41,6 +46,9 @@ templ HomeHero() {
 						</h1>
 						<p class="mt-6 max-w-xl text-lg text-muted-foreground">
 							JukeLab brings an old-school jukebox to your next party. Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night.
+						</p>
+						<p class="mt-4 max-w-xl text-lg text-muted-foreground">
+							Free (for Spotify Premium users) and <a href="https://github.com/nzoschke/jukelab" class="underline hover:text-foreground">open source</a>.
 						</p>
 						<div class="mt-8 flex flex-col sm:flex-row w-full sm:w-auto items-center lg:justify-start justify-center gap-3">
 							@button.Button(button.Props{
@@ -64,9 +72,9 @@ templ HomeHero() {
 					</div>
 					<div class="flex justify-center lg:justify-end">
 						<div class="relative w-full max-w-md" id="hero-slideshow">
-							<img src="/assets/img/ipad.png" alt="JukeLab on iPad" class="w-full opacity-100 transition-opacity duration-1000" data-slide="0"/>
-							<img src="/assets/img/daft.jpg" alt="JukeLab interface" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" data-slide="1"/>
-							<img src="/assets/img/numpad.png" alt="JukeLab numpad" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" data-slide="2"/>
+							<img src="/assets/img/ipad.webp" alt="JukeLab on iPad" class="w-full opacity-100 transition-opacity duration-1000" data-slide="0"/>
+							<img src="/assets/img/daft.webp" alt="JukeLab interface" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" loading="lazy" decoding="async" data-slide="1"/>
+							<img src="/assets/img/numpad.webp" alt="JukeLab numpad" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" loading="lazy" decoding="async" data-slide="2"/>
 						</div>
 						<script nonce={ templ.GetNonce(ctx) }>
 							(function() {
@@ -119,14 +127,14 @@ templ HomeFeatures() {
 					"Runs on any tablet, phone, or laptop. Set it up once and reuse it for all your parties.",
 				)
 				@HomeFeatureCard(
-					"WifiOff",
-					"Offline Mode",
-					"Works offline for private gatherings. No internet required once you've set up your jukebox.",
-				)
-				@HomeFeatureCard(
 					"Shield",
 					"Privacy First",
 					"No data collection about you or your music preferences. Your listening habits stay private.",
+				)
+				@HomeFeatureCard(
+					"WifiOff",
+					"Offline Mode",
+					"Works offline for private gatherings. No internet required once you've set up your jukebox. Requires subscription.",
 				)
 			</div>
 		</div>
@@ -164,11 +172,83 @@ templ HomeFeatureCard(iconName string, title string, description string) {
 	</div>
 }
 
+templ HomeNewsletterSection(errorMsg string) {
+	<section id="home-newsletter" class="py-16">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-xl text-center">
+				<h2 class="text-2xl font-bold">Stay in the Loop</h2>
+				<p class="mt-2 text-muted-foreground">
+					Get updates on new features and party tips.
+				</p>
+				<form
+					class="mt-6 flex flex-col sm:flex-row gap-3 items-start justify-center"
+					hx-post="/newsletter/subscribe"
+					hx-trigger="submit"
+					hx-target="#home-newsletter"
+					hx-swap="outerHTML"
+				>
+					@csrf.Token()
+					@form.Item(form.ItemProps{Class: "flex-1 max-w-xs text-left"}) {
+						@input.Input(input.Props{
+							ID:          "home-newsletter-email",
+							Name:        "email",
+							Type:        input.TypeEmail,
+							Placeholder: "your@email.com",
+							HasError:    errorMsg != "",
+						})
+						if errorMsg != "" {
+							@form.Message(form.MessageProps{Variant: form.MessageVariantError}) {
+								{ errorMsg }
+							}
+						}
+					}
+					@button.Button(button.Props{
+						Type: button.TypeSubmit,
+					}) {
+						if errorMsg != "" {
+							Try Again
+						} else {
+							Subscribe
+						}
+					}
+				</form>
+				<p class="mt-3 text-xs text-muted-foreground">
+					No spam, ever. Unsubscribe anytime.
+				</p>
+			</div>
+		</div>
+	</section>
+}
+
+templ HomeNewsletterSuccess() {
+	<section id="home-newsletter" class="py-16">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-xl text-center">
+				<h2 class="text-2xl font-bold">Stay in the Loop</h2>
+				<p class="mt-2 text-muted-foreground">
+					Get updates on new features and party tips.
+				</p>
+				<div class="mt-6 max-w-xs mx-auto">
+					@alert.Alert() {
+						@icon.CircleCheck()
+						@alert.Title() {
+							Success
+						}
+						@alert.Description() {
+							<p>Thank you for subscribing.</p>
+						}
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
 templ HomePricing() {
 	<section id="pricing" class="py-24">
 		<div class="container mx-auto px-4">
 			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="text-4xl font-bold">Simple, Transparent Pricing</h2>
+				<h2 class="text-4xl font-bold">Free for casual use. Simple pricing for advanced users.</h2>
 				<p class="mt-4 text-lg text-muted-foreground">
 					Choose the plan that fits your music taste. Cancel anytime.
 				</p>
@@ -184,26 +264,26 @@ templ HomePricing() {
 			<div class="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-3">
 				@HomePricingCard("Free", 0, 0, false, []string{
 					"Spotify Premium required",
+					"Pre-built themes",
 					"Pre-made playlists",
-					"Up to 25 albums",
+					"Up to 5 custom playlists",
 					"Basic queue control",
-					"Community support",
+					"Community support|https://github.com/nzoschke/jukelab/discussions",
 				})
-				@HomePricingCard("Nerd", 5, 50, false, []string{
+				@HomePricingCard("Nerd", 5, 50, true, []string{
 					"Everything in Free",
-					"Custom playlists",
-					"Up to 100 albums",
-					"Unlimited guests",
+					"Unlimited custom playlists",
 					"Smart shuffle",
-					"Email support",
+					"Remote control",
+					"Email support|mailto:support@jukelab.com",
 				})
-				@HomePricingCard("Connoisseur", 10, 100, true, []string{
+				@HomePricingCard("Connoisseur", 10, 100, false, []string{
 					"Everything in Nerd",
+					"Playlist management tools",
 					"Offline mode",
 					"MP3 file support",
-					"Custom themes",
-					"Playlist management tools",
-					"Priority support",
+					"Theme builder",
+					"Priority support|mailto:support@jukelab.com",
 				})
 			</div>
 		</div>
@@ -278,7 +358,7 @@ templ HomePricingCard(name string, monthlyPrice int, annualPrice int, popular bo
 							Size:  16,
 							Class: "mt-0.5 text-primary shrink-0",
 						})
-						<span class="text-sm">{ feature }</span>
+						@HomePricingFeature(feature)
 					</li>
 				}
 			</ul>
@@ -300,6 +380,15 @@ templ HomePricingCard(name string, monthlyPrice int, annualPrice int, popular bo
 	}
 }
 
+templ HomePricingFeature(feature string) {
+	if strings.Contains(feature, "|") {
+		{{ parts := strings.SplitN(feature, "|", 2) }}
+		<span class="text-sm"><a href={ templ.SafeURL(parts[1]) } class="underline hover:text-foreground">{ parts[0] }</a></span>
+	} else {
+		<span class="text-sm">{ feature }</span>
+	}
+}
+
 templ HomeTrustedBy() {
 	<section class="py-16">
 		<div class="container mx-auto px-4">
@@ -314,7 +403,7 @@ templ HomeTrustedBy() {
 					</div>
 					<div class="flex items-center gap-2">
 						@icon.Users(icon.Props{Size: 32})
-						<span class="text-sm font-medium">Social Sharing</span>
+						<span class="text-sm font-medium">Interactive Experience</span>
 					</div>
 					<div class="flex items-center gap-2">
 						@icon.Shield(icon.Props{Size: 32})
@@ -326,48 +415,12 @@ templ HomeTrustedBy() {
 					</div>
 					<div class="flex items-center gap-2">
 						@icon.Heart(icon.Props{Size: 32})
-						<span class="text-sm font-medium">Music Nerds</span>
+						<span class="text-sm font-medium">Built by Music Nerds</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-}
-
-templ HomeStats() {
-	<section class="py-24">
-		<div class="container mx-auto px-4">
-			<div class="mx-auto max-w-5xl">
-				<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-					@HomeStatCard("Users", "2,500+", "Party hosts")
-					@HomeStatCard("Music", "50k+", "Songs queued")
-					@HomeStatCard("Globe", "42", "Countries")
-					@HomeStatCard("Heart", "100%", "Ad-free")
-				</div>
-			</div>
-		</div>
-	</section>
-}
-
-templ HomeStatCard(iconName string, value string, label string) {
-	<div class="text-center">
-		<div class="inline-flex items-center justify-center size-12 rounded-lg bg-primary/10 text-primary mb-4">
-			switch iconName {
-				case "Users":
-					@icon.Users(icon.Props{Size: 24})
-				case "Music":
-					@icon.Music(icon.Props{Size: 24})
-				case "Globe":
-					@icon.Globe(icon.Props{Size: 24})
-				case "Heart":
-					@icon.Heart(icon.Props{Size: 24})
-				default:
-					@icon.Star(icon.Props{Size: 24})
-			}
-		</div>
-		<div class="text-3xl font-bold">{ value }</div>
-		<p class="mt-1 text-sm text-muted-foreground">{ label }</p>
-	</div>
 }
 
 templ HomeCTA() {

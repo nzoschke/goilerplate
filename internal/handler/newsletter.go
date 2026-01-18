@@ -8,6 +8,7 @@ import (
 	"github.com/templui/goilerplate/internal/service"
 	"github.com/templui/goilerplate/internal/ui"
 	"github.com/templui/goilerplate/internal/ui/blocks"
+	"github.com/templui/goilerplate/internal/ui/pages"
 	"github.com/templui/goilerplate/internal/validation"
 )
 
@@ -23,10 +24,15 @@ func NewNewsletterHandler(emailService *service.EmailService) *newsletterHandler
 
 func (h *newsletterHandler) Subscribe(w http.ResponseWriter, r *http.Request) {
 	email := strings.TrimSpace(strings.ToLower(r.FormValue("email")))
+	isHomeForm := r.Header.Get("HX-Target") == "home-newsletter"
 
 	err := validation.ValidateEmail(email)
 	if err != nil {
-		ui.Render(w, r, blocks.FooterNewsletterForm("Please provide a valid email address"))
+		if isHomeForm {
+			ui.Render(w, r, pages.HomeNewsletterSection("Please provide a valid email address"))
+		} else {
+			ui.Render(w, r, blocks.FooterNewsletterForm("Please provide a valid email address"))
+		}
 		return
 	}
 
@@ -38,5 +44,9 @@ func (h *newsletterHandler) Subscribe(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Always show success (prevents email enumeration)
-	ui.Render(w, r, blocks.FooterNewsletterSuccess())
+	if isHomeForm {
+		ui.Render(w, r, pages.HomeNewsletterSuccess())
+	} else {
+		ui.Render(w, r, blocks.FooterNewsletterSuccess())
+	}
 }
