@@ -1,0 +1,3 @@
+[submodule "jukelab"]
+	path = jukelab
+	url = https://github.com/nzoschke/jukelab.git

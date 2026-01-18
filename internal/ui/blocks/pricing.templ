@@ -1,0 +1,152 @@
+package blocks
+
+import (
+	"fmt"
+	"strings"
+	"github.com/templui/goilerplate/internal/ui/components/card"
+	"github.com/templui/goilerplate/internal/ui/components/icon"
+)
+
+type PricingPlan struct {
+	Name         string
+	MonthlyPrice int
+	AnnualPrice  int
+	Popular      bool
+	Features     []string
+}
+
+templ PricingCard(plan PricingPlan) {
+	@card.Card(card.Props{
+		Class: "relative overflow-hidden h-full flex flex-col",
+	}) {
+		if plan.Popular {
+			<div class="absolute -right-12 top-6 rotate-45 bg-primary px-12 py-1 text-xs font-semibold text-primary-foreground">
+				POPULAR
+			</div>
+		}
+		@card.Header() {
+			@card.Title() {
+				{ plan.Name }
+			}
+		}
+		@card.Content(card.ContentProps{
+			Class: "pt-6 flex flex-col flex-1",
+		}) {
+			<div class="flex items-baseline gap-1">
+				{{ monthlyDisplay := "Free" }}
+				{{ annualDisplay := "Free" }}
+				if plan.MonthlyPrice > 0 {
+					{{ monthlyDisplay = fmt.Sprintf("$%d", plan.MonthlyPrice) }}
+				}
+				if plan.AnnualPrice > 0 {
+					{{ annualDisplay = fmt.Sprintf("$%d", plan.AnnualPrice) }}
+				}
+				<span
+					class="text-5xl font-bold tracking-tight"
+					data-price-display
+					data-monthly={ monthlyDisplay }
+					data-annual={ annualDisplay }
+				>
+					{ monthlyDisplay }
+				</span>
+				if plan.MonthlyPrice > 0 || plan.AnnualPrice > 0 {
+					<span class="text-muted-foreground" data-billing-period>per month</span>
+				}
+			</div>
+			<ul class="mt-8 space-y-4 flex-1">
+				for _, feature := range plan.Features {
+					<li class="flex items-start gap-3">
+						@icon.Check(icon.Props{
+							Size:  16,
+							Class: "mt-0.5 text-primary shrink-0",
+						})
+						@PricingFeature(feature)
+					</li>
+				}
+			</ul>
+			<div class="mt-auto pt-8">
+				{ children... }
+			</div>
+		}
+	}
+}
+
+templ PricingFeature(feature string) {
+	if strings.Contains(feature, "|") {
+		{{ parts := strings.SplitN(feature, "|", 2) }}
+		<span class="text-sm"><a href={ templ.SafeURL(parts[1]) } class="underline hover:text-foreground">{ parts[0] }</a></span>
+	} else {
+		<span class="text-sm">{ feature }</span>
+	}
+}
+
+// PricingToggleScript outputs the JavaScript for pricing toggle functionality
+templ PricingToggleScript() {
+	<script nonce={ templ.GetNonce(ctx) }>
+		(function() {
+			const toggle = document.getElementById('pricing-toggle');
+			if (!toggle) return;
+
+			function updatePricing(isAnnual) {
+				document.querySelectorAll('[data-price-display]').forEach(el => {
+					const monthly = el.getAttribute('data-monthly');
+					const annual = el.getAttribute('data-annual');
+					el.textContent = isAnnual ? annual : monthly;
+				});
+
+				document.querySelectorAll('[data-billing-period]').forEach(el => {
+					el.textContent = isAnnual ? 'per year' : 'per month';
+				});
+			}
+
+			toggle.addEventListener('change', function() {
+				updatePricing(this.checked);
+			});
+		})();
+	</script>
+}
+
+// Standard plan definitions
+var FreePlan = PricingPlan{
+	Name:         "Free",
+	MonthlyPrice: 0,
+	AnnualPrice:  0,
+	Popular:      false,
+	Features: []string{
+		"Spotify Premium required",
+		"Pre-built themes",
+		"Pre-made playlists",
+		"Up to 5 custom playlists",
+		"Basic queue control",
+		"Community support|https://github.com/nzoschke/jukelab/discussions",
+	},
+}
+
+var NerdPlan = PricingPlan{
+	Name:         "Nerd",
+	MonthlyPrice: 5,
+	AnnualPrice:  50,
+	Popular:      true,
+	Features: []string{
+		"Everything in Free",
+		"Unlimited custom playlists",
+		"Smart shuffle",
+		"Remote control",
+		"Email support|mailto:support@jukelab.com",
+	},
+}
+
+var ConnoisseurPlan = PricingPlan{
+	Name:         "Connoisseur",
+	MonthlyPrice: 10,
+	AnnualPrice:  100,
+	Popular:      false,
+	Features: []string{
+		"Everything in Nerd",
+		"Playlist management tools",
+		"Offline mode",
+		"MP3 file support",
+		"Theme builder",
+		"Priority support|mailto:support@jukelab.com",
+	},
+}

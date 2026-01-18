@@ -1,29 +1,30 @@
 package pages
 
 import (
-	"fmt"
 	"github.com/templui/goilerplate/internal/ctxkeys"
+	"github.com/templui/goilerplate/internal/ui/blocks"
 	"github.com/templui/goilerplate/internal/ui/components/accordion"
 	"github.com/templui/goilerplate/internal/ui/components/button"
-	"github.com/templui/goilerplate/internal/ui/components/card"
+	"github.com/templui/goilerplate/internal/ui/components/csrf"
+	"github.com/templui/goilerplate/internal/ui/components/form"
 	"github.com/templui/goilerplate/internal/ui/components/icon"
+	"github.com/templui/goilerplate/internal/ui/components/input"
 	switchcomp "github.com/templui/goilerplate/internal/ui/components/switch"
 	"github.com/templui/goilerplate/internal/ui/layouts"
 )
 
 templ Home() {
-	{{ cfg := ctxkeys.Config(ctx) }}
 	@layouts.Home(layouts.SEOProps{
-		Title:       fmt.Sprintf("%s - A Real Jukebox for Your Party", cfg.AppName),
+		Title:       "JukeLab - A Real Jukebox for Your Party",
 		Description: "Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night. No more fighting over Bluetooth.",
 		Path:        ctxkeys.URLPath(ctx),
 	}) {
 		<div class="min-h-screen">
 			@HomeHero()
 			@HomeFeatures()
+			@HomeNewsletterSection("")
 			@HomeTrustedBy()
 			@HomePricing()
-			@HomeStats()
 			@HomeFAQ()
 			@HomeCTA()
 		</div>
@@ -41,6 +42,9 @@ templ HomeHero() {
 						</h1>
 						<p class="mt-6 max-w-xl text-lg text-muted-foreground">
 							JukeLab brings an old-school jukebox to your next party. Curate a jukebox playlist of 100 albums, set up a device, then let your friends control the music all night.
+						</p>
+						<p class="mt-4 max-w-xl text-lg text-muted-foreground">
+							Free (for Spotify Premium users) and <a href="https://github.com/nzoschke/jukelab" class="underline hover:text-foreground">open source</a>.
 						</p>
 						<div class="mt-8 flex flex-col sm:flex-row w-full sm:w-auto items-center lg:justify-start justify-center gap-3">
 							@button.Button(button.Props{
@@ -64,9 +68,9 @@ templ HomeHero() {
 					</div>
 					<div class="flex justify-center lg:justify-end">
 						<div class="relative w-full max-w-md" id="hero-slideshow">
-							<img src="/assets/img/ipad.png" alt="JukeLab on iPad" class="w-full opacity-100 transition-opacity duration-1000" data-slide="0"/>
-							<img src="/assets/img/daft.jpg" alt="JukeLab interface" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" data-slide="1"/>
-							<img src="/assets/img/numpad.png" alt="JukeLab numpad" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" data-slide="2"/>
+							<img src="/assets/img/ipad.webp" alt="JukeLab on iPad" class="w-full opacity-100 transition-opacity duration-1000" data-slide="0"/>
+							<img src="/assets/img/daft.webp" alt="JukeLab interface" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" loading="lazy" decoding="async" data-slide="1"/>
+							<img src="/assets/img/numpad.webp" alt="JukeLab numpad" class="w-full opacity-0 transition-opacity duration-1000 absolute inset-0" loading="lazy" decoding="async" data-slide="2"/>
 						</div>
 						<script nonce={ templ.GetNonce(ctx) }>
 							(function() {
@@ -119,14 +123,14 @@ templ HomeFeatures() {
 					"Runs on any tablet, phone, or laptop. Set it up once and reuse it for all your parties.",
 				)
 				@HomeFeatureCard(
-					"WifiOff",
-					"Offline Mode",
-					"Works offline for private gatherings. No internet required once you've set up your jukebox.",
-				)
-				@HomeFeatureCard(
 					"Shield",
 					"Privacy First",
 					"No data collection about you or your music preferences. Your listening habits stay private.",
+				)
+				@HomeFeatureCard(
+					"WifiOff",
+					"Offline Mode",
+					"Works offline for private gatherings. No internet required once you've set up your jukebox. Requires subscription.",
 				)
 			</div>
 		</div>
@@ -164,11 +168,76 @@ templ HomeFeatureCard(iconName string, title string, description string) {
 	</div>
 }
 
+templ HomeNewsletterSection(errorMsg string) {
+	<section id="home-newsletter" class="py-16">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-xl text-center">
+				<h2 class="text-2xl font-bold">Stay in the Loop</h2>
+				<p class="mt-2 text-muted-foreground">
+					Get updates on new features and party tips.
+				</p>
+				<form
+					class="mt-6 flex flex-col sm:flex-row gap-3 items-start justify-center"
+					hx-post="/newsletter/subscribe"
+					hx-trigger="submit"
+					hx-target="#home-newsletter"
+					hx-swap="outerHTML"
+				>
+					@csrf.Token()
+					@form.Item(form.ItemProps{Class: "flex-1 max-w-xs text-left"}) {
+						@input.Input(input.Props{
+							ID:          "home-newsletter-email",
+							Name:        "email",
+							Type:        input.TypeEmail,
+							Placeholder: "your@email.com",
+							HasError:    errorMsg != "",
+						})
+						if errorMsg != "" {
+							@form.Message(form.MessageProps{Variant: form.MessageVariantError}) {
+								{ errorMsg }
+							}
+						}
+					}
+					@button.Button(button.Props{
+						Type: button.TypeSubmit,
+					}) {
+						if errorMsg != "" {
+							Try Again
+						} else {
+							Subscribe
+						}
+					}
+				</form>
+				<p class="mt-3 text-xs text-muted-foreground">
+					No spam, ever. Unsubscribe anytime.
+				</p>
+			</div>
+		</div>
+	</section>
+}
+
+templ HomeNewsletterSuccess() {
+	<section id="home-newsletter" class="py-16">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-xl text-center">
+				<h2 class="text-2xl font-bold">Stay in the Loop</h2>
+				<p class="mt-2 text-muted-foreground">
+					Get updates on new features and party tips.
+				</p>
+				<div class="mt-6 flex items-center justify-center gap-2 text-primary">
+					@icon.CircleCheck(icon.Props{Size: 20})
+					<span class="font-medium">Thank you for subscribing!</span>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
 templ HomePricing() {
 	<section id="pricing" class="py-24">
 		<div class="container mx-auto px-4">
 			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="text-4xl font-bold">Simple, Transparent Pricing</h2>
+				<h2 class="text-4xl font-bold">Free for casual use. Simple pricing for advanced users.</h2>
 				<p class="mt-4 text-lg text-muted-foreground">
 					Choose the plan that fits your music taste. Cancel anytime.
 				</p>
@@ -182,122 +251,36 @@ templ HomePricing() {
 				</div>
 			</div>
 			<div class="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-3">
-				@HomePricingCard("Free", 0, 0, false, []string{
-					"Spotify Premium required",
-					"Pre-made playlists",
-					"Up to 25 albums",
-					"Basic queue control",
-					"Community support",
-				})
-				@HomePricingCard("Nerd", 5, 50, false, []string{
-					"Everything in Free",
-					"Custom playlists",
-					"Up to 100 albums",
-					"Unlimited guests",
-					"Smart shuffle",
-					"Email support",
-				})
-				@HomePricingCard("Connoisseur", 10, 100, true, []string{
-					"Everything in Nerd",
-					"Offline mode",
-					"MP3 file support",
-					"Custom themes",
-					"Playlist management tools",
-					"Priority support",
-				})
+				@blocks.PricingCard(blocks.FreePlan) {
+					@button.Button(button.Props{
+						Href:      "/auth",
+						FullWidth: true,
+						Variant:   button.VariantOutline,
+					}) {
+						Get Started
+					}
+				}
+				@blocks.PricingCard(blocks.NerdPlan) {
+					@button.Button(button.Props{
+						Href:      "/auth",
+						FullWidth: true,
+					}) {
+						Get Started
+					}
+				}
+				@blocks.PricingCard(blocks.ConnoisseurPlan) {
+					@button.Button(button.Props{
+						Href:      "/auth",
+						FullWidth: true,
+						Variant:   button.VariantOutline,
+					}) {
+						Get Started
+					}
+				}
 			</div>
 		</div>
-		<script nonce={ templ.GetNonce(ctx) }>
-			// Pricing toggle functionality - encapsulated within component
-			(function() {
-				const toggle = document.getElementById('pricing-toggle');
-				if (!toggle) return;
-
-				function updatePricing(isAnnual) {
-					document.querySelectorAll('[data-price-display]').forEach(el => {
-						const monthly = el.getAttribute('data-monthly');
-						const annual = el.getAttribute('data-annual');
-						el.textContent = isAnnual ? annual : monthly;
-					});
-
-					document.querySelectorAll('[data-billing-period]').forEach(el => {
-						el.textContent = isAnnual ? 'per year' : 'per month';
-					});
-				}
-
-				toggle.addEventListener('change', function() {
-					updatePricing(this.checked);
-				});
-			})();
-		</script>
+		@blocks.PricingToggleScript()
 	</section>
-}
-
-templ HomePricingCard(name string, monthlyPrice int, annualPrice int, popular bool, features []string) {
-	@card.Card(card.Props{
-		Class: "relative overflow-hidden h-full flex flex-col",
-	}) {
-		if popular {
-			<div class="absolute -right-12 top-6 rotate-45 bg-primary px-12 py-1 text-xs font-semibold text-primary-foreground">
-				POPULAR
-			</div>
-		}
-		@card.Header() {
-			@card.Title() {
-				{ name }
-			}
-		}
-		@card.Content(card.ContentProps{
-			Class: "pt-6 flex flex-col flex-1",
-		}) {
-			<div class="flex items-baseline gap-1">
-				{{ monthlyDisplay := "Free" }}
-				{{ annualDisplay := "Free" }}
-				if monthlyPrice > 0 {
-					{{ monthlyDisplay = fmt.Sprintf("$%d", monthlyPrice) }}
-				}
-				if annualPrice > 0 {
-					{{ annualDisplay = fmt.Sprintf("$%d", annualPrice) }}
-				}
-				<span
-					class="text-5xl font-bold tracking-tight"
-					data-price-display
-					data-monthly={ monthlyDisplay }
-					data-annual={ annualDisplay }
-				>
-					{ monthlyDisplay }
-				</span>
-				if monthlyPrice > 0 || annualPrice > 0 {
-					<span class="text-muted-foreground" data-billing-period>per month</span>
-				}
-			</div>
-			<ul class="mt-8 space-y-4 flex-1">
-				for _, feature := range features {
-					<li class="flex items-start gap-3">
-						@icon.Check(icon.Props{
-							Size:  16,
-							Class: "mt-0.5 text-primary shrink-0",
-						})
-						<span class="text-sm">{ feature }</span>
-					</li>
-				}
-			</ul>
-			<div class="mt-auto pt-8">
-				@button.Button(button.Props{
-					Href:      "/auth",
-					FullWidth: true,
-					Variant: func() button.Variant {
-						if popular {
-							return button.VariantDefault
-						}
-						return button.VariantOutline
-					}(),
-				}) {
-					Get Started
-				}
-			</div>
-		}
-	}
 }
 
 templ HomeTrustedBy() {
@@ -314,7 +297,7 @@ templ HomeTrustedBy() {
 					</div>
 					<div class="flex items-center gap-2">
 						@icon.Users(icon.Props{Size: 32})
-						<span class="text-sm font-medium">Social Sharing</span>
+						<span class="text-sm font-medium">Interactive Experience</span>
 					</div>
 					<div class="flex items-center gap-2">
 						@icon.Shield(icon.Props{Size: 32})
@@ -326,48 +309,12 @@ templ HomeTrustedBy() {
 					</div>
 					<div class="flex items-center gap-2">
 						@icon.Heart(icon.Props{Size: 32})
-						<span class="text-sm font-medium">Music Nerds</span>
+						<span class="text-sm font-medium">Built by Music Nerds</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-}
-
-templ HomeStats() {
-	<section class="py-24">
-		<div class="container mx-auto px-4">
-			<div class="mx-auto max-w-5xl">
-				<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-					@HomeStatCard("Users", "2,500+", "Party hosts")
-					@HomeStatCard("Music", "50k+", "Songs queued")
-					@HomeStatCard("Globe", "42", "Countries")
-					@HomeStatCard("Heart", "100%", "Ad-free")
-				</div>
-			</div>
-		</div>
-	</section>
-}
-
-templ HomeStatCard(iconName string, value string, label string) {
-	<div class="text-center">
-		<div class="inline-flex items-center justify-center size-12 rounded-lg bg-primary/10 text-primary mb-4">
-			switch iconName {
-				case "Users":
-					@icon.Users(icon.Props{Size: 24})
-				case "Music":
-					@icon.Music(icon.Props{Size: 24})
-				case "Globe":
-					@icon.Globe(icon.Props{Size: 24})
-				case "Heart":
-					@icon.Heart(icon.Props{Size: 24})
-				default:
-					@icon.Star(icon.Props{Size: 24})
-			}
-		</div>
-		<div class="text-3xl font-bold">{ value }</div>
-		<p class="mt-1 text-sm text-muted-foreground">{ label }</p>
-	</div>
 }
 
 templ HomeCTA() {

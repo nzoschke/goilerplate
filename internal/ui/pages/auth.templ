@@ -5,7 +5,6 @@ import (
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/csrf"
 	"github.com/templui/goilerplate/internal/ui/components/form"
-	"github.com/templui/goilerplate/internal/ui/components/icon"
 	"github.com/templui/goilerplate/internal/ui/components/input"
 	"github.com/templui/goilerplate/internal/ui/components/label"
 	"github.com/templui/goilerplate/internal/ui/layouts"
@@ -22,14 +21,10 @@ templ Auth(errorMsg string) {
 			<div class="w-full max-w-sm">
 				<div class="text-center mb-8">
 					<div class="mb-8">
-						@button.Button(button.Props{
-							Variant: button.VariantSecondary,
-							Size:    button.SizeLg,
-							Href:    "/",
-						}) {
-							@icon.Layers()
-							{ cfg.AppName }
-						}
+						<a href="/">
+							<img src="/assets/img/jukelab.svg" alt={ cfg.AppName } class="h-20 mx-auto dark:hidden"/>
+							<img src="/assets/img/jukelab-dark.svg" alt={ cfg.AppName } class="h-20 mx-auto hidden dark:block"/>
+						</a>
 					</div>
 					<h2 class="text-3xl font-bold">Welcome</h2>
 					<p class="text-muted-foreground mt-2">Sign in or create your account</p>

@@ -1,70 +1,91 @@
 ---
-title: Terms of Service
+title: Terms and Conditions
 description: Terms and conditions for using our service
-lastUpdated: 2024-01-15
+lastUpdated: 2025-01-18
 ---
 
-**Effective Date: [TODO: Add Date]**
+**Effective Date: January 18, 2025**
 
-## Important Notice
+## 1. Introduction
 
-[TODO: Add your customized Terms of Service here. Consult with legal counsel for your jurisdiction.]
+### 1.1 Purpose Statement
 
-## 1. Acceptance of Terms
+Welcome to JukeLab! Our Terms and Conditions establish the rules for using our services, promoting fairness and transparency in our digital community.
 
-[TODO: Add acceptance terms]
+### 1.2 Acceptance Clause
 
-## 2. Description of Service
+By using our platform, you agree to abide by the terms outlined in these Terms and Conditions. Your continued use implies your understanding and acceptance of these conditions.
 
-[TODO: Describe your service]
+## 2. User Rights and Responsibilities
 
-## 3. User Accounts
+### 2.1 User Conduct
 
-[TODO: Add account terms]
+Users are expected to engage in respectful and lawful behavior on our platform. Violations may lead to consequences outlined in Section 7, ensuring a positive and secure online environment.
 
-## 4. Acceptable Use
+### 2.2 Account Security
 
-[TODO: Add acceptable use policy]
+Protecting your account is crucial. Users are responsible for maintaining the security of their accounts and passwords, contributing to the overall safety of our digital community.
 
-## 5. Intellectual Property
+## 3. Service Description
 
-[TODO: Add IP terms]
+### 3.1 Overview of Services
 
-## 6. Privacy
+At JukeLab, we provide collaborative jukebox software as a service. Stay informed about any changes through our Modifications Clause to have a seamless user experience.
 
-Your use of our Service is governed by our [Privacy Policy](/legal/privacy).
+### 3.2 Modifications Clause
 
-## 7. Payment Terms
+We reserve the right to modify or discontinue services for improvement. Users will be notified of significant changes, maintaining transparency and user awareness.
 
-[TODO: Add payment terms if applicable]
+## 4. Payment Terms
 
-## 8. Disclaimers
+### 4.1 Fee Structure
 
-[TODO: Add disclaimers]
+Users agree to pay the specified fees for our services. Payment methods accepted include major credit cards and other payment providers, ensuring a straightforward financial transaction process.
 
-## 9. Limitation of Liability
+### 4.2 Billing Policies
 
-[TODO: Add liability limitations]
+Billing occurs monthly based on subscriptions. Familiarize yourself with our billing policies to avoid disruptions and manage your financial commitment.
 
-## 10. Termination
+## 5. Privacy Policy Integration
 
-[TODO: Add termination terms]
+### 5.1 Data Handling
 
-## 11. Changes to Terms
+We handle user data as outlined in our [Privacy Policy](/legal/privacy), respecting user privacy and complying with data protection regulations.
 
-[TODO: Add change notification process]
+### 5.2 Cookies Usage
 
-## 12. Governing Law
+Cookies are used for analytics. Manage your cookie settings through your browser preferences, giving users control over their online experience.
 
-[TODO: Specify governing law and jurisdiction]
+## 6. Intellectual Property Rights
 
-## 13. Contact Information
+### 6.1 Ownership Statement
 
-[TODO: Add contact information]
+JukeLab retains ownership of all intellectual property, ensuring a secure and innovative environment for our community.
+
+### 6.2 User Content Rights
+
+Users grant JukeLab rights to use content they generate on our platform, striking a balance between user-generated content and platform interests.
+
+## 7. Termination and Suspension
+
+### 7.1 Grounds for Termination
+
+We may terminate accounts for abuse. Adhering to our community guidelines ensures a positive online environment for everyone.
+
+### 7.2 Consequences of Termination
+
+Termination may result in revocation of services. Compliance ensures uninterrupted access to our services and fosters a healthy online community.
+
+## 8. Dispute Resolution
+
+### 8.1 Resolution Methods
+
+Disputes will be resolved through an arbitration/mediation process, ensuring a fair and efficient conflict resolution mechanism.
+
+### 8.2 Jurisdiction Clause
+
+The governing law for disputes is the law of California USA, providing legal clarity and setting expectations for users.
 
 ---
 
-### Resources
-
-- [Terms of Service Generator](https://www.termsfeed.com/terms-service-generator/)
-- [Termly](https://termly.io/products/terms-and-conditions-generator/)
+By using our services, you acknowledge that you have read and agreed to these Terms and Conditions.
