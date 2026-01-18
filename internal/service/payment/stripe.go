@@ -401,13 +401,13 @@ func (s *StripeProvider) handleInvoicePaymentFailed(data json.RawMessage) error 
 
 func (s *StripeProvider) getStripePriceID(planID, interval string) string {
 	switch {
-	case planID == model.SubscriptionPlanPro && interval == model.SubscriptionIntervalMonthly:
+	case planID == model.SubscriptionPlanNerd && interval == model.SubscriptionIntervalMonthly:
 		return s.cfg.StripePriceIDProMonthly
-	case planID == model.SubscriptionPlanPro && interval == model.SubscriptionIntervalYearly:
+	case planID == model.SubscriptionPlanNerd && interval == model.SubscriptionIntervalYearly:
 		return s.cfg.StripePriceIDProYearly
-	case planID == model.SubscriptionPlanEnterprise && interval == model.SubscriptionIntervalMonthly:
+	case planID == model.SubscriptionPlanConnoisseur && interval == model.SubscriptionIntervalMonthly:
 		return s.cfg.StripePriceIDEnterpriseMonthly
-	case planID == model.SubscriptionPlanEnterprise && interval == model.SubscriptionIntervalYearly:
+	case planID == model.SubscriptionPlanConnoisseur && interval == model.SubscriptionIntervalYearly:
 		return s.cfg.StripePriceIDEnterpriseYearly
 	default:
 		return ""
@@ -417,9 +417,9 @@ func (s *StripeProvider) getStripePriceID(planID, interval string) string {
 func (s *StripeProvider) getLocalPlanID(priceID string) string {
 	switch priceID {
 	case s.cfg.StripePriceIDProMonthly, s.cfg.StripePriceIDProYearly:
-		return model.SubscriptionPlanPro
+		return model.SubscriptionPlanNerd
 	case s.cfg.StripePriceIDEnterpriseMonthly, s.cfg.StripePriceIDEnterpriseYearly:
-		return model.SubscriptionPlanEnterprise
+		return model.SubscriptionPlanConnoisseur
 	default:
 		return ""
 	}

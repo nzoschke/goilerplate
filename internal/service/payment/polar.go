@@ -420,13 +420,13 @@ func (p *PolarProvider) handleSubscriptionRevoked(data json.RawMessage) error {
 
 func (p *PolarProvider) getPolarProductID(planID, interval string) string {
 	switch {
-	case planID == model.SubscriptionPlanPro && interval == model.SubscriptionIntervalMonthly:
+	case planID == model.SubscriptionPlanNerd && interval == model.SubscriptionIntervalMonthly:
 		return p.cfg.PolarProductIDProMonthly
-	case planID == model.SubscriptionPlanPro && interval == model.SubscriptionIntervalYearly:
+	case planID == model.SubscriptionPlanNerd && interval == model.SubscriptionIntervalYearly:
 		return p.cfg.PolarProductIDProYearly
-	case planID == model.SubscriptionPlanEnterprise && interval == model.SubscriptionIntervalMonthly:
+	case planID == model.SubscriptionPlanConnoisseur && interval == model.SubscriptionIntervalMonthly:
 		return p.cfg.PolarProductIDEnterpriseMonthly
-	case planID == model.SubscriptionPlanEnterprise && interval == model.SubscriptionIntervalYearly:
+	case planID == model.SubscriptionPlanConnoisseur && interval == model.SubscriptionIntervalYearly:
 		return p.cfg.PolarProductIDEnterpriseYearly
 	default:
 		return ""
@@ -436,9 +436,9 @@ func (p *PolarProvider) getPolarProductID(planID, interval string) string {
 func (p *PolarProvider) getLocalPlanID(productID string) string {
 	switch productID {
 	case p.cfg.PolarProductIDProMonthly, p.cfg.PolarProductIDProYearly:
-		return model.SubscriptionPlanPro
+		return model.SubscriptionPlanNerd
 	case p.cfg.PolarProductIDEnterpriseMonthly, p.cfg.PolarProductIDEnterpriseYearly:
-		return model.SubscriptionPlanEnterprise
+		return model.SubscriptionPlanConnoisseur
 	default:
 		return ""
 	}

@@ -3,14 +3,13 @@ package pages
 import (
 	"github.com/templui/goilerplate/internal/ctxkeys"
 	"github.com/templui/goilerplate/internal/model"
+	"github.com/templui/goilerplate/internal/ui/blocks"
 	"github.com/templui/goilerplate/internal/ui/components/badge"
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/card"
 	"github.com/templui/goilerplate/internal/ui/components/csrf"
-	"github.com/templui/goilerplate/internal/ui/components/icon"
 	"github.com/templui/goilerplate/internal/ui/components/tabs"
 	"github.com/templui/goilerplate/internal/ui/layouts"
-	"github.com/templui/goilerplate/internal/utils"
 )
 
 templ Billing() {
@@ -103,168 +102,97 @@ templ Billing() {
 									},
 								}) {
 									Yearly
-									<span class="ml-1 text-xs text-green-600 dark:text-green-400 font-semibold">Save 20%</span>
+									<span class="ml-1 text-xs text-green-600 dark:text-green-400 font-semibold">Save 17%</span>
 								}
 							}
 						}
 					</div>
-					<div class="grid md:grid-cols-2 gap-4">
-						@BillingPricingCard(
-							"JukeLab Nerd",
-							"$5",
-							"mo",
-							"$50",
-							"yr",
-							"For music enthusiasts",
-							[]string{
-								"Basic music analysis",
-								"Standard library access",
-								"Community support",
-							},
-							model.SubscriptionPlanNerd,
-							subscription.PlanID,
-							subscription.PlanID != model.SubscriptionPlanFree,
-						)
-						@BillingPricingCard(
-							"JukeLab Connoisseur",
-							"$10",
-							"mo",
-							"$100",
-							"yr",
-							"For serious music lovers",
-							[]string{
-								"Advanced music analysis",
-								"Full library access",
-								"Priority support",
-							},
-							model.SubscriptionPlanConnoisseur,
-							subscription.PlanID,
-							subscription.PlanID != model.SubscriptionPlanFree,
-						)
+					<div class="grid md:grid-cols-3 gap-4">
+						@blocks.PricingCard(blocks.FreePlan) {
+							if subscription.PlanID == model.SubscriptionPlanFree {
+								@button.Button(button.Props{
+									Variant:  button.VariantOutline,
+									Class:    "w-full",
+									Disabled: true,
+								}) {
+									Current Plan
+								}
+							}
+						}
+						@blocks.PricingCard(blocks.NerdPlan) {
+							if subscription.PlanID == model.SubscriptionPlanNerd {
+								@button.Button(button.Props{
+									Variant:  button.VariantOutline,
+									Class:    "w-full",
+									Disabled: true,
+								}) {
+									Current Plan
+								}
+							} else if subscription.PlanID == model.SubscriptionPlanFree {
+								<form action="/app/billing/checkout" method="POST" class="w-full">
+									@csrf.Token()
+									<input type="hidden" name="plan_id" value={ model.SubscriptionPlanNerd }/>
+									<input type="hidden" name="interval" value="monthly" data-interval-input/>
+									@button.Button(button.Props{
+										Type:  button.TypeSubmit,
+										Class: "w-full",
+									}) {
+										Upgrade to Nerd
+									}
+								</form>
+							}
+						}
+						@blocks.PricingCard(blocks.ConnoisseurPlan) {
+							if subscription.PlanID == model.SubscriptionPlanConnoisseur {
+								@button.Button(button.Props{
+									Variant:  button.VariantOutline,
+									Class:    "w-full",
+									Disabled: true,
+								}) {
+									Current Plan
+								}
+							} else if subscription.PlanID == model.SubscriptionPlanFree {
+								<form action="/app/billing/checkout" method="POST" class="w-full">
+									@csrf.Token()
+									<input type="hidden" name="plan_id" value={ model.SubscriptionPlanConnoisseur }/>
+									<input type="hidden" name="interval" value="monthly" data-interval-input/>
+									@button.Button(button.Props{
+										Type:    button.TypeSubmit,
+										Class:   "w-full",
+										Variant: button.VariantOutline,
+									}) {
+										Upgrade to Connoisseur
+									}
+								</form>
+							}
+						}
 					</div>
 				</div>
 				<script nonce={ templ.GetNonce(ctx) }>
-					// Toggle prices based on interval
-					function togglePrices(interval) {
-						document.querySelectorAll('.pricing-card').forEach(card => {
-							card.querySelector('.price-monthly')?.classList.toggle('hidden', interval !== 'monthly');
-							card.querySelector('.price-yearly')?.classList.toggle('hidden', interval !== 'yearly');
-							const input = card.querySelector('input[name="interval"]');
-							if (input) input.value = interval;
-						});
-					}
-
-					// Listen for tab clicks
+					// Toggle prices based on interval using shared data attributes
 					document.addEventListener('click', (e) => {
 						const trigger = e.target.closest('[data-billing-interval]');
-						if (trigger) togglePrices(trigger.getAttribute('data-billing-interval'));
-					});
+						if (!trigger) return;
 
-					// Init with monthly
-					togglePrices('monthly');
+						const isAnnual = trigger.getAttribute('data-billing-interval') === 'yearly';
+
+						document.querySelectorAll('[data-price-display]').forEach(el => {
+							const monthly = el.getAttribute('data-monthly');
+							const annual = el.getAttribute('data-annual');
+							el.textContent = isAnnual ? annual : monthly;
+						});
+
+						document.querySelectorAll('[data-billing-period]').forEach(el => {
+							el.textContent = isAnnual ? 'per year' : 'per month';
+						});
+
+						document.querySelectorAll('[data-interval-input]').forEach(input => {
+							input.value = isAnnual ? 'yearly' : 'monthly';
+						});
+					});
 				</script>
 			</div>
 		</div>
 		@tabs.Script()
-	}
-}
-
-templ BillingPricingCard(
-	name string,
-	monthlyPrice string,
-	monthlyPeriod string,
-	yearlyPrice string,
-	yearlyPeriod string,
-	description string,
-	features []string,
-	planID string,
-	currentPlanID string,
-	hasPaidSubscription bool,
-) {
-	@card.Card(card.Props{
-		Class: utils.TwMerge(
-			"pricing-card relative h-full flex flex-col",
-			utils.If(planID == model.SubscriptionPlanConnoisseur, "border-primary ring-2 ring-primary"),
-		),
-	}) {
-		if planID == model.SubscriptionPlanConnoisseur {
-			<div class="absolute -top-4 left-1/2 -translate-x-1/2">
-				@badge.Badge() {
-					Most Popular
-				}
-			</div>
-		}
-		@card.Header() {
-			@card.Title(card.TitleProps{Class: "text-2xl"}) {
-				{ name }
-			}
-			<div class="mt-2">
-				if planID == model.SubscriptionPlanFree {
-					<div class="flex items-baseline gap-1">
-						<span class="text-4xl font-bold">{ monthlyPrice }</span>
-						<span class="text-muted-foreground">/ Free forever</span>
-					</div>
-				} else {
-					<div class="price-monthly flex items-baseline gap-1">
-						<span class="text-4xl font-bold">{ monthlyPrice }</span>
-						<span class="text-muted-foreground">/ { monthlyPeriod }</span>
-					</div>
-					<div class="price-yearly hidden flex items-baseline gap-1">
-						<span class="text-4xl font-bold">{ yearlyPrice }</span>
-						<span class="text-muted-foreground">/ { yearlyPeriod }</span>
-					</div>
-				}
-			</div>
-			@card.Description(card.DescriptionProps{Class: "mt-2"}) {
-				{ description }
-			}
-		}
-		@card.Content(card.ContentProps{Class: "flex-grow"}) {
-			<ul class="space-y-3">
-				for _, feature := range features {
-					<li class="flex items-start gap-2">
-						@icon.Check(icon.Props{Size: 20, Class: "text-primary mt-0.5 shrink-0"})
-						<span class="text-sm">{ feature }</span>
-					</li>
-				}
-			</ul>
-		}
-		@card.Footer(card.FooterProps{Class: "pt-0 mt-auto"}) {
-			if planID == currentPlanID {
-				@button.Button(button.Props{
-					Variant:  button.VariantOutline,
-					Class:    "w-full",
-					Disabled: true,
-				}) {
-					Current Plan
-				}
-			} else if planID != model.SubscriptionPlanFree && !hasPaidSubscription {
-				<form
-					action="/app/billing/checkout"
-					method="POST"
-					class="w-full"
-				>
-					@csrf.Token()
-					<input type="hidden" name="plan_id" value={ planID }/>
-					<input type="hidden" name="interval" value="monthly"/>
-					if planID == model.SubscriptionPlanConnoisseur {
-						@button.Button(button.Props{
-							Type:  "submit",
-							Class: "w-full",
-						}) {
-							Upgrade to { name }
-						}
-					} else {
-						@button.Button(button.Props{
-							Type:    "submit",
-							Class:   "w-full",
-							Variant: button.VariantOutline,
-						}) {
-							Upgrade to { name }
-						}
-					}
-				</form>
-			}
-		}
 	}
 }
