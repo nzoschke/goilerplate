@@ -1,0 +1,1 @@
+var r=(u=>(u[u.Nothing=0]="Nothing",u[u.Metadata=1]="Metadata",u[u.CurrentData=2]="CurrentData",u[u.FutureData=3]="FutureData",u[u.EnoughData=4]="EnoughData",u))(r||{});const a={currentTime:0,duration:0,ended:!1,muted:!1,paused:!0,playbackRate:1,readyState:0,seeking:!1,volume:1};export{a as A,r as R};
