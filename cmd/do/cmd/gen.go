@@ -13,10 +13,11 @@ import (
 )
 
 type generator struct {
-	args   []string
-	bin    string
 	name   string
+	bin    string
+	args   []string
 	skipFn func() bool
+	runFn  func() error // custom run function (if set, bin/args ignored)
 }
 
 func GenCmd() *cobra.Command {
@@ -58,6 +59,11 @@ func runGen() error {
 			args:   []string{"generate"},
 			skipFn: skipTempl,
 		},
+		{
+			name:   "jukebox",
+			skipFn: skipJukebox,
+			runFn:  runJukebox,
+		},
 	}
 
 	start := time.Now()
@@ -75,11 +81,17 @@ func runGen() error {
 			}
 
 			genStart := time.Now()
-			cmd := exec.Command(g.bin, g.args...)
-			cmd.Stdout = os.Stdout
-			cmd.Stderr = os.Stderr
+			var err error
+			if g.runFn != nil {
+				err = g.runFn()
+			} else {
+				cmd := exec.Command(g.bin, g.args...)
+				cmd.Stdout = os.Stdout
+				cmd.Stderr = os.Stderr
+				err = cmd.Run()
+			}
 
-			if err := cmd.Run(); err != nil {
+			if err != nil {
 				errCh <- fmt.Errorf("%s: %w", g.name, err)
 				return
 			}
@@ -161,4 +173,68 @@ func isUpToDate(output string, inputs []string) bool {
 		}
 	}
 	return true
+}
+
+func skipJukebox() bool {
+	// Check if submodule exists
+	if _, err := os.Stat("jukelab"); os.IsNotExist(err) {
+		return true // skip if no submodule
+	}
+
+	// Get current submodule commit
+	cmd := exec.Command("git", "-C", "jukelab", "rev-parse", "HEAD")
+	out, err := cmd.Output()
+	if err != nil {
+		return false // rebuild if can't get commit
+	}
+	currentCommit := strings.TrimSpace(string(out))
+
+	// Check stored commit
+	commitFile := "jukelab/build/.commit"
+	stored, err := os.ReadFile(commitFile)
+	if err != nil {
+		return false // rebuild if no stored commit
+	}
+
+	return strings.TrimSpace(string(stored)) == currentCommit
+}
+
+func runJukebox() error {
+	jukelabDir := "jukelab"
+
+	// Check for npm
+	if _, err := exec.LookPath("npm"); err != nil {
+		return fmt.Errorf("missing required binary: npm")
+	}
+
+	// Install dependencies
+	installCmd := exec.Command("npm", "install")
+	installCmd.Dir = jukelabDir
+	installCmd.Stdout = os.Stdout
+	installCmd.Stderr = os.Stderr
+	if err := installCmd.Run(); err != nil {
+		return fmt.Errorf("npm install failed: %w", err)
+	}
+
+	// Build with BASE_PATH
+	buildCmd := exec.Command("npm", "run", "build")
+	buildCmd.Dir = jukelabDir
+	buildCmd.Stdout = os.Stdout
+	buildCmd.Stderr = os.Stderr
+	buildCmd.Env = append(os.Environ(), "BASE_PATH=/jukebox")
+	if err := buildCmd.Run(); err != nil {
+		return fmt.Errorf("npm run build failed: %w", err)
+	}
+
+	// Store current commit
+	cmd := exec.Command("git", "-C", jukelabDir, "rev-parse", "HEAD")
+	out, err := cmd.Output()
+	if err != nil {
+		return fmt.Errorf("failed to get commit: %w", err)
+	}
+	if err := os.WriteFile("jukelab/build/.commit", out, 0644); err != nil {
+		return fmt.Errorf("failed to write commit file: %w", err)
+	}
+
+	return nil
 }
