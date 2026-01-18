@@ -5,7 +5,6 @@ import (
 	"github.com/templui/goilerplate/internal/ctxkeys"
 	"github.com/templui/goilerplate/internal/ui/blocks"
 	"github.com/templui/goilerplate/internal/ui/components/accordion"
-	"github.com/templui/goilerplate/internal/ui/components/alert"
 	"github.com/templui/goilerplate/internal/ui/components/button"
 	"github.com/templui/goilerplate/internal/ui/components/csrf"
 	"github.com/templui/goilerplate/internal/ui/components/form"
@@ -227,16 +226,9 @@ templ HomeNewsletterSuccess() {
 				<p class="mt-2 text-muted-foreground">
 					Get updates on new features and party tips.
 				</p>
-				<div class="mt-6 max-w-xs mx-auto">
-					@alert.Alert() {
-						@icon.CircleCheck()
-						@alert.Title() {
-							Success
-						}
-						@alert.Description() {
-							<p>Thank you for subscribing.</p>
-						}
-					}
+				<div class="mt-6 flex items-center justify-center gap-2 text-primary">
+					@icon.CircleCheck(icon.Props{Size: 20})
+					<span class="font-medium">Thank you for subscribing!</span>
 				</div>
 			</div>
 		</div>
